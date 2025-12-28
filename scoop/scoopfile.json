@@ -44,6 +44,10 @@
       "Source": "main"
     },
     {
+      "Name": "ast-grep",
+      "Source": "main"
+    },
+    {
       "Name": "bat",
       "Source": "main"
     },

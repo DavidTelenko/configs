@@ -123,6 +123,9 @@ end
 vim.filetype.add {
   extension = {
     ['tdesktop-theme'] = 'css',
+    ['c3'] = 'c3',
+    ['c3i'] = 'c3',
+    ['c3t'] = 'c3',
   },
 }
 

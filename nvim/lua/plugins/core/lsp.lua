@@ -1,4 +1,4 @@
----@return table<string,vim.lsp.Config>
+---@return table<string,vim.lsp.Config>, table<string,vim.lsp.Config>
 local get_servers = function(context)
   return {
     ols = {},
@@ -76,6 +76,9 @@ local get_servers = function(context)
       },
     },
     zls = {},
+  }, {
+    nushell = {},
+    c3_lsp = {},
   }
 end
 
@@ -96,6 +99,7 @@ return {
         'prettierd',
         'shfmt',
         'stylua',
+        'tree-sitter-cli',
         'yq',
       },
     },
@@ -208,7 +212,7 @@ return {
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
-      local servers = get_servers {
+      local servers, local_servers = get_servers {
         schemas = require 'schemastore',
       }
 
@@ -218,11 +222,6 @@ return {
       mason_lspconfig.setup {
         ensure_installed = vim.tbl_keys(servers),
         automatic_enable = false,
-      }
-
-      ---@type table<string,vim.lsp.Config>
-      local local_servers = {
-        nushell = {},
       }
 
       ---@type table<string,vim.lsp.Config>

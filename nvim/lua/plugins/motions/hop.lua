@@ -2,11 +2,11 @@ return {
   'smoka7/hop.nvim',
   keys = {
     { 's', '<NOP>', mode = { 'n' }, desc = 'Hop' },
-    { 's/', desc = 'Hop to pattern' },
-    { 'sd', desc = 'Hop to word' },
-    { 'sl', desc = 'Hop to line' },
-    { 'st', desc = 'Hop to treesitter nodes' },
-    { 'sf', desc = 'Hop to character' },
+    { 's/', mode = { 'n', 'v' }, desc = 'Hop to pattern' },
+    { 'sd', mode = { 'n', 'v' }, desc = 'Hop to word' },
+    { 'sl', mode = { 'n', 'v' }, desc = 'Hop to line' },
+    { 'st', mode = { 'n', 'v' }, desc = 'Hop to treesitter nodes' },
+    { 'sf', mode = { 'n', 'v' }, desc = 'Hop to character' },
   },
   config = function()
     local hop = require 'hop'

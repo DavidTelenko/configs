@@ -10,7 +10,6 @@ return {
   config = function()
     local surround = require 'nvim-surround'
     local surround_utils = require 'nvim-surround.config'
-    local ts_utils = require 'nvim-treesitter.ts_utils'
 
     surround.setup {
       keymaps = {
@@ -49,33 +48,6 @@ return {
               end
             end,
           },
-        },
-        s = {
-          add = function()
-            local cur = ts_utils.get_node_at_cursor(0, true)
-            local language = vim.bo.filetype
-            local is_js_ts = (
-              language == 'javascript'
-              or language == 'javascriptreact'
-              or language == 'typescript'
-              or language == 'typescriptreact'
-            )
-
-            if is_js_ts and cur ~= nil then
-              local cur_type = cur:type()
-              local interpolation_surround = { { '${' }, { '}' } }
-              if
-                cur and (cur_type == 'string' or cur_type == 'string_fragment')
-              then
-                vim.cmd.normal 'csq`'
-                return interpolation_surround
-              elseif cur and cur_type == 'template_string' then
-                return interpolation_surround
-              else
-                return { { '`${' }, { '}`' } }
-              end
-            end
-          end,
         },
         L = {
           add = function()

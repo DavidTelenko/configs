@@ -33,5 +33,15 @@ return {
     vim.api.nvim_set_hl(0, 'Delimiter', { link = 'GruvboxOrange' })
     vim.api.nvim_set_hl(0, 'ErrorMsg', { link = 'WarningMsg' })
     vim.api.nvim_set_hl(0, 'Error', { link = 'WarningMsg' })
+
+    -- This can be removed after https://github.com/ellisonleao/gruvbox.nvim/pull/416 is merged
+    for name in pairs(require('cmp.types').lsp.CompletionItemKind) do
+      if type(name) == 'string' then
+        local hl_group = ('CmpItemKind%s'):format(name)
+        vim.api.nvim_set_hl(0, hl_group .. 'Icon', {
+          link = hl_group,
+        })
+      end
+    end
   end,
 }

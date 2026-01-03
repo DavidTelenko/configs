@@ -6,50 +6,54 @@ return {
     -- Snippet Engine & its associated nvim-cmp source
     'L3MON4D3/LuaSnip',
     'saadparwaiz1/cmp_luasnip',
-
-    -- Adds LSP completion capabilities
-    'hrsh7th/cmp-nvim-lsp',
-
-    -- Adds a number of user-friendly snippets
     'rafamadriz/friendly-snippets',
+
+    -- Sources
+    'hrsh7th/cmp-nvim-lsp',
+    'hrsh7th/cmp-calc',
+    'hrsh7th/cmp-cmdline',
+    -- 'hrsh7th/cmp-path',
+    'hrsh7th/cmp-buffer',
+    'hrsh7th/cmp-emoji',
+    'chrisgrieser/cmp-nerdfont',
+
     -- Completion icons
     'onsails/lspkind.nvim',
   },
-  opts = function()
+  config = function()
     local cmp = require 'cmp'
     local luasnip = require 'luasnip'
-    local lspkind = require 'lspkind'
 
     require('luasnip.loaders.from_vscode').lazy_load()
 
     luasnip.config.setup {}
 
-    lspkind.init {
-      symbol_map = {
-        Copilot = '',
-      },
-    }
-
     cmp.setup.filetype('TelescopePrompt', {
       enabled = false,
     })
 
-    return {
-      sources = {
+    cmp.setup {
+      sources = cmp.config.sources({
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
-        { name = 'path' },
-      },
+      }, {
+        { name = 'buffer' },
+        -- { name = 'path' },
+      }, {
+        { name = 'calc' },
+        { name = 'emoji' },
+        { name = 'nerdfont' },
+      }),
       window = {
-        completion = cmp.config.window.bordered(),
-        documentation = cmp.config.window.bordered(),
+        completion = cmp.config.window.bordered { border = 'rounded' },
+        documentation = cmp.config.window.bordered { border = 'rounded' },
       },
       formatting = {
-        format = lspkind.cmp_format {
-          mode = 'symbol_text',
-          maxwidth = 25,
-          ellipsis_char = '...',
-          show_labelDetails = true,
+        fields = {
+          'icon',
+          'abbr',
+          -- 'kind', -- experimenting with this
+          'menu',
         },
       },
       snippet = {
@@ -62,18 +66,14 @@ return {
       },
       mapping = cmp.mapping.preset.insert {
         ['<Tab>'] = cmp.mapping(function(fallback)
-          if not cmp.visible() then
+          if cmp.visible() then
+            cmp.confirm {
+              select = true,
+              behavior = cmp.ConfirmBehavior.Insert,
+            }
+          else
             fallback()
-            return
           end
-          -- if luasnip.expandable() then
-          --   luasnip.expand()
-          -- else
-          cmp.confirm {
-            select = true,
-            behavior = cmp.ConfirmBehavior.Insert,
-          }
-          -- end
         end),
         ['<C-k>'] = cmp.mapping(function(fallback)
           if luasnip.locally_jumpable(1) then
@@ -89,9 +89,9 @@ return {
             fallback()
           end
         end, { 'i', 's' }),
+        ['<Down>'] = cmp.mapping.select_next_item(),
+        ['<Up>'] = cmp.mapping.select_prev_item(),
         ['<M-i>'] = cmp.mapping.complete(),
-        ['<M-j>'] = cmp.mapping.select_next_item(),
-        ['<M-k>'] = cmp.mapping.select_prev_item(),
         ['<C-d>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
       },

@@ -67,6 +67,9 @@ vim.keymap.set({ 'n', 'v' }, 'j', "v:count == 0 ? 'gj' : 'j'", {
   silent = true,
 })
 
+-- Remap asymmetric + -
+vim.keymap.set('n', '_', '-')
+
 -- Navigation in insert mode
 vim.keymap.set('i', '<A-k>', '<up>', {
   desc = 'Navigation up in insert mode',

@@ -212,7 +212,7 @@ return {
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
-      local servers, local_servers = get_servers {
+      local internal_servers, external_servers = get_servers {
         schemas = require 'schemastore',
       }
 
@@ -220,12 +220,13 @@ return {
 
       ---@type MasonLspconfigSettings
       mason_lspconfig.setup {
-        ensure_installed = vim.tbl_keys(servers),
+        ensure_installed = vim.tbl_keys(internal_servers),
         automatic_enable = false,
       }
 
       ---@type table<string,vim.lsp.Config>
-      local all_servers = vim.tbl_extend('error', servers, local_servers)
+      local all_servers =
+        vim.tbl_extend('error', internal_servers, external_servers)
 
       for name, config in pairs(all_servers) do
         vim.lsp.enable(name)

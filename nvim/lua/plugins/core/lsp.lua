@@ -75,10 +75,10 @@ local get_servers = function(context)
         },
       },
     },
-    zls = {},
   }, {
     nushell = {},
     c3_lsp = {},
+    zls = {},
   }
 end
 

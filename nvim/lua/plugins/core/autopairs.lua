@@ -2,9 +2,22 @@ return {
   -- Automatically add closing pairs
   'windwp/nvim-autopairs',
   event = { 'InsertEnter', 'CmdlineEnter' },
-  -- Optional dependency
   config = function()
-    require('nvim-autopairs').setup {}
+    local autopairs = require 'nvim-autopairs'
+    local basic = require 'nvim-autopairs.rules.basic'
+
+    autopairs.setup {
+      map_cr = true,
+      map_bs = true,
+    }
+
+    basic.setup {
+      break_undo = true,
+      enable_moveright = true,
+      ignored_next_char = '',
+      enable_bracket_in_quote = true,
+      enable_check_bracket_line = true,
+    }
     -- If you want to automatically add `(` after selecting a function or method
     local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
     local cmp = require 'cmp'

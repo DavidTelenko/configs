@@ -8,8 +8,6 @@ return {
     end,
     config = function()
       local textobjects = require 'nvim-treesitter-textobjects'
-      local select = require 'nvim-treesitter-textobjects.select'
-      local move = require 'nvim-treesitter-textobjects.move'
 
       textobjects.setup {
         select = {
@@ -22,53 +20,59 @@ return {
         },
       }
 
-      local function outer(query)
-        return '@' .. query .. '.outer'
-      end
-      local function inner(query)
-        return '@' .. query .. '.inner'
-      end
+      local select = require 'nvim-treesitter-textobjects.select'
+      local move = require 'nvim-treesitter-textobjects.move'
+      local swap = require 'nvim-treesitter-textobjects.swap'
+      local map = vim.keymap.set
 
       for mapping, query in pairs {
         a = 'parameter',
         f = 'function',
         c = 'class',
         b = 'block',
-        ['='] = 'assignment',
+        -- ['='] = 'assignment', -- TODO: figure out letter binding
       } do
-        local modes = { 'x', 'o' }
+        local outer_query = '@' .. query .. '.outer'
+        local inner_query = '@' .. query .. '.inner'
+        local upper_mapping = mapping:upper()
 
-        vim.keymap.set(modes, 'i' .. mapping, function()
-          select.select_textobject(inner(query))
-        end, { desc = 'inner ' .. query })
-        vim.keymap.set(modes, 'a' .. mapping, function()
-          select.select_textobject(outer(query))
-        end, { desc = 'outer ' .. query })
-      end
+        do -- select
+          map({ 'x', 'o' }, 'i' .. mapping, function()
+            select.select_textobject(inner_query)
+          end, { desc = 'inner ' .. query })
 
-      for mapping, query in pairs {
-        a = 'parameter',
-        f = 'function',
-        l = 'class',
-        b = 'block',
-      } do
-        local modes = { 'n', 'x', 'o' }
-        local outer_query = outer(query)
-        local start_mapping = mapping
-        local end_mapping = mapping:upper()
+          map({ 'x', 'o' }, 'a' .. mapping, function()
+            select.select_textobject(outer_query)
+          end, { desc = 'outer ' .. query })
+        end
 
-        vim.keymap.set(modes, ']' .. start_mapping, function()
-          move.goto_next_start(outer_query)
-        end, { desc = 'Next ' .. query .. ' start' })
-        vim.keymap.set(modes, ']' .. end_mapping, function()
-          move.goto_next_end(outer_query)
-        end, { desc = 'Next ' .. query .. ' end' })
-        vim.keymap.set(modes, '[' .. start_mapping, function()
-          move.goto_previous_start(outer_query)
-        end, { desc = 'Previous ' .. query .. ' start' })
-        vim.keymap.set(modes, '[' .. end_mapping, function()
-          move.goto_previous_end(outer_query)
-        end, { desc = 'Previous ' .. query .. ' end' })
+        do -- move
+          map({ 'n', 'x', 'o' }, ']' .. mapping, function()
+            move.goto_next_start(outer_query)
+          end, { desc = 'Next ' .. query .. ' start' })
+
+          map({ 'n', 'x', 'o' }, ']' .. upper_mapping, function()
+            move.goto_next_end(outer_query)
+          end, { desc = 'Next ' .. query .. ' end' })
+
+          map({ 'n', 'x', 'o' }, '[' .. mapping, function()
+            move.goto_previous_start(outer_query)
+          end, { desc = 'Previous ' .. query .. ' start' })
+
+          map({ 'n', 'x', 'o' }, '[' .. upper_mapping, function()
+            move.goto_previous_end(outer_query)
+          end, { desc = 'Previous ' .. query .. ' end' })
+        end
+
+        do -- swap
+          map({ 'n' }, '<leader>S' .. mapping, function()
+            swap.swap_next(inner_query)
+          end, { desc = 'Swap next ' .. query })
+
+          map({ 'n' }, '<leader>S' .. upper_mapping, function()
+            swap.swap_previous(inner_query)
+          end, { desc = 'Swap previous ' .. query })
+        end
       end
     end,
   },

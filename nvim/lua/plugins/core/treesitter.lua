@@ -103,6 +103,7 @@ return {
         'typescript',
         'vim',
         'vimdoc',
+        'zig',
       }
       require('nvim-treesitter').install(languages)
 

@@ -64,9 +64,11 @@ return {
       completion = {
         completeopt = 'menu,menuone,noinsert',
       },
-      mapping = cmp.mapping.preset.insert {
+      mapping = {
         ['<Tab>'] = cmp.mapping(function(fallback)
-          if cmp.visible() then
+          if luasnip.locally_jumpable(1) then
+            luasnip.jump(1)
+          elseif cmp.visible() then
             cmp.confirm {
               select = true,
               behavior = cmp.ConfirmBehavior.Insert,
@@ -74,26 +76,21 @@ return {
           else
             fallback()
           end
-        end),
-        ['<C-k>'] = cmp.mapping(function(fallback)
-          if luasnip.locally_jumpable(1) then
-            luasnip.jump(1)
-          else
-            fallback()
-          end
         end, { 'i', 's' }),
-        ['<C-j>'] = cmp.mapping(function(fallback)
+        ['<S-Tab>'] = cmp.mapping(function(fallback)
           if luasnip.locally_jumpable(-1) then
-            luasnip.jump(-1)
+            return luasnip.jump(-1)
           else
             fallback()
           end
         end, { 'i', 's' }),
         ['<Down>'] = cmp.mapping.select_next_item(),
+        ['<M-j>'] = cmp.mapping.select_next_item(),
         ['<Up>'] = cmp.mapping.select_prev_item(),
+        ['<M-k>'] = cmp.mapping.select_prev_item(),
         ['<M-i>'] = cmp.mapping.complete(),
-        ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-f>'] = cmp.mapping.scroll_docs(4),
+        ['<M-u>'] = cmp.mapping.scroll_docs(-4),
+        ['<M-d>'] = cmp.mapping.scroll_docs(4),
       },
     }
   end,

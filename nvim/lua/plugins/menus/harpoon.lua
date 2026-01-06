@@ -2,15 +2,15 @@ return {
   'ThePrimeagen/harpoon',
   branch = 'harpoon2',
   keys = {
-    { '<leader><space>', desc = 'Open menu' },
+    { '<leader><space>', desc = 'Open harpoon menu' },
     { '<leader>ha', desc = 'Add file' },
     { '<leader>hr', desc = 'Remove file' },
     { '<leader>hs', desc = 'Harpoon files' },
     { ']h', desc = 'Next harpoon file' },
     { '[h', desc = 'Previous harpoon file' },
-    { '<leader>1', desc = 'Navigate to harpoon file 1' },
-    { '<leader>2', desc = 'Navigate to harpoon file 2' },
-    { '<leader>3', desc = 'Navigate to harpoon file 3' },
+    { '<leader>1', desc = 'Navigate to harpoon file [1]' },
+    { '<leader>2', desc = 'Navigate to harpoon file [2]' },
+    { '<leader>3', desc = 'Navigate to harpoon file [3]' },
     --- to lazy load more just press the menu (<leader><space>) bruh
   },
   config = function()
@@ -60,7 +60,7 @@ return {
         ui_width_ratio = 0.9,
         title = ' Harpoon ',
       })
-    end, { desc = 'Open harpoon window' })
+    end, { desc = 'Open harpoon menu' })
 
     -- basic telescope configuration
     local conf = require('telescope.config').values

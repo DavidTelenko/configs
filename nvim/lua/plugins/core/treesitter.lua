@@ -113,15 +113,14 @@ return {
         group = vim.api.nvim_create_augroup('NvimTreesitter', {}),
         callback = function(args)
           local filetype = vim.bo[args.buf].ft
-
-          if not filetype or filetype == '' then
-            return
-          end
-
           local language = vim.treesitter.language.get_lang(filetype)
             or filetype
 
-          if vim.treesitter.language.add(language) then
+          if
+            language
+            and language ~= ''
+            and vim.treesitter.language.add(language)
+          then
             return vim.treesitter.start(args.buf, language)
           end
         end,

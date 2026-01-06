@@ -7,10 +7,6 @@ vim.keymap.set({ 'n', 'i', 'v' }, '<F1>', '<Esc>', {
   silent = true,
 })
 
-vim.keymap.set('n', 'zz', 'ZZ', {
-  desc = 'Write & Exit',
-})
-
 -- Remaps system-wide remapped keys
 vim.keymap.set({ 'n', 'v' }, '<A-u>', '<C-u>zz')
 vim.keymap.set({ 'n', 'v' }, '<PageUp>', '<C-u>zz')

@@ -1,5 +1,13 @@
+--- This is a main config of servers extracted for readability purposes.
+---
+--- All servers are separated into:
+---  - internal (managed by Mason, first tuple element)
+---  - external (managed by me, second tuple element)
+---
+--- *Some server require external config, so we pass that through context
+--- parameter
 ---@return table<string,vim.lsp.Config>, table<string,vim.lsp.Config>
-local get_servers = function(context)
+local function get_servers(context)
   return {
     ols = {},
     bashls = {},
@@ -161,82 +169,72 @@ return {
       local mason_lspconfig = require 'mason-lspconfig'
       local helpers = require 'helpers.lsp'
 
-      vim.keymap.set('n', '<leader>cI', function()
-        vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled {})
-      end, { desc = 'Toggle inlay hints' })
-
-      vim.keymap.set('n', '<leader>cd', vim.diagnostic.setqflist, {
-        desc = 'Open diagnostics list',
-      })
-
-      helpers.next_prev_diagnostic {
-        severity = vim.diagnostic.severity.ERROR,
-        key = 'e',
-        message = 'error',
-      }
-      helpers.next_prev_diagnostic {
-        severity = vim.diagnostic.severity.WARN,
-        key = 'w',
-        message = 'warning',
-      }
-      helpers.next_prev_diagnostic {
-        severity = nil,
-        key = 'd',
-        message = 'diagnostic',
-      }
-
-      vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, {
-        desc = 'Open floating diagnostic message',
-      })
-
-      vim.keymap.set('n', '<leader>cR', '<cmd>LspRestart<cr>', {
-        desc = 'Restart Lsp Server',
-      })
-
-      vim.diagnostic.config {
-        float = { border = 'rounded', source = 'if_many' },
-        signs = {
-          text = {
-            [vim.diagnostic.severity.ERROR] = '󰅚 ',
-            [vim.diagnostic.severity.WARN] = '󰀪 ',
-            [vim.diagnostic.severity.INFO] = '󰋽 ',
-            [vim.diagnostic.severity.HINT] = '󰌶 ',
+      do -- diagnostics setup
+        vim.diagnostic.config {
+          float = { border = 'rounded', source = 'if_many' },
+          signs = {
+            text = {
+              [vim.diagnostic.severity.ERROR] = '󰅚 ',
+              [vim.diagnostic.severity.WARN] = '󰀪 ',
+              [vim.diagnostic.severity.INFO] = '󰋽 ',
+              [vim.diagnostic.severity.HINT] = '󰌶 ',
+            },
           },
-        },
-        virtual_text = {
-          current_line = true,
-        },
-      }
+          virtual_text = {
+            current_line = true,
+          },
+        }
+      end
 
-      -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+      do -- keymaps
+        vim.keymap.set('n', '<leader>cd', vim.diagnostic.setqflist, {
+          desc = 'Open diagnostics list',
+        })
 
-      local internal_servers, external_servers = get_servers {
-        schemas = require 'schemastore',
-      }
+        vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, {
+          desc = 'Open floating diagnostic message',
+        })
 
-      -- Ensure the servers above are installed
+        vim.keymap.set('n', '<leader>cR', '<cmd>LspRestart<cr>', {
+          desc = 'Restart Lsp Server',
+        })
+      end
 
-      ---@type MasonLspconfigSettings
-      mason_lspconfig.setup {
-        ensure_installed = vim.tbl_keys(internal_servers),
-        automatic_enable = false,
-      }
+      do -- servers setup
+        -- Load server configs:
+        --   internal_servers - installed and managed by Mason
+        --   external_servers - by User
+        local internal_servers, external_servers = get_servers {
+          schemas = require 'schemastore',
+        }
 
-      ---@type table<string,vim.lsp.Config>
-      local all_servers =
-        vim.tbl_extend('error', internal_servers, external_servers)
+        -- Ensure internal servers are installed
+        ---@type MasonLspconfigSettings
+        mason_lspconfig.setup {
+          ensure_installed = vim.tbl_keys(internal_servers),
+          automatic_enable = false,
+        }
 
-      for name, config in pairs(all_servers) do
-        vim.lsp.enable(name)
-        vim.lsp.config(
-          name,
-          vim.tbl_deep_extend('force', vim.lsp.config[name], config, {
-            on_attach = helpers.on_attach,
-            capabilities = capabilities,
-          })
+        ---@type table<string,vim.lsp.Config>
+        local all_servers =
+          vim.tbl_extend('error', internal_servers, external_servers)
+
+        -- nvim-cmp capabilities
+        local capabilities = require('cmp_nvim_lsp').default_capabilities(
+          vim.lsp.protocol.make_client_capabilities()
         )
+
+        -- Configure all the servers
+        for name, config in pairs(all_servers) do
+          vim.lsp.enable(name)
+          vim.lsp.config(
+            name,
+            vim.tbl_deep_extend('force', vim.lsp.config[name], config, {
+              on_attach = helpers.on_attach,
+              capabilities = capabilities,
+            })
+          )
+        end
       end
     end,
   },

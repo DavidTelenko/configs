@@ -7,8 +7,11 @@ require 'plugins.tabline'
 local config = wezterm.config_builder()
 local act = wezterm.action
 
-config.default_prog = { 'nu' }
--- config.default_domain = 'WSL:Arch'
+if wezterm.target_triple == 'aarch64-apple-darwin' then
+  config.default_prog = { '/opt/homebrew/bin/nu' }
+else
+  config.default_prog = { 'nu' }
+end
 
 config.automatically_reload_config = true
 
@@ -18,6 +21,7 @@ config.show_new_tab_button_in_tab_bar = false
 config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = false
 config.enable_tab_bar = true
+config.native_macos_fullscreen_mode = true
 -- config.window_background_opacity = 0.8
 -- config.win32_system_backdrop = 'Acrylic'
 

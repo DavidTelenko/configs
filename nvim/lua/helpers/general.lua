@@ -12,7 +12,8 @@ local is_non_empty = function(tbl)
 end
 
 local is_config_present = function(fmt)
-  return vim.fs.root(vim.fn.getcwd(), require('helpers.configs')[fmt]) ~= nil
+  return vim.fs.root(vim.fn.getcwd(), require('helpers.root_markers')[fmt])
+    ~= nil
 end
 
 --- @param predicate fun(fmt: string): boolean

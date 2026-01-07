@@ -75,42 +75,32 @@ return {
         changedelete = { text = '' },
         untracked = { text = '' },
       },
-      on_attach = function(bufnr)
+      on_attach = function(buffer)
         vim.keymap.set('n', '<leader>gp', require('gitsigns').preview_hunk, {
-          buffer = bufnr,
+          buffer = buffer,
           desc = 'Preview git hunk',
         })
 
         -- don't override the built-in and fugitive keymaps
         local gs = package.loaded.gitsigns
 
-        vim.keymap.set({ 'n', 'v' }, ']c', function()
-          if vim.wo.diff then
-            return ']c'
-          end
-          vim.schedule(function()
-            gs.next_hunk()
-          end)
-          return '<Ignore>'
-        end, {
-          expr = true,
-          buffer = bufnr,
-          desc = 'Next git hunk',
-        })
-
-        vim.keymap.set({ 'n', 'v' }, '[c', function()
-          if vim.wo.diff then
-            return '[c'
-          end
-          vim.schedule(function()
-            gs.prev_hunk()
-          end)
-          return '<Ignore>'
-        end, {
-          expr = true,
-          buffer = bufnr,
-          desc = 'Previous git hunk',
-        })
+        for _, conf in ipairs {
+          { mapping = ']', invoke = gs.next_hunk, desc = 'Next' },
+          { mapping = '[', invoke = gs.prev_hunk, desc = 'Previous' },
+        } do
+          vim.keymap.set({ 'n', 'v' }, conf.mapping .. 'c', function()
+            if vim.wo.diff then
+              return conf.mapping .. 'c'
+            else
+              vim.schedule(conf.invoke)
+              return '<Ignore>'
+            end
+          end, {
+            expr = true,
+            buffer = buffer,
+            desc = conf.desc .. ' git hunk',
+          })
+        end
 
         vim.keymap.set('n', '<leader>gs', gs.stage_hunk, {
           desc = 'Stage hunk',
@@ -122,9 +112,7 @@ return {
 
         vim.keymap.set('n', '<leader>gq', function()
           gs.setqflist 'all'
-        end, {
-          desc = 'Hunk quickfix list',
-        })
+        end, { desc = 'Hunk quickfix list' })
 
         vim.keymap.set('v', '<leader>gs', function()
           gs.stage_hunk { vim.fn.line '.', vim.fn.line 'v' }
@@ -163,7 +151,11 @@ return {
               return
             end
           end
-          vim.cmd 'Git'
+
+          local success = pcall(vim.api.nvim_exec2, 'Git', {})
+          if not success then
+            vim.notify('Not in a git repository', vim.diagnostic.severity.WARN)
+          end
         end,
         desc = 'Git menu (fugitive)',
       },

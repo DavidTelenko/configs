@@ -53,7 +53,7 @@
     },
     {
       "Name": "bottom",
-      "Version": "0.10.2"
+      "Source": "main"
     },
     {
       "Name": "brename",
@@ -61,10 +61,6 @@
     },
     {
       "Name": "broot",
-      "Source": "main"
-    },
-    {
-      "Name": "clangd",
       "Source": "main"
     },
     {
@@ -93,6 +89,10 @@
     },
     {
       "Name": "fd",
+      "Source": "main"
+    },
+    {
+      "Name": "fnm",
       "Source": "main"
     },
     {
@@ -148,8 +148,8 @@
       "Source": "extras"
     },
     {
-      "Source": "extras",
-      "Name": "naps2"
+      "Name": "naps2",
+      "Source": "extras"
     },
     {
       "Name": "neovim",
@@ -157,10 +157,6 @@
     },
     {
       "Name": "ninja",
-      "Source": "main"
-    },
-    {
-      "Name": "nodejs",
       "Source": "main"
     },
     {
@@ -256,16 +252,16 @@
       "Source": "main"
     },
     {
-      "Source": "main",
-      "Name": "unar"
+      "Name": "unar",
+      "Source": "main"
     },
     {
       "Name": "uv",
       "Source": "main"
     },
     {
-      "Source": "versions",
-      "Name": "wezterm-nightly"
+      "Name": "wezterm-nightly",
+      "Source": "versions"
     },
     {
       "Name": "windows-terminal-preview",

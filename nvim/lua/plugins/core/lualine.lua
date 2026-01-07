@@ -31,7 +31,11 @@ return {
           {
             'mode',
             fmt = function(str)
-              return str:sub(1, 1)
+              if vim.fn.reg_recording() ~= '' then
+                return ' ' .. vim.fn.reg_recording():upper()
+              else
+                return str:sub(1, 1)
+              end
             end,
           },
         },
@@ -40,18 +44,6 @@ return {
           'diagnostics',
         },
         lualine_c = {
-          {
-            function()
-              if vim.fn.reg_recording() == '' then
-                return ''
-              end
-              return '🔴(' .. vim.fn.reg_recording() .. ')'
-            end,
-            padding = {
-              right = 0,
-              left = 1,
-            },
-          },
           {
             filename,
             path = 1,

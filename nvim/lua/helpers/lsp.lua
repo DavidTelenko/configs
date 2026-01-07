@@ -49,15 +49,14 @@ M.on_attach = function(client, buffer)
     }
   end
 
-  do -- goto
-    -- TODO: experimenting with this
-    -- map('gd', 'Definition', telescope.lsp_definitions)
-    -- map('gR', 'References', telescope.lsp_references)
-    -- map('gI', 'Implementation', telescope.lsp_implementations)
+  do -- Go to
+    map('gd', 'Definition', telescope.lsp_definitions)
+    map('gR', 'References', telescope.lsp_references)
+    map('gI', 'Implementation', telescope.lsp_implementations)
 
-    map('gd', 'Definition', vim.lsp.buf.definition)
-    map('gR', 'References', vim.lsp.buf.references)
-    map('gI', 'Implementation', vim.lsp.buf.implementation)
+    -- map('gd', 'Definition', vim.lsp.buf.definition)
+    -- map('gR', 'References', vim.lsp.buf.references)
+    -- map('gI', 'Implementation', vim.lsp.buf.implementation)
 
     if client:supports_method('textDocument/declaration', buffer) then
       map('gD', 'Declaration', vim.lsp.buf.declaration)

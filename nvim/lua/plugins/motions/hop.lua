@@ -5,12 +5,10 @@ return {
     { 's/', mode = { 'n', 'v' }, desc = 'Hop to pattern' },
     { 'sd', mode = { 'n', 'v' }, desc = 'Hop to word' },
     { 'sl', mode = { 'n', 'v' }, desc = 'Hop to line' },
-    { 'st', mode = { 'n', 'v' }, desc = 'Hop to treesitter nodes' },
     { 'sf', mode = { 'n', 'v' }, desc = 'Hop to character' },
   },
   config = function()
     local hop = require 'hop'
-    local hop_ts = require 'hop-treesitter'
 
     local function set(name, link)
       vim.api.nvim_set_hl(0, name, {
@@ -49,10 +47,6 @@ return {
     vim.keymap.set({ 'n', 'v' }, 'sl', function()
       hop.hint_lines {}
     end, { remap = true, desc = 'Hop to line' })
-
-    vim.keymap.set({ 'n', 'v' }, 'st', function()
-      hop_ts.hint_nodes {}
-    end, { remap = true, desc = 'Hop to treesitter nodes' })
 
     vim.keymap.set({ 'n', 'v' }, 's/', function()
       hop.hint_patterns {}

@@ -12,6 +12,7 @@ local function get_servers(context)
     ols = {},
     bashls = {},
     pyright = {},
+    cssls = {},
     html = {
       filetypes = {
         'html',

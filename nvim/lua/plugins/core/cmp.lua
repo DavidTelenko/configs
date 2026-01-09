@@ -9,7 +9,7 @@ return {
 
     -- Sources
     'hrsh7th/cmp-nvim-lsp',
-    'hrsh7th/cmp-calc',
+    -- 'hrsh7th/cmp-calc',
     'hrsh7th/cmp-cmdline',
     'hrsh7th/cmp-path',
     'hrsh7th/cmp-buffer',
@@ -40,7 +40,7 @@ return {
         { name = 'buffer' },
         { name = 'path' },
       }, {
-        { name = 'calc' },
+        -- { name = 'calc' },
         { name = 'emoji' },
         { name = 'nerdfont' },
       }),

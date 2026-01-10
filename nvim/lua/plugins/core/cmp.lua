@@ -85,12 +85,12 @@ return {
           end
         end, { 'i', 's' }),
         ['<Down>'] = cmp.mapping.select_next_item(),
-        ['<M-j>'] = cmp.mapping.select_next_item(),
+        ['<A-j>'] = cmp.mapping.select_next_item(),
         ['<Up>'] = cmp.mapping.select_prev_item(),
-        ['<M-k>'] = cmp.mapping.select_prev_item(),
-        ['<M-i>'] = cmp.mapping.complete(),
-        ['<M-u>'] = cmp.mapping.scroll_docs(-4),
-        ['<M-d>'] = cmp.mapping.scroll_docs(4),
+        ['<A-k>'] = cmp.mapping.select_prev_item(),
+        ['<A-i>'] = cmp.mapping.complete(),
+        ['<A-u>'] = cmp.mapping.scroll_docs(-4),
+        ['<A-d>'] = cmp.mapping.scroll_docs(4),
       },
     }
   end,

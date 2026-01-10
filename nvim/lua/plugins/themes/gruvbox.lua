@@ -30,9 +30,11 @@ return {
     require('gruvbox').setup(opts)
     vim.cmd.colorscheme 'gruvbox'
 
-    vim.api.nvim_set_hl(0, 'Delimiter', { link = 'GruvboxOrange' })
-    vim.api.nvim_set_hl(0, 'ErrorMsg', { link = 'WarningMsg' })
-    vim.api.nvim_set_hl(0, 'Error', { link = 'WarningMsg' })
+    local hl = vim.api.nvim_set_hl
+
+    hl(0, 'Delimiter', { link = 'GruvboxOrange' })
+    hl(0, 'ErrorMsg', { link = 'WarningMsg' })
+    hl(0, 'Error', { link = 'WarningMsg' })
 
     -- This can be removed after https://github.com/ellisonleao/gruvbox.nvim/pull/416 is merged
     for name in pairs(require('cmp.types').lsp.CompletionItemKind) do

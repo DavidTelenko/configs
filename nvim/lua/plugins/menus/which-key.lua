@@ -6,8 +6,8 @@ return {
     wk.setup {
       preset = 'helix',
       keys = {
-        scroll_up = '<M-u>',
-        scroll_down = '<M-d>',
+        scroll_up = '<A-u>',
+        scroll_down = '<A-d>',
       },
       spec = {
         {

@@ -401,6 +401,7 @@ movewordleft
 movewordright
 mpris
 mtcuvc
+multicursor
 multishell
 multishells
 munif

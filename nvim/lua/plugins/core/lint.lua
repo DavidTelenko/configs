@@ -8,7 +8,7 @@ return {
     function setup()
       local js_ts_linters = h.first {
         h.require_config 'eslint_d',
-        h.require_config 'biomejs',
+        -- h.require_config 'biomejs',
       }
 
       lint.linters_by_ft = {

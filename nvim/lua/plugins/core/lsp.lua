@@ -58,7 +58,7 @@ local function get_servers(context)
     rust_analyzer = {},
     svelte = {},
     tailwindcss = {},
-    -- biome = {},
+    biome = {},
     -- tsgo = {},
     ts_ls = {},
     -- vtsls = {},

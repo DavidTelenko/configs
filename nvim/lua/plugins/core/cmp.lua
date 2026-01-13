@@ -66,13 +66,13 @@ return {
       },
       mapping = {
         ['<Tab>'] = cmp.mapping(function(fallback)
-          if luasnip.locally_jumpable(1) then
-            luasnip.jump(1)
-          elseif cmp.visible() then
+          if cmp.visible() then
             cmp.confirm {
               select = true,
               behavior = cmp.ConfirmBehavior.Insert,
             }
+          elseif luasnip.locally_jumpable(1) then
+            luasnip.jump(1)
           else
             fallback()
           end

@@ -167,7 +167,7 @@ return {
                 )
               else
                 notify('Failed to unpack', vim.log.levels.ERROR)
-                notify(out, vim.log.levels.WARN)
+                notify(vim.inspect(out), vim.log.levels.WARN)
               end
             end)
           )

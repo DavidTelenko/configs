@@ -119,6 +119,61 @@ return {
         end,
         desc = 'Search & Replace in directory (GrugFar)',
       },
+      ['<leader>u'] = {
+        function()
+          local oil = require 'oil'
+          local Progress = require 'oil.mutator.progress'
+          local entry = oil.get_cursor_entry()
+          local notify = require 'helpers.notify'
+
+          local progress = Progress.new()
+          -- This is hackish
+          progress.lines[1] = 'Unpacking...'
+          local finished = false
+
+          local function finish()
+            if not finished then
+              finished = true
+              progress:close()
+            end
+          end
+
+          if not entry or entry.type ~= 'file' then
+            return
+          end
+
+          vim.defer_fn(function()
+            if not finished then
+              progress:show {
+                cancel = function()
+                  finish()
+                end,
+              }
+            end
+          end, 100)
+
+          -- TODO: actual progress
+          vim.system(
+            { '7z', 'x', entry.name, '-o*' },
+            {},
+            vim.schedule_wrap(function(out)
+              finish()
+              vim.cmd.edit()
+
+              if out.code == 255 then
+                notify(
+                  'Failed to unpack, file already exists!',
+                  vim.log.levels.ERROR
+                )
+              else
+                notify('Failed to unpack', vim.log.levels.ERROR)
+                notify(out, vim.log.levels.WARN)
+              end
+            end)
+          )
+        end,
+        desc = 'Unpack archive (7z)',
+      },
     },
     -- Set to false to disable all of the above keymaps
     use_default_keymaps = true,

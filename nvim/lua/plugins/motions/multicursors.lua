@@ -53,6 +53,12 @@ return {
       layer_map('x', 'A', mc.appendVisual)
       layer_map({ 'n', 'x' }, 'g<c-a>', mc.sequenceIncrement)
       layer_map({ 'n', 'x' }, 'g<c-x>', mc.sequenceDecrement)
+      layer_map({ 'n', 'x' }, '<up>', function()
+        mc.lineAddCursor(-1)
+      end)
+      layer_map({ 'n', 'x' }, '<down>', function()
+        mc.lineAddCursor(1)
+      end)
 
       -- Enable and clear cursors using escape.
       layer_map('n', '<esc>', function()

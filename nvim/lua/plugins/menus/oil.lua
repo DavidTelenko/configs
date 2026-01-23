@@ -1,5 +1,6 @@
 return {
-  'stevearc/oil.nvim',
+  'DavidTelenko/oil.nvim',
+  branch = 'feat/rename-move',
   lazy = false,
   keys = {
     {
@@ -142,6 +143,9 @@ return {
             return
           end
 
+          local dir = oil.get_current_dir()
+          local path = dir .. entry.name
+
           vim.defer_fn(function()
             if not finished then
               progress:show {
@@ -154,8 +158,8 @@ return {
 
           -- TODO: actual progress
           vim.system(
-            { '7z', 'x', entry.name, '-o*' },
-            {},
+            { '7z', 'x', path, '-o*' },
+            { cwd = dir },
             vim.schedule_wrap(function(out)
               finish()
               vim.cmd.edit()

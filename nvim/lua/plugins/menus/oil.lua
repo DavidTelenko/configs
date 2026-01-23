@@ -160,6 +160,11 @@ return {
               finish()
               vim.cmd.edit()
 
+              if out.code == 0 then
+                notify 'Successfully unpacked!'
+                return
+              end
+
               if out.code == 255 then
                 notify(
                   'Failed to unpack, file already exists!',

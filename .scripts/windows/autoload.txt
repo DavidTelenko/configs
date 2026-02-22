@@ -1,0 +1,10 @@
+powertoys
+auto hide mouse cursor 5.52
+hide volume osd
+msi afterburner
+riva tuner
+google drive
+pure text
+twinkle tray
+ear trumpet
+

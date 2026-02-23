@@ -260,6 +260,10 @@
       "Source": "main"
     },
     {
+      "Name": "tree-sitter",
+      "Source": "main"
+    },
+    {
       "Name": "unar",
       "Source": "main"
     },

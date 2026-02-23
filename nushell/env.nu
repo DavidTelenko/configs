@@ -17,9 +17,9 @@ def read-lines [path: string] {
 
 $env.PROMPT_COMMAND = {||
   let dir = $env.PWD | path split | if (
-    $in | zip ($nu.home-path | path split) | all { $in.0 == $in.1 }
+    $in | zip ($nu.home-dir | path split) | all { $in.0 == $in.1 }
   ) {
-    $env.PWD | str replace $nu.home-path "~" | path split
+    $env.PWD | str replace $nu.home-dir "~" | path split
   } else { $in } | if (
     ($in | length) > 2
   ) {

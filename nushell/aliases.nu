@@ -10,12 +10,12 @@ use $pc
 let platform_dirs = ($nu.os-info.family | if $in == "windows" {{
   data: $env.LOCALAPPDATA
 }} else {{
-  data: ([$nu.home-path, '.local', 'share'] | path join)
+  data: ([$nu.home-dir, '.local', 'share'] | path join)
 }})
 
 let dirs = $platform_dirs
 | insert videos {
-  try { $env.VIDEOSDIR } catch { [$nu.home-path, Videos] | path join}
+  try { $env.VIDEOSDIR } catch { [$nu.home-dir, Videos] | path join}
 }
 
 def grid-ls [] {
@@ -66,7 +66,7 @@ def search-kill [processName: string] {
 }
 
 def translate [word: string] {
-  [$nu.home-path, Documents, Utility, Dictionaries, eng-rus.txt]
+  [$nu.home-dir, Documents, Utility, Dictionaries, eng-rus.txt]
   | path join
   | open $in
   | rg $word
@@ -189,8 +189,8 @@ def "from wav"  [] { $in | ffplay -autoexit -nodisp - }
 def "from mkv"  [] { $in | ffplay -autoexit - }
 def "from avi"  [] { $in | ffplay -autoexit - }
 
-alias todo = open_nvim [$nu.home-path, Documents, Markdowned, Todo]
-alias mark = open_nvim [$nu.home-path, Documents, Markdowned]
+alias todo = open_nvim [$nu.home-dir, Documents, Markdowned, Todo]
+alias mark = open_nvim [$nu.home-dir, Documents, Markdowned]
 
 alias cal = cal --week-start mo
 alias ffmpeg = ffmpeg -hide_banner

@@ -1,5 +1,6 @@
 nushell/history.txt
 nushell/vendor/autoload/*
+!nushell/vendor/autoload/.gitkeep
 
 mpv/cache
 mpv/watch_later

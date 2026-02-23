@@ -41,7 +41,7 @@ $Keymapper = $All -xor $Keymapper
 $Kanata = $All -xor $Kanata
 $Spotify = $All -xor $Spotify
 
-$curr = Get-Location
+$curr = "$env:userprofile/.configs"
 $scoop = "$env:userprofile/scoop/persist"
 
 function Link
@@ -112,7 +112,6 @@ if ($Wezterm)
 {
   Link -t $env:homepath/.config/wezterm -e $curr/wezterm
 }
-
 if ($Broot)
 {
   Link -t $env:appdata/dystroy/broot -e $curr/broot

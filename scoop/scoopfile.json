@@ -68,6 +68,10 @@
       "Source": "main"
     },
     {
+      "Name": "curl",
+      "Source": "main"
+    },
+    {
       "Name": "croc",
       "Source": "main"
     },

@@ -140,7 +140,7 @@
       "Source": "extras"
     },
     {
-      "Name": "mingw-winlibs-llvm",
+      "Name": "mingw-winlibs",
       "Source": "versions"
     },
     {

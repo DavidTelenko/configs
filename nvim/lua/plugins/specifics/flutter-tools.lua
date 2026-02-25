@@ -2,8 +2,6 @@ return {
   'akinsho/flutter-tools.nvim',
   ft = { 'dart' },
   config = function()
-    local telescope = require 'telescope.builtin'
-
     require('flutter-tools').setup {
       ui = {
         border = 'rounded',

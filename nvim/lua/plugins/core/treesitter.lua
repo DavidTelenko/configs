@@ -94,6 +94,7 @@ return {
         'css',
         'go',
         'javascript',
+        'jsdoc',
         'json',
         'lua',
         'markdown',

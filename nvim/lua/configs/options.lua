@@ -113,11 +113,11 @@ vim.o.langremap = false
 vim.o.fileformats = 'unix,dos'
 
 -- MS Windows shenanigans
-if vim.fn.has 'win32' == 1 then
-  vim.o.isfname = '@,48-57,/,.,-,_,+,,,#,$,%,~,=,(,),[,]'
-  vim.o.shellslash = true
-  vim.o.completeslash = 'slash'
-end
+-- if vim.fn.has 'win32' == 1 then
+--   vim.o.isfname = '@,48-57,/,.,-,_,+,,,#,$,%,~,=,(,),[,]'
+--   vim.o.shellslash = true
+--   vim.o.completeslash = 'slash'
+-- end
 
 -- Custom filetypes
 vim.filetype.add {

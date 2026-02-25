@@ -5,6 +5,9 @@ return {
     lazy = false,
     init = function()
       vim.g.no_plugin_maps = true
+      if vim.fn.has 'win32' == 1 then
+        vim.env.CC = 'gcc'
+      end
     end,
     config = function()
       local textobjects = require 'nvim-treesitter-textobjects'

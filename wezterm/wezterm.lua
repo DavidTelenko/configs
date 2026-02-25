@@ -26,7 +26,7 @@ config.native_macos_fullscreen_mode = true
 -- config.win32_system_backdrop = 'Acrylic'
 
 config.font = wezterm.font 'RobotoMono Nerd Font'
-config.font_size = 20
+config.font_size = 18
 
 config.window_padding = {
   top = 0,

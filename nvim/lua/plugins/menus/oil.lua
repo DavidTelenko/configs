@@ -89,11 +89,23 @@ return {
         function()
           require('telescope.builtin').find_files {
             cwd = require('oil').get_current_dir(),
+            prompt_title = 'Find Files in Oil Dir',
           }
         end,
         mode = 'n',
         nowait = true,
         desc = 'Files in cwd',
+      },
+      ['<leader>sG'] = {
+        function()
+          require('telescope.builtin').live_grep {
+            cwd = require('oil').get_current_dir(),
+            prompt_title = 'Live grep in Oil Dir',
+          }
+        end,
+        mode = 'n',
+        nowait = true,
+        desc = 'Grep in cwd',
       },
       ['gr'] = {
         function()

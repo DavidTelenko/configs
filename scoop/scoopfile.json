@@ -236,6 +236,10 @@
       "Source": "sysinternals"
     },
     {
+      "Name": "spicetify-cli",
+      "Source": "main"
+    },
+    {
       "Name": "taskbarx",
       "Source": "extras"
     },
@@ -257,10 +261,6 @@
     },
     {
       "Name": "ttyper",
-      "Source": "main"
-    },
-    {
-      "Name": "tree-sitter",
       "Source": "main"
     },
     {

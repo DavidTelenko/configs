@@ -99,12 +99,13 @@ return {
   },
   {
     'WhoIsSethDaniel/mason-tool-installer.nvim',
-    event = 'VeryLazy',
+    lazy = false,
     opts = {
       ensure_installed = {
         'ast-grep',
         'biome',
         'eslint_d',
+        'markdownlint',
         'prettierd',
         'shfmt',
         'stylua',

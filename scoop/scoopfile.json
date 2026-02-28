@@ -212,6 +212,10 @@
       "Source": "main"
     },
     {
+      "Name": "privatezilla",
+      "Source": "extras"
+    },
+    {
       "Name": "qbittorrent",
       "Source": "extras"
     },
@@ -230,6 +234,10 @@
     {
       "Name": "sox",
       "Source": "main"
+    },
+    {
+      "Name": "sophiapp",
+      "Source": "extras"
     },
     {
       "Name": "sysinternals-suite",

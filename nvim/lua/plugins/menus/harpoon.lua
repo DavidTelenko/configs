@@ -1,5 +1,6 @@
 return {
   'ThePrimeagen/harpoon',
+  enabled = false,
   branch = 'harpoon2',
   keys = {
     { '<leader><space>', desc = 'Open harpoon menu' },

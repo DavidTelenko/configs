@@ -114,6 +114,8 @@ def record-screen [
   const rate_control = 20
   const preset = "p7"
 
+  # TODO: add av1 codec support, or rewrite the whole thing using it
+
   (ffmpeg
     -framerate 60
     -offset_x ($monitor * 1920) # this selects offset to second monitor

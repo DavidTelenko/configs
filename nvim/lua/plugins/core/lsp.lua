@@ -59,8 +59,8 @@ local function get_servers(context)
     svelte = {},
     tailwindcss = {},
     biome = {},
-    -- tsgo = {},
-    ts_ls = {},
+    tsgo = {},
+    -- ts_ls = {},
     -- vtsls = {},
     -- kotlin_language_server = {},
     jsonls = {

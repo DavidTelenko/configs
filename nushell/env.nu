@@ -94,6 +94,7 @@ $env.NU_PLUGIN_DIRS = [
   ($nu.default-config-dir | path join 'plugins') # add <nushell-config-dir>/plugins
 ]
 
+# Load local config .env file, git ignored, machine local
 read-lines '.env' | if not ($in | is-empty) {
   $in
   | each { split row '=' | { $in.0: $in.1 } }
@@ -126,7 +127,7 @@ if not (is-windows) {
   )
 }
 
-if (is-macos) {
+if not (which brew | is-empty) {
   brew shellenv csh
   | lines
   | parse --regex 'setenv (\w+) "?(.+)"?;'

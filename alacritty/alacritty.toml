@@ -6,7 +6,7 @@ args = []
 # additional env variables
 
 [window]
-padding = { x = 10, y = 10 }
+padding = { x = 10, y = 0 }
 dynamic_padding = false
 decorations = "None"
 opacity = 1.0

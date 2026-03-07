@@ -76,6 +76,7 @@ capitalizechar
 capslock
 catmull
 catppuccin
+cbochs
 cclose
 cdda
 cddadecoder

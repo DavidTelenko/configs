@@ -35,6 +35,16 @@ def __scoop_search [param: string] {
   scoop-search $param
 }
 
+def __scoop_remove [package: string] {
+  scoop uninstall $package
+  scoop clean $package
+}
+
+def __scoop_renew [package: string] {
+  scoop update $package
+  scoop cleanup $package
+}
+
 def auto-commit [] {
   git add .
   git commit -m $'(date now)'
@@ -222,11 +232,12 @@ alias vi = nvim
 alias dnf = sudo dnf -y
 alias ':q' = exit
 
-alias scoop = powershell scoop
 alias "scoop search" = __scoop_search
-alias "scoop i" = powershell scoop install
-alias "scoop u" = powershell scoop uninstall
-alias "scoop ls" = powershell scoop list
+alias "scoop remove" = __scoop_remove
+alias "scoop renew" = __scoop_renew
+alias "scoop i" = scoop install
+alias "scoop u" = scoop uninstall
+alias "scoop ls" = scoop list
 
 alias conf = nvim $configDir
 alias jmplst = nvim $env.JUMP_LIST

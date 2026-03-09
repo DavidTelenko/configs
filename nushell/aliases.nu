@@ -210,6 +210,7 @@ alias ffmpeg = ffmpeg -hide_banner
 alias pcs = pc sleep
 alias pcr = pc reboot
 alias pcn = pc snooze
+alias pcsr = pc soft-reboot
 
 alias enva = pc env add
 alias envr = pc env remove
@@ -231,7 +232,8 @@ alias dp = wiztree-pic
 alias rs = record-screen
 alias lg = lazygit
 alias vi = nvim
-alias dnf = sudo dnf -y
+alias dnf = sudo dnf
+alias apt = sudo apt
 alias ':q' = exit
 
 alias "scoop search" = __scoop_search

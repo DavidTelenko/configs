@@ -11,6 +11,7 @@ def read-lines [path: string] {
     | open --raw
     | lines
     | where { $in !~ '^ *#.+$' }
+    | uniq
     # remove inline comments here
   }
 }
@@ -94,6 +95,8 @@ $env.NU_PLUGIN_DIRS = [
   ($nu.default-config-dir | path join 'plugins') # add <nushell-config-dir>/plugins
 ]
 
+$env.EDITOR = 'nvim'
+
 # Load local config .env file, git ignored, machine local
 read-lines '.env' | if not ($in | is-empty) {
   $in
@@ -105,35 +108,44 @@ read-lines '.env' | if not ($in | is-empty) {
 # To add entries to PATH (on Windows you might use Path), you can use the following pattern:
 # $env.PATH = ($env.PATH | split row (char esep) | prepend '/some/path')
 if not (is-windows) {
-  $env.PATH = $env.PATH
-  | prepend $'($env.HOME)/bin'
-  | prepend $'($env.HOME)/.local/bin'
-  | prepend $'($env.HOME)/.bun/bin'
-  | prepend $'($env.HOME)/.cargo/bin'
-  | prepend $'($env.HOME)/.spicetify'
-  | prepend $'($env.HOME)/.zvm/self'
-  | prepend $'($env.HOME)/.zvm/bin'
-  | prepend $'($env.HOME)/go/bin'
-  | prepend '/opt/homebrew/bin'
-  | prepend '/home/linuxbrew/.linuxbrew/bin'
-  | prepend '/usr/local/bin'
-  | prepend (read-lines '.path')
-  | uniq
-} else {
+  # Assume apple silicon
+  let HOMEBREW_PREFIX = if (is-macos) {
+    '/opt/homebrew'
+  } else {
+    '/home/linuxbrew/.linuxbrew'
+  }
+
+  $env.PATH ++= [
+    $'($HOMEBREW_PREFIX)/bin',
+    $'($HOMEBREW_PREFIX)/sbin',
+  ]
+
+  if not (which brew | is-empty) {
+    $env.HOMEBREW_PREFIX = $HOMEBREW_PREFIX
+    $env.HOMEBREW_REPOSITORY = [$HOMEBREW_PREFIX, Homebrew] | path join
+    $env.HOMEBREW_CELLAR = [$HOMEBREW_PREFIX, Cellar] | path join
+  }
+
+  $env.PATH ++= [
+    $'($env.HOME)/bin',
+    $'($env.HOME)/.local/bin',
+    $'($env.HOME)/.bun/bin',
+    $'($env.HOME)/.cargo/bin',
+    $'($env.HOME)/.spicetify',
+    $'($env.HOME)/.zvm/self',
+    $'($env.HOME)/.zvm/bin',
+    $'($env.HOME)/go/bin',
+    '/usr/local/bin',
+    # (read-lines '.path') # for now disable
+  ]
+}
+
+if (is-windows) {
   $env.TERM = 'xterm-256color'
   $env.Path = ($env.Path | split row (char esep)
     | prepend (read-lines '.path')
     | uniq
   )
-}
-
-if not (which brew | is-empty) {
-  brew shellenv csh
-  | lines
-  | parse --regex 'setenv (\w+) "?(.+)"?;'
-  | transpose -r
-  | into record
-  | load-env
 }
 
 def try-init [util, cmd] {
@@ -156,14 +168,13 @@ try-init zoxide {
 if not (which fnm | is-empty) {
   ^fnm env --json | from json | load-env
 
-  $env.PATH = $env.PATH | prepend (
-    $env.FNM_MULTISHELL_PATH
-    | path join (if $nu.os-info.name == 'windows' {
+  $env.PATH ++= [(
+    $env.FNM_MULTISHELL_PATH | path join (if (is-windows) {
       ''
     } else {
       'bin'
     })
-  )
+  )]
 
   $env.config.hooks.env_change.PWD = (
     $env.config.hooks.env_change.PWD? | append {

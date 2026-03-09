@@ -7,6 +7,7 @@ link() {
 
 link cmus
 link dunst
+link foot
 link ghostty
 link hypr
 link mpv
@@ -15,3 +16,4 @@ link nvim
 link rofi
 link ttyper
 link waybar
+link wezterm

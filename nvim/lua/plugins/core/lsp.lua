@@ -104,6 +104,7 @@ return {
       ensure_installed = {
         'ast-grep',
         'biome',
+        'cspell',
         'eslint_d',
         'markdownlint',
         'prettierd',

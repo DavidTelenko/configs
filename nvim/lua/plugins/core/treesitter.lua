@@ -92,6 +92,7 @@ return {
         'comment',
         'cpp',
         'css',
+        'diff',
         'go',
         'javascript',
         'jsdoc',

@@ -27,7 +27,7 @@ def impl [f, ...rest] {
       sleep: {
         rundll32.exe powrprof.dll,SetSuspendState Sleep
       }
-      restart: {
+      reboot: {
         shutdown.exe -r -t 00
       }
       bios: {
@@ -131,8 +131,11 @@ def impl [f, ...rest] {
       sleep: {
         systemctl suspend
       }
-      restart: {
+      reboot: {
         systemctl reboot
+      }
+      soft-reboot: {
+        systemctl soft-reboot
       }
       bios: {
         systemctl reboot --firmware-setup
@@ -157,11 +160,14 @@ export def hibernate [] { impl hibernate }
 # Puts computer to sleep state if possible
 export def sleep [] { impl sleep }
 
-# Restarts computer
-export def restart [] { impl restart }
+# Reboots computer
+export def reboot [] { impl reboot }
 
 # restart alias computer
-export def reboot [] { impl restart }
+export def soft-reboot [] { impl soft-reboot }
+
+# Reboot alias
+export def restart [] { impl reboot }
 
 # Turns off computer
 export def shutdown [] { impl shutdown }

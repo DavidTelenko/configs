@@ -37,6 +37,7 @@ return {
           if
             linter ~= 'cspell'
             and not vim.tbl_isempty(h.require_config 'cspell')
+            and vim.fn.executable 'cspell' == 1
           then
             lint.try_lint 'cspell'
           end

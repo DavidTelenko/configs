@@ -11,6 +11,7 @@ dnf install $(rpm-fusion nonfree)
 
 dnf copr enable agriffis/neovim-nightly
 dnf copr enable alternateved/keyd
+dnf copr enable codifryed/CoolerControl
 dnf copr enable rivenirvana/ghostty
 dnf copr enable sneexy/zen-browser
 dnf copr enable solopasha/hyprland
@@ -18,7 +19,9 @@ dnf copr enable solopasha/hyprland
 dnf install acpi
 dnf install aria2c
 dnf install cmus
+dnf install coolercontrol
 dnf install discord
+dnf install dnf-plugins-core
 dnf install dunst
 dnf install gh
 dnf install ghostty
@@ -30,6 +33,7 @@ dnf install hyprland
 dnf install hyprlock
 dnf install hyprsunset
 dnf install keyd
+dnf install lm-sensors
 dnf install mpv
 dnf install nodejs
 dnf install oh-my-posh
@@ -44,14 +48,18 @@ dnf install tmux
 dnf install unar
 dnf install waybar
 dnf install wf-recorder
+dnf install wl-clipboard
 dnf install wl-paste
 dnf install zen-browser
 
 rustup update
 
 cargo install nu
+cargo install git-delta
 cargo install vivid
 cargo install zoxide
 cargo install hyprland-per-window-layout
 
 go install github.com/aandrew-me/tgpt/v2@latest
+
+bash <(curl -sSL https://raw.githubusercontent.com/SpotX-Official/SpotX-Bash/main/spotx.sh)

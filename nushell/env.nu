@@ -96,6 +96,7 @@ $env.NU_PLUGIN_DIRS = [
 ]
 
 $env.EDITOR = 'nvim'
+$env.MANPAGER = 'nvim +Man!'
 
 # Load local config .env file, git ignored, machine local
 read-lines '.env' | if not ($in | is-empty) {

@@ -31,7 +31,7 @@ export def retry [
 }
 
 export def is-wezterm [] {
-  ("TERM_PROGRAM" in $env) and $env.TERM_PROGRAM == 'WezTerm'
+  $env.TERM_PROGRAM? == 'WezTerm'
 }
 
 export def is-kitty [] {

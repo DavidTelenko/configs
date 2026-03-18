@@ -364,6 +364,7 @@ lzop
 macchiato
 mainbox
 majixed
+manpager
 mapleader
 maplocalleader
 matchit

@@ -16,14 +16,13 @@
   autocrlf = false
   editor = nvim
   eol = lf
-  pager = delta
   symlinks = true
   longpaths = true
+	pager = nvim -R -c 'set ft=git'
 [interactive]
   diffFilter = delta --color-only
-[delta]
-  navigate = true
-  syntax-theme = gruvbox-dark
+[color]
+	pager = no
 [merge]
   conflictstyle = diff3
 [diff]

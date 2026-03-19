@@ -167,3 +167,8 @@ do -- to Common User Access or not to Common User Access?
     vim.cmd 'noa update'
   end)
 end
+
+do -- silent quickfix navigation
+  map({ 'n' }, ']q', '<cmd>silent cnext<cr>')
+  map({ 'n' }, '[q', '<cmd>silent cprev<cr>')
+end

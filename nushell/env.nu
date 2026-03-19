@@ -16,8 +16,17 @@ def read-lines [path: string] {
   }
 }
 
-$env.PROMPT_COMMAND = {||
-  let dir = $env.PWD | path split | if (
+def try-init [util, cmd] {
+  if not (which $util | is-empty) {
+    do $cmd
+    return
+  }
+
+  $"($util) failed to run, try to install this util with cargo or package manager"
+}
+
+def get-prompt-dir [] {
+  $env.PWD | path split | if (
     $in | zip ($nu.home-dir | path split) | all { $in.0 == $in.1 }
   ) {
     $env.PWD | str replace $nu.home-dir "~" | path split
@@ -26,13 +35,23 @@ $env.PROMPT_COMMAND = {||
   ) {
     $in | select 0 (($in | length) - 1) | [$in.0 '..' $in.1]
   } else { $in } | path join
+}
 
+$env.config = (
+  $env.config?
+  | default {}
+  | upsert hooks { default {} }
+  | upsert hooks.env_change { default {} }
+  | upsert hooks.env_change.PWD { default [] }
+)
+
+$env.PROMPT_COMMAND = {||
   let duration = $env.CMD_DURATION_MS | into int | into duration --unit ms
 
   [
     $"(ansi green)@(whoami) "
     $"(ansi magenta)nu "
-    $"(ansi yellow)($dir) "
+    $"(ansi yellow)(get-prompt-dir) "
     $"(ansi white)($duration)"
     $"(char newline)"
     $"(ansi light_blue)> "
@@ -95,9 +114,6 @@ $env.NU_PLUGIN_DIRS = [
   ($nu.default-config-dir | path join 'plugins') # add <nushell-config-dir>/plugins
 ]
 
-$env.EDITOR = 'nvim'
-$env.MANPAGER = 'nvim +Man!'
-
 # Load local config .env file, git ignored, machine local
 read-lines '.env' | if not ($in | is-empty) {
   $in
@@ -106,8 +122,6 @@ read-lines '.env' | if not ($in | is-empty) {
   | load-env
 }
 
-# To add entries to PATH (on Windows you might use Path), you can use the following pattern:
-# $env.PATH = ($env.PATH | split row (char esep) | prepend '/some/path')
 if not (is-windows) {
   # Assume apple silicon
   let HOMEBREW_PREFIX = if (is-macos) {
@@ -126,6 +140,10 @@ if not (is-windows) {
     $env.HOMEBREW_REPOSITORY = [$HOMEBREW_PREFIX, Homebrew] | path join
     $env.HOMEBREW_CELLAR = [$HOMEBREW_PREFIX, Cellar] | path join
   }
+
+  # nvim linux integration
+  $env.EDITOR = 'nvim'
+  $env.MANPAGER = 'nvim +Man!'
 
   $env.PATH ++= [
     $'($env.HOME)/bin',
@@ -149,15 +167,6 @@ if (is-windows) {
   )
 }
 
-def try-init [util, cmd] {
-  if not (which $util | is-empty) {
-    do $cmd
-    return
-  }
-
-  $"($util) failed to run, try to install this util with cargo or package manager"
-}
-
 try-init vivid {
   $env.LS_COLORS = (vivid generate gruvbox-dark-soft | str trim)
 }
@@ -166,8 +175,9 @@ try-init zoxide {
   zoxide init nushell | save -f ([$autoload, zoxide.nu] | path join)
 }
 
+# fnm env hook
 if not (which fnm | is-empty) {
-  ^fnm env --json | from json | load-env
+  fnm env --json | from json | load-env
 
   $env.PATH ++= [(
     $env.FNM_MULTISHELL_PATH | path join (if (is-windows) {
@@ -178,23 +188,46 @@ if not (which fnm | is-empty) {
   )]
 
   $env.config.hooks.env_change.PWD = (
-    $env.config.hooks.env_change.PWD? | append {
+    $env.config.hooks.env_change.PWD | append {
       condition: {
         ['.nvmrc' '.node-version', 'package.json']
-        | any { |el| $el | path exists }
+        | any { path exists }
       }
-      code: { ^fnm use --install-if-missing }
+      code: {
+        fnm use --install-if-missing --silent-if-unchanged
+      }
     }
   )
 }
 
-const out = [$autoload, omp.nu] | path join
-rm -f $out
+# zellij tab name env hook
+if (is-zellij) {
+  def branch-or-dir [] {
+    if ('.git' | path exists) {
+      return (git rev-parse --abbrev-ref HEAD)
+    }
+    return (get-prompt-dir)
+  }
 
-if not (is-wezterm) {
-  const theme = [$configDir, oh-my-posh, themes, my.omp.toml] | path join
+  let action = { branch-or-dir | zellij action rename-tab $in }
 
+  $env.config.hooks.env_change.PWD = (
+    $env.config.hooks.env_change.PWD | append $action
+  )
+
+  $env.config.hooks.pre_execution = (
+    $env.config.hooks.pre_execution | append $action
+  )
+}
+
+# oh-my-posh + wezterm integration
+$nu.vendor-autoload-dirs | each {
+  [$in, oh-my-posh.nu] | path join | rm -f $in
+}
+
+if not (is-wezterm) and not (is-zellij) {
   try-init oh-my-posh {
-    oh-my-posh init nu --eval --config $theme | save -f $out
+    const theme = [$configDir, oh-my-posh, themes, my.omp.toml] | path join
+    oh-my-posh init nu --eval --config $theme
   }
 }

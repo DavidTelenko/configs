@@ -38,6 +38,10 @@ export def is-kitty [] {
   "KITTY_WINDOW_ID" in $env
 }
 
+export def is-zellij [] {
+  "ZELLIJ" in $env
+}
+
 export def is-windows [] {
   $nu.os-info.family == "windows"
 }

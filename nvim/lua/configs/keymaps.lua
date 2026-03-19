@@ -68,6 +68,7 @@ do -- QoL improvements
 
   -- Actions in insert mode
   map({ 'i', 't' }, '<C-H>', '<C-w>')
+  map({ 'i', 't' }, '<C-BS>', '<C-w>')
   map({ 'i', 't' }, '<A-BS>', '<C-w>')
   map({ 'i', 't' }, '<C-D>', '<C-o>dw')
 
@@ -111,7 +112,7 @@ end
 
 do -- File / Path related keymaps
   map('n', '<leader>fy', function()
-    vim.fn.setreg('*', vim.fn.expand '%:.')
+    vim.fn.setreg('+', vim.fn.expand '%:.')
   end, { desc = 'Yank path' })
 
   map('n', '<leader>fh', function()

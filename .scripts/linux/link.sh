@@ -5,6 +5,7 @@ link() {
   ln -sfn "$(pwd)/$1" "$HOME/.config/$1"
 }
 
+link alacritty
 link cmus
 link dunst
 link foot
@@ -17,3 +18,4 @@ link rofi
 link ttyper
 link waybar
 link wezterm
+link zellij

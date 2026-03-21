@@ -54,4 +54,9 @@ M.oxfmt = {
   'oxfmt.config.ts',
 }
 
+M.playwright = {
+  'playwright.config.ts',
+  'playwright.config.js',
+}
+
 return M

@@ -47,6 +47,41 @@ M.all = function(list)
   return vim.iter(list):filter(is_non_empty):flatten(math.huge):totable()
 end
 
+---Searches for the file walking up the tree starting from the directory
+---provided by `root` searching for the file provided by `search_path`
+---stops at directory provided by `stop`.
+---@param search string | string[] target filename or filename variants
+---@param root? string relative path to search from (defaults to `vim.api.nvim_buf_get_name(0)`)
+---@param stop? string file to stop at (defaults to `vim.fn.getcwd`)
+---@return string | nil search_path absolute path to found target filename
+M.root_relative = function(search, root, stop)
+  local Path = require 'plenary.path'
+
+  local current = Path:new(root or vim.api.nvim_buf_get_name(0)):absolute()
+  stop = stop or vim.fn.getcwd()
+
+  if type(search) == 'string' then
+    while current ~= stop and current ~= '/' and current ~= '' do
+      if Path:new(current, search):exists() then
+        return current
+      end
+
+      current = Path:new(current):parent():absolute()
+    end
+    return
+  end
+
+  while current ~= stop and current ~= '/' and current ~= '' do
+    for _, search_variant in ipairs(search) do
+      if Path:new(current, search_variant):exists() then
+        return current
+      end
+    end
+
+    current = Path:new(current):parent():absolute()
+  end
+end
+
 M.require_available = make_require(is_available)
 M.require_config = make_require(is_config_present)
 

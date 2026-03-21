@@ -214,6 +214,7 @@ ffplay
 fgend
 fgstart
 fileformats
+filereadable
 filesize
 filewatcher
 fillchars
@@ -695,6 +696,7 @@ vencord
 vformats
 vigemus
 vimdoc
+vimgrep
 vimium
 vimruntime
 vnew

@@ -48,4 +48,10 @@ M.cspell = {
   'cspell.yml',
 }
 
+M.oxfmt = {
+  '.oxfmtrc.json',
+  '.oxfmtrc.jsonc',
+  'oxfmt.config.ts',
+}
+
 return M

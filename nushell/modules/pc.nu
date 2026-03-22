@@ -1,6 +1,8 @@
-# For now implemented only to work for windows, however all necessary
-# mechanisms were put into this module to work seamlessly on any platform and
-# to be semi-easily configurable
+# PC cross-platform layer.
+#
+# This is simple multi-platform layer to make pc functions like: power
+# management, player management, and other misc non cross-platform features easy
+# to port and use via global nushell commands.
 
 # Runs arbitury powershell command assuming it's installed on the system and
 # mounted into Path env variable
@@ -15,140 +17,151 @@ def load_win_impl [moduleName: string] {
   | return $in
 }
 
+def powershell_pc_impl [] {{
+  hibernate: {
+    rundll32.exe powrprof.dll,SetSuspendState Hibernate
+  }
+  sleep: {
+    rundll32.exe powrprof.dll,SetSuspendState Sleep
+  }
+  reboot: {
+    shutdown.exe -r -t 00
+  }
+  bios: {
+    shutdown.exe -r -fw -t 00
+  }
+  shutdown: {
+    shutdown.exe -s -t 00
+  }
+  snooze: {
+    "snooze.ps1" | load_win_impl $in | powershell_run $in | ignore
+  }
+  volume_set: { |val, pid|
+    let win_volume = "volume.ps1" | load_win_impl $in
+
+    if ($pid != null) {
+      powershell_run $"($win_volume) [audio]::Volume = ($val)"
+      return
+    }
+
+    powershell_run $"($win_volume) [audio]::Volume = ($val)"
+  }
+  volume_mute: {
+    let win_volume = "volume.ps1" | load_win_impl $in
+    powershell_run $"($win_volume) [audio]::Mute = $true"
+  }
+  volume_unmute: {
+    let win_volume = "volume.ps1" | load_win_impl $in
+    powershell_run $"($win_volume) [audio]::Mute = $false"
+  }
+  env_add: { |name, value|
+    powershell_run $"[System.Environment]::SetEnvironmentVariable\(
+    \"($name)\",
+    \"($value)\",
+    [System.EnvironmentVariableTarget]::User # Machine
+    \)"
+  }
+  env_remove: { |name|
+    powershell_run $"[System.Environment]::SetEnvironmentVariable\(
+    \"($name)\",
+    $null,
+    [System.EnvironmentVariableTarget]::User # Machine
+    \)"
+  }
+  path_add: { |path|
+    powershell_run $"
+    $currentPath = [System.Environment]::GetEnvironmentVariable\(
+    'Path',
+    [System.EnvironmentVariableTarget]::User
+    \)
+
+    if \($currentPath -split ';' -contains '($path)'\) {
+    Write-Host -ForegroundColor 'Red' 'Path already present'
+    return
+    }
+
+    [System.Environment]::SetEnvironmentVariable\(
+    'Path',
+    $currentPath + '($path)' + ';',
+    [System.EnvironmentVariableTarget]::User # Machine
+    \)
+
+    Write-Host -ForegroundColor 'Green' 'Path successfully added'
+    "
+  }
+  path_remove: { |path|
+    powershell_run $"
+    $currentPath = [System.Environment]::GetEnvironmentVariable\(
+    'Path',
+    [System.EnvironmentVariableTarget]::User
+    \)
+
+    $updatedPath = \($currentPath -split ';' | Where-Object {
+    $_ -ne '($path)'
+    }\) -join ';'
+
+    [System.Environment]::SetEnvironmentVariable\(
+    'Path',
+    $updatedPath,
+    [System.EnvironmentVariableTarget]::User # Machine
+    \)
+
+    Write-Host -ForegroundColor 'Green' 'Path successfully removed'
+    "
+  }
+  path_list: {
+    powershell_run $"
+    $currentPath = [System.Environment]::GetEnvironmentVariable\(
+    'Path',
+    [System.EnvironmentVariableTarget]::User
+    \)
+
+    $currentPath -split ';' | ForEach-Object {
+    Write-Host $_ -ForegroundColor 'Green'
+    }
+    "
+  }
+  # This is by far the simples way to achieve this in windows
+  notify: { |message|
+    use speak.nu;
+    use std;
+
+    speak $message
+
+    (
+      ffplay
+      -autoexit
+      -fs
+      -loglevel quiet
+      -loop 10
+      -nodisp
+      -volume 30
+      $env.NOTIFICATION_AUDIO
+    )
+  }
+}}
+
+def systemd_pc_impl [] {{
+  hibernate: { systemctl hibernate }
+  sleep: { systemctl suspend }
+  reboot: { systemctl reboot }
+  soft-reboot: { systemctl soft-reboot }
+  bios: { systemctl reboot --firmware-setup }
+  shutdown: { systemctl poweroff }
+  volume_mute: { amixer set Master toggle }
+  notify: { |message| notify-send $message }
+}}
+
 # Implementation detail, acts like a switch between platform functions, it's
 # not recommended to use this function outside the module
 def impl [f, ...rest] {
   let platform = (
     $nu.os-info.family
-    | if $in == 'windows' {{
-      hibernate: {
-        rundll32.exe powrprof.dll,SetSuspendState Hibernate
-      }
-      sleep: {
-        rundll32.exe powrprof.dll,SetSuspendState Sleep
-      }
-      reboot: {
-        shutdown.exe -r -t 00
-      }
-      bios: {
-        shutdown.exe -r -fw -t 00
-      }
-      shutdown: {
-        shutdown.exe -s -t 00
-      }
-      snooze: {
-        "snooze.ps1" | load_win_impl $in | powershell_run $in | ignore
-      }
-      volume_set: { |val, pid|
-        let win_volume = "volume.ps1" | load_win_impl $in
-
-        if ($pid != null) {
-          powershell_run $"($win_volume) [audio]::Volume = ($val)"
-          return
-        }
-
-        powershell_run $"($win_volume) [audio]::Volume = ($val)"
-      }
-      volume_mute: {
-        let win_volume = "volume.ps1" | load_win_impl $in
-        powershell_run $"($win_volume) [audio]::Mute = $true"
-      }
-      volume_unmute: {
-        let win_volume = "volume.ps1" | load_win_impl $in
-        powershell_run $"($win_volume) [audio]::Mute = $false"
-      }
-      env_add: { |name, value|
-        powershell_run $"[System.Environment]::SetEnvironmentVariable\(
-        \"($name)\",
-        \"($value)\",
-        [System.EnvironmentVariableTarget]::User # Machine
-        \)"
-      }
-      env_remove: { |name|
-        powershell_run $"[System.Environment]::SetEnvironmentVariable\(
-        \"($name)\",
-        $null,
-        [System.EnvironmentVariableTarget]::User # Machine
-        \)"
-      }
-      path_add: { |path|
-        powershell_run $"
-        $currentPath = [System.Environment]::GetEnvironmentVariable\(
-        'Path',
-        [System.EnvironmentVariableTarget]::User
-        \)
-
-        if \($currentPath -split ';' -contains '($path)'\) {
-        Write-Host -ForegroundColor 'Red' 'Path already present'
-        return
-        }
-
-        [System.Environment]::SetEnvironmentVariable\(
-        'Path',
-        $currentPath + '($path)' + ';',
-        [System.EnvironmentVariableTarget]::User # Machine
-        \)
-
-        Write-Host -ForegroundColor 'Green' 'Path successfully added'
-        "
-      }
-      path_remove: { |path|
-        powershell_run $"
-        $currentPath = [System.Environment]::GetEnvironmentVariable\(
-        'Path',
-        [System.EnvironmentVariableTarget]::User
-        \)
-
-        $updatedPath = \($currentPath -split ';' | Where-Object {
-        $_ -ne '($path)'
-        }\) -join ';'
-
-        [System.Environment]::SetEnvironmentVariable\(
-        'Path',
-        $updatedPath,
-        [System.EnvironmentVariableTarget]::User # Machine
-        \)
-
-        Write-Host -ForegroundColor 'Green' 'Path successfully removed'
-        "
-      }
-      path_list: {
-        powershell_run $"
-        $currentPath = [System.Environment]::GetEnvironmentVariable\(
-        'Path',
-        [System.EnvironmentVariableTarget]::User
-        \)
-
-        $currentPath -split ';' | ForEach-Object {
-        Write-Host $_ -ForegroundColor 'Green'
-        }
-        "
-      }
-    }} else if $in == 'unix' {{
-      hibernate: {
-        systemctl hibernate
-      }
-      sleep: {
-        systemctl suspend
-      }
-      reboot: {
-        systemctl reboot
-      }
-      soft-reboot: {
-        systemctl soft-reboot
-      }
-      bios: {
-        systemctl reboot --firmware-setup
-      }
-      shutdown: {
-        systemctl poweroff
-      }
-      volume_set: { |val, pid|
-      }
-      volume_mute: {
-        amixer set Master toggle
-      }
-    }} else {{}}
+    | if $in == 'windows' {
+      powershell_pc_impl
+    } else if $in == 'unix' {
+      systemd_pc_impl
+    } else {{}}
   )
 
   do ($platform | get $f) ...$rest
@@ -179,25 +192,7 @@ export def snooze [] { impl snooze }
 export def bios [] { impl bios }
 
 # Sends notification
-export def notify [
-  message: string
-] {
-  use speak.nu;
-  use std;
-
-  speak $message
-
-  (
-    ffplay
-    -autoexit
-    -fs
-    -loglevel quiet
-    -loop 10
-    -nodisp
-    -volume 30
-    $env.NOTIFICATION_AUDIO
-  )
-}
+export def notify [message: string] { impl notify $message }
 
 # Sets volume to desired value
 export def "volume set" [
@@ -207,8 +202,10 @@ export def "volume set" [
   impl volume_set $value $pid
 }
 
+# Mutes volume
 export def "volume mute" [] { impl volume_mute }
 
+# Un-mutes volume
 export def "volume unmute" [] { impl volume_unmute }
 
 # Adds env variable

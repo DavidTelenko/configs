@@ -111,7 +111,6 @@ return {
         'shfmt',
         'stylua',
         'tree-sitter-cli',
-        'yq',
       },
     },
   },

@@ -54,6 +54,12 @@ M.oxfmt = {
   'oxfmt.config.ts',
 }
 
+M.oxlint = {
+  '.oxlintrc.json',
+  '.oxlintrc.jsonc',
+  'oxlint.config.ts',
+}
+
 M.playwright = {
   'playwright.config.ts',
   'playwright.config.js',

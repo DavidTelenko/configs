@@ -9,18 +9,26 @@ return {
     local h = require 'helpers.general'
 
     local function setup()
-      local js_ts_formatters = h.first {
-        -- two under one require config means it's preferable to use both
-        h.require_config { 'prettierd', 'eslint_d' },
-        h.require_config 'deno_fmt',
-        h.require_config 'biome',
-        'prettierd', -- fallback (important to add to ensure_installed in mason-tool-installer)
+      local ox_or_prettier = h.first {
+        h.require_config { 'oxfmt' },
+        h.require_config { 'prettierd' },
+        'oxfmt', -- fallback (if no configs found)
       }
 
-      local json_formatters = h.first {
+      local js_ts_formatters = h.first {
+        {
+          h.first {
+            h.require_config { 'oxlint' },
+            h.require_config { 'eslint_d' },
+          },
+          h.first {
+            h.require_config { 'oxfmt' },
+            h.require_config { 'prettierd' },
+          },
+        },
         h.require_config 'biome',
-        h.require_config 'prettierd',
-        -- fallback to lsp
+        'oxfmt', -- fallback if no configs found
+        -- important to add to ensure_installed in mason-tool-installer
       }
 
       ---@module "conform"
@@ -33,24 +41,24 @@ return {
           quiet = true, --- NOTE: maybe dangerous?
         },
         formatters_by_ft = {
-          css = { 'prettierd' },
+          css = { 'oxfmt' },
           elixir = { 'mix' },
-          graphql = { 'prettierd' },
-          html = { 'prettierd' },
+          graphql = ox_or_prettier,
+          html = ox_or_prettier,
           javascript = js_ts_formatters,
           javascriptreact = js_ts_formatters,
-          json = json_formatters,
-          jsonc = json_formatters,
+          json = ox_or_prettier,
+          jsonc = ox_or_prettier,
           kotlin = { 'ktlint' },
           lua = { 'stylua' },
-          markdown = { 'prettierd' }, -- 'injected' },
-          mdx = { 'prettierd' }, -- 'injected' },
+          markdown = ox_or_prettier, -- 'injected' },
+          mdx = ox_or_prettier, -- 'injected' },
           python = { 'black' },
           sh = { 'shfmt' },
-          svelte = h.first { h.require_config 'prettierd', 'biome' },
+          svelte = ox_or_prettier,
           typescript = js_ts_formatters,
           typescriptreact = js_ts_formatters,
-          yaml = { 'prettierd' },
+          yaml = ox_or_prettier,
         },
       }
       require('conform').setup(opts)

@@ -103,10 +103,10 @@ return {
     opts = {
       ensure_installed = {
         'ast-grep',
-        'biome',
         'cspell',
         'eslint_d',
         'markdownlint',
+        'oxfmt',
         'prettierd',
         'shfmt',
         'stylua',

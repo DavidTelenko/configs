@@ -146,6 +146,7 @@ if not (is-windows) {
   $env.MANPAGER = 'nvim +Man!'
 
   $env.PATH ++= [
+    '/usr/local/bin',
     $'($env.HOME)/bin',
     $'($env.HOME)/.local/bin',
     $'($env.HOME)/.bun/bin',
@@ -154,7 +155,6 @@ if not (is-windows) {
     $'($env.HOME)/.zvm/self',
     $'($env.HOME)/.zvm/bin',
     $'($env.HOME)/go/bin',
-    '/usr/local/bin',
     # (read-lines '.path') # for now disable
   ]
 }

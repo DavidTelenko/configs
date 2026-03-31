@@ -25,7 +25,7 @@ return {
         scratch_repl = true,
         repl_definition = {
           typescript = {
-            command = { 'deno', 'repl', '--allow-read' },
+            command = { 'node', '--experimental-transform-types' },
           },
           javascript = {
             command = { 'node' },

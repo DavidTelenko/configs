@@ -79,7 +79,7 @@ do -- QoL improvements
   map({ 'n', 'v' }, 'j', "v:count == 0 ? 'gj' : 'j'", silent_expr)
 
   -- How do i exit terminal in vim?
-  map('t', '<esc>', '<C-\\><C-n>')
+  map('t', '<C-ESC>', '<C-\\><C-n>')
 
   -- Toggle quickfix
   map('n', '<leader>q', function()

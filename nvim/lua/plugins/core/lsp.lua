@@ -59,6 +59,7 @@ local function get_servers(context)
     svelte = {},
     tailwindcss = {},
     biome = {},
+    oxlint = {},
     tsgo = {},
     -- ts_ls = {},
     -- vtsls = {},

@@ -7,7 +7,6 @@ return {
 
     function setup()
       local js_ts_linters = h.first {
-        h.require_config 'oxlint',
         h.require_config 'eslint_d',
       }
 

@@ -169,6 +169,9 @@ return {
         }
       end
 
+      -- color highlighting
+      vim.lsp.document_color.enable(true, nil, { style = 'virtual' })
+
       do -- keymaps
         vim.keymap.set('n', '<leader>cd', vim.diagnostic.setqflist, {
           desc = 'Open diagnostics list',

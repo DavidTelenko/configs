@@ -49,3 +49,7 @@ export def is-windows [] {
 export def is-macos [] {
   $nu.os-info.name == "macos"
 }
+
+export def is-nvim [] {
+  "NVIM" in $env
+}

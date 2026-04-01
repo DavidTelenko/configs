@@ -225,7 +225,7 @@ $nu.vendor-autoload-dirs | each {
   [$in, oh-my-posh.nu] | path join | rm -f $in
 }
 
-if not (is-wezterm) and not (is-zellij) {
+if not (is-wezterm) and not (is-zellij) and not (is-nvim) {
   try-init oh-my-posh {
     const theme = [$configDir, oh-my-posh, themes, my.omp.toml] | path join
     oh-my-posh init nu --eval --config $theme

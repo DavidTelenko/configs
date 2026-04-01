@@ -22,6 +22,7 @@ config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = false
 config.enable_tab_bar = true
 config.native_macos_fullscreen_mode = true
+config.enable_wayland = true
 -- config.window_background_opacity = 0.8
 -- config.win32_system_backdrop = 'Acrylic'
 

@@ -94,7 +94,7 @@ return {
         end,
         mode = 'n',
         nowait = true,
-        desc = 'Files in cwd',
+        desc = 'Files in cwd [oil]',
       },
       ['<leader>sG'] = {
         function()
@@ -105,7 +105,7 @@ return {
         end,
         mode = 'n',
         nowait = true,
-        desc = 'Grep in cwd',
+        desc = 'Grep in cwd [oil]',
       },
       ['gr'] = {
         function()

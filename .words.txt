@@ -465,6 +465,8 @@ ontop
 openeditor
 ouput
 outcmd
+oxfmt
+oxlint
 packpath
 padnum
 pandoc
@@ -512,6 +514,7 @@ pubspec
 pueue
 pueue's
 pulseaudio
+pushf
 pwsh
 pylint
 pyright
@@ -743,5 +746,3 @@ zwlr
 zxcvbnm
 йцукенгшщзхїфівапролджєячсмить
 йцукенгшщзхїфівапролджєячсмитьбю
-oxfmt
-oxlint

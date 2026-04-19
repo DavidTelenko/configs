@@ -371,11 +371,11 @@ titleBg: black; // window title background when window is inactive
 titleBgActive: black; // window title background when window is active
 titleShadow: windowShadowFg;
 titleButtonBg: none; // custom window title minimize/maximize/restore button background when window is inactive (Windows only)
-titleButtonFg: none; // custom window title minimize/maximize/restore button icon when window is inactive (Windows only)
+titleButtonFg: fg; // custom window title minimize/maximize/restore button icon when window is inactive (Windows only)
 titleButtonCloseBg: none; // custom window title close button background when window is inactive (Windows only)
-titleButtonCloseFg: none; // custom window title close button icon when window is inactive (Windows only)
+titleButtonCloseFg: fg; // custom window title close button icon when window is inactive (Windows only)
 
-titleButtonBgOver: titleButtonBg; // custom window title minimize/maximize/restore button background with mouse over when window is inactive (Windows only)
+titleButtonBgOver: bg0; // custom window title minimize/maximize/restore button background with mouse over when window is inactive (Windows only)
 titleButtonFgOver: titleButtonFg; // custom window title minimize/maximize/restore button icon with mouse over when window is inactive (Windows only)
 titleButtonCloseBgOver: titleButtonBgOver; // custom window title close button background with mouse over when window is inactive (Windows only)
 titleButtonCloseFgOver: titleButtonFgOver; // custom window title close button icon with mouse over when window is inactive (Windows only)

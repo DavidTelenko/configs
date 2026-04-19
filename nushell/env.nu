@@ -51,17 +51,17 @@ $env.config = (
   | upsert hooks.env_change.PWD { default [] }
 )
 
-$env.PROMPT_COMMAND = {||
-  let duration = $env.CMD_DURATION_MS | into int | into duration --unit ms
+let should_show_git_branch = not (is-kitty) and not (is-wezterm)
 
+$env.PROMPT_COMMAND = {||
   [
     $"(ansi green)@(whoami) "
     $"(ansi magenta)nu "
     $"(ansi yellow)(get-prompt-dir) "
-    (git_head | if $in != null { $"(ansi yellow_dimmed)󰘬\(($in)\) " })
+    ($should_show_git_branch | if $in { git_head | if $in != null { $"(ansi green)󰘬\(($in)\) " }})
     # Just an example of how we can cook up some more dynamic components
     # ('.nvmrc' | path exists | if $in { $"(ansi green) (node -v) " })
-    $"(ansi white)($duration)"
+    $"(ansi white)($env.CMD_DURATION_MS | into int | into duration --unit ms)"
     $"(char newline)"
     $"(ansi light_blue)> "
   ] | str join

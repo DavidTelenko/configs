@@ -41,7 +41,7 @@ vim.o.smartcase = true
 vim.o.smartindent = true
 
 -- Font
-vim.o.guifont = 'RobotoMono Nerd Font:h20'
+vim.o.guifont = 'RobotoMono Nerd Font:h18'
 
 -- Keep signcolumn on by default
 vim.wo.signcolumn = 'yes'

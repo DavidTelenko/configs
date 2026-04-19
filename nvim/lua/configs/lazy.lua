@@ -98,7 +98,7 @@ require('lazy').setup {
       disabled_plugins = {
         'gzip',
         'matchit',
-        'matchparen',
+        -- 'matchparen',
         'netrwPlugin',
         'tarPlugin',
         -- 'tohtml',
@@ -122,3 +122,7 @@ require('lazy').setup {
     require = false,
   },
 }
+
+-- built-in plugins
+vim.cmd.packadd 'nvim.undotree'
+vim.cmd.packadd 'nvim.difftool'

@@ -172,3 +172,7 @@ do -- silent quickfix navigation
   map({ 'n' }, ']q', '<cmd>silent cnext<cr>')
   map({ 'n' }, '[q', '<cmd>silent cprev<cr>')
 end
+
+do -- built-in plugin keymaps
+  map({ 'n' }, '<leader>u', '<cmd>Undotree<cr>')
+end

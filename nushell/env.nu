@@ -16,6 +16,12 @@ def read-lines [path: string] {
   }
 }
 
+def git_head [] {
+  if ('.git' | path exists) {
+    return (git rev-parse --abbrev-ref HEAD)
+  }
+}
+
 def try-init [util, cmd] {
   if not (which $util | is-empty) {
     do $cmd
@@ -52,6 +58,9 @@ $env.PROMPT_COMMAND = {||
     $"(ansi green)@(whoami) "
     $"(ansi magenta)nu "
     $"(ansi yellow)(get-prompt-dir) "
+    (git_head | if $in != null { $"(ansi yellow_dimmed)󰘬\(($in)\) " })
+    # Just an example of how we can cook up some more dynamic components
+    # ('.nvmrc' | path exists | if $in { $"(ansi green) (node -v) " })
     $"(ansi white)($duration)"
     $"(char newline)"
     $"(ansi light_blue)> "
@@ -203,14 +212,11 @@ if not (which fnm | is-empty) {
 
 # zellij tab name env hook
 if (is-zellij) {
-  def branch-or-dir [] {
-    if ('.git' | path exists) {
-      return (git rev-parse --abbrev-ref HEAD)
-    }
-    return (get-prompt-dir)
+  let action = {
+    git_head
+    | default (get-prompt-dir)
+    | zellij action rename-tab $in
   }
-
-  let action = { branch-or-dir | zellij action rename-tab $in }
 
   $env.config.hooks.env_change.PWD = (
     $env.config.hooks.env_change.PWD | append $action
@@ -219,16 +225,4 @@ if (is-zellij) {
   $env.config.hooks.pre_execution = (
     $env.config.hooks.pre_execution | append $action
   )
-}
-
-# oh-my-posh + wezterm integration
-$nu.vendor-autoload-dirs | each {
-  [$in, oh-my-posh.nu] | path join | rm -f $in
-}
-
-if not (is-wezterm) and not (is-zellij) and not (is-nvim) {
-  try-init oh-my-posh {
-    const theme = [$configDir, oh-my-posh, themes, my.omp.toml] | path join
-    oh-my-posh init nu --eval --config $theme
-  }
 }

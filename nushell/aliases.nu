@@ -245,3 +245,4 @@ alias "scoop ls" = scoop list
 
 alias conf = nvim $configDir
 alias jmplst = nvim $env.JUMP_LIST
+alias clear = echo "please stop obsessive clearing all the time!"

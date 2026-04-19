@@ -11,6 +11,7 @@ link dunst
 link foot
 link ghostty
 link hypr
+link kitty
 link mpv
 link nushell
 link nvim

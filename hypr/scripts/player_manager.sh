@@ -6,7 +6,7 @@
 state_file="$HOME/.config/hypr/scripts/data/player_state"
 
 if [[ ! -s $state_file ]]; then
-  0 >$state_file
+  echo 0 >$state_file
 fi
 
 __select_source() {

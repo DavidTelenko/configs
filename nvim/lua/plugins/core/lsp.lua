@@ -85,6 +85,7 @@ local function get_servers(context)
         },
       },
     },
+    taplo = {},
   }, {
     nushell = {},
     c3_lsp = {},

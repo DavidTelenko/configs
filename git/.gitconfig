@@ -19,17 +19,18 @@
   symlinks = true
   longpaths = true
 	pager = nvim -R -c 'set ft=git'
-[interactive]
-  diffFilter = delta --color-only
 [color]
 	pager = no
 [merge]
   conflictstyle = diff3
+[difftool "nvim_difftool"]
+  cmd = nvim -c \"packadd nvim.difftool\" -c \"DiffTool $LOCAL $REMOTE\"
 [diff]
   algorithm = histogram
   colorMoved = plain
   mnemonicPrefix = true
   renames = true
+  tool = nvim_difftool
 [rerere]
   enabled = true
 [init]

@@ -26,5 +26,8 @@ hypr/scripts/data/cheatsheet_opened
 karabiner/assets
 karabiner/automatic_backups
 
+kitty/sessions/*
+!kitty/sessions/.gitkeep
+
 .env
 .path

@@ -166,6 +166,10 @@ return {
       desc = 'Zoxide',
     })
 
+    vim.keymap.set('n', '<leader>sm', builtin.man_pages, {
+      desc = 'Man Pages',
+    })
+
     vim.keymap.set('n', '<leader>s?', builtin.keymaps, {
       desc = 'Keymaps',
     })

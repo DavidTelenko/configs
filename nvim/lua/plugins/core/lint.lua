@@ -19,7 +19,7 @@ return {
         svelte = js_ts_linters,
         typescript = js_ts_linters,
         typescriptreact = js_ts_linters,
-        markdown = { 'cspell' },
+        markdown = { 'cspell', 'markdownlint' },
       }
     end
 

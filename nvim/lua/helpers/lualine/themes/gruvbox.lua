@@ -53,33 +53,34 @@ local colors = {
   light_aqua = '#e8e5b5',
   light_aqua_soft = '#e1dbac',
   gray = '#928374',
+  black = '#000000',
 }
 
 return {
   normal = {
     a = { bg = colors.light2, fg = colors.dark0, gui = 'bold' },
     b = { bg = colors.dark0, fg = colors.light2 },
-    c = { bg = colors.dark1, fg = colors.light3 },
+    c = { bg = colors.black, fg = colors.light3 },
   },
   insert = {
     a = { bg = colors.bright_blue, fg = colors.dark0, gui = 'bold' },
     b = { bg = colors.dark0, fg = colors.light2 },
-    c = { bg = colors.dark1, fg = colors.light1 },
+    c = { bg = colors.black, fg = colors.light1 },
   },
   visual = {
     a = { bg = colors.bright_yellow, fg = colors.dark0, gui = 'bold' },
     b = { bg = colors.dark0, fg = colors.light2 },
-    c = { bg = colors.dark1, fg = colors.light1 },
+    c = { bg = colors.black, fg = colors.light1 },
   },
   replace = {
     a = { bg = colors.bright_red, fg = colors.dark0, gui = 'bold' },
     b = { bg = colors.dark0, fg = colors.light2 },
-    c = { bg = colors.dark1, fg = colors.light1 },
+    c = { bg = colors.black, fg = colors.light1 },
   },
   command = {
     a = { bg = colors.bright_green, fg = colors.dark0, gui = 'bold' },
     b = { bg = colors.dark0, fg = colors.light2 },
-    c = { bg = colors.dark4, fg = colors.dark0 },
+    c = { bg = colors.black, fg = colors.dark0 },
   },
   inactive = {
     a = { bg = colors.dark0, fg = colors.gray, gui = 'bold' },

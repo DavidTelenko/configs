@@ -23,6 +23,7 @@ return {
     local telescope = require 'telescope'
     local lga_actions = require 'telescope-live-grep-args.actions'
     local actions = require 'telescope.actions'
+    local helpers = require 'helpers.general'
 
     telescope.setup {
       defaults = {
@@ -189,5 +190,20 @@ return {
     vim.keymap.set('n', '<leader>sa', builtin.git_stash, {
       desc = 'Git stash',
     })
+
+    -- Invoke live_grep on all files in quickfix
+    vim.keymap.set('n', '<leader>sQ', function()
+      local files = helpers.quickfix_files(vim.loop.cwd())
+
+      if next(files) == nil then
+        vim.notify '[telescope.grep_in_quickfix]: No quickfix items'
+        return
+      end
+
+      builtin.live_grep {
+        glob_pattern = files,
+        prompt_title = 'Live Grep in Quickfix',
+      }
+    end, { desc = 'By Grep in Quickfix' })
   end,
 }

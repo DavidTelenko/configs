@@ -21,7 +21,7 @@ multiplier = 3
 
 [font]
 normal = { family = "RobotoMono Nerd Font" }
-size = 20
+size = 18
 
 [colors]
 [colors.primary]

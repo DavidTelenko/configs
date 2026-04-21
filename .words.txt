@@ -719,7 +719,7 @@ williamboman
 winbar
 winblend
 windowcd
-windowrulev
+windowrule
 windwp
 winid
 winlibs

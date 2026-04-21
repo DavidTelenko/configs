@@ -8,6 +8,7 @@ link() {
 link alacritty
 link cmus
 link dunst
+link fbterm
 link foot
 link ghostty
 link hypr

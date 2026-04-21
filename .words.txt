@@ -208,6 +208,7 @@ fakeio
 farbfeld
 fastopen
 favourite
+fbterm
 fdclose
 ffmpegdecoder
 ffplay

@@ -16,15 +16,6 @@ return {
         ['j'] = { '"', "'", '`' },
       },
       surrounds = {
-        c = {
-          add = function()
-            local result =
-              surround_utils.get_input 'Enter the markdown codeblock language: '
-            if result then
-              return { { '```' .. result }, { '```' } }
-            end
-          end,
-        },
         g = {
           add = function()
             local result = surround_utils.get_input 'Enter the generic name: '
@@ -45,19 +36,6 @@ return {
               end
             end,
           },
-        },
-        L = {
-          add = function()
-            local input = surround_utils.get_input 'Link name: '
-            if input then
-              return {
-                { '[' .. input .. '](' },
-                { ')' },
-              }
-            end
-          end,
-          find = '%b[]%b()',
-          delete = '^(%[)().-(%]%b())()$',
         },
       },
     }

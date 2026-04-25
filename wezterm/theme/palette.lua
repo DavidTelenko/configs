@@ -1,4 +1,5 @@
 return {
+  black = '#000000',
   dark0_hard = '#1d2021',
   dark0 = '#282828',
   dark0_soft = '#32302f',

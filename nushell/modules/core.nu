@@ -30,6 +30,15 @@ export def retry [
   }
 }
 
+# Load local config .env file, git ignored, machine local
+export def user-env [] {
+  [$configDir, '.env'] | path join | read-lines $in | if not ($in | is-empty) {
+    $in
+    | each { split row '=' | { $in.0: $in.1 } }
+    | reduce { |it| merge $it }
+  }
+}
+
 export def is-wezterm [] {
   $env.TERM_PROGRAM? == 'WezTerm'
 }

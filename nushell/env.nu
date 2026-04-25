@@ -123,13 +123,7 @@ $env.NU_PLUGIN_DIRS = [
   ($nu.default-config-dir | path join 'plugins') # add <nushell-config-dir>/plugins
 ]
 
-# Load local config .env file, git ignored, machine local
-read-lines '.env' | if not ($in | is-empty) {
-  $in
-  | each { split row '=' | { $in.0: $in.1 } }
-  | reduce { |it| merge $it }
-  | load-env
-}
+user-env | load-env
 
 if not (is-windows) {
   # Assume apple silicon

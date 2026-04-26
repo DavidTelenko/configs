@@ -148,28 +148,59 @@ config.keys = {
 }
 
 -- Switch to tab on Alt+<n>
-for i = 0, 8 do
+for index = 0, 8 do
   table.insert(config.keys, {
-    key = tostring(i + 1),
+    key = tostring(index + 1),
     mods = 'ALT',
-    action = act.ActivateTab(i),
+    action = act.ActivateTab(index),
   })
 end
 
 -- Rest of the workspaces will be just numbers
-for i, key in ipairs { '@', '#', '$', '%', '^', '&', '*' } do
+for index, key in ipairs { '@', '#', '$', '%', '^', '&', '*' } do
   table.insert(config.keys, {
     key = key,
     mods = 'CTRL|SHIFT',
     action = act.SwitchToWorkspace {
-      name = tostring(i + 1),
+      name = tostring(index + 1),
     },
   })
 end
 
+local path_separator = wezterm.target_triple == 'x86_64-pc-windows-msvc'
+    and '[^;]+'
+  or '[^:]+'
+
 wezterm.on('gui-startup', function(_)
-  local _, pane, window = wezterm.mux.spawn_window {}
-  window:gui_window():perform_action(wezterm.action.ToggleFullScreen, pane)
+  local projects = (os.getenv 'WEZTERM_PROJECT_DIRECTORIES' or ''):gmatch(
+    path_separator
+  )
+
+  do
+    -- For the first project create first fullscreen window and launch `nvim` in
+    -- first tab
+    local _, pane, window = wezterm.mux.spawn_window {
+      workspace = 'default',
+      cwd = projects(),
+      args = { 'nvim', '.' },
+    }
+    window:gui_window():perform_action(wezterm.action.ToggleFullScreen, pane)
+  end
+
+  -- For all following projects create new window and spawn four tabs there,
+  -- open `nvim` in first one
+  local index = 2
+  for project in projects do
+    local _, _, window = wezterm.mux.spawn_window {
+      workspace = tostring(index),
+      cwd = project,
+      args = { 'nvim', '.' },
+    }
+    for _ = 1, 3, 1 do
+      window:spawn_tab { cwd = project }
+    end
+    index = index + 1
+  end
 end)
 
 return config

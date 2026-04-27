@@ -50,19 +50,19 @@ return {
         end
 
         do -- move
-          map({ 'n', 'x', 'o' }, ']' .. mapping, function()
+          map({ 'n', 'x', 'o', 'v' }, ']' .. mapping, function()
             move.goto_next_start(outer_query)
           end, { desc = 'Next ' .. query .. ' start' })
 
-          map({ 'n', 'x', 'o' }, ']' .. upper_mapping, function()
+          map({ 'n', 'x', 'o', 'v' }, ']' .. upper_mapping, function()
             move.goto_next_end(outer_query)
           end, { desc = 'Next ' .. query .. ' end' })
 
-          map({ 'n', 'x', 'o' }, '[' .. mapping, function()
+          map({ 'n', 'x', 'o', 'v' }, '[' .. mapping, function()
             move.goto_previous_start(outer_query)
           end, { desc = 'Previous ' .. query .. ' start' })
 
-          map({ 'n', 'x', 'o' }, '[' .. upper_mapping, function()
+          map({ 'n', 'x', 'o', 'v' }, '[' .. upper_mapping, function()
             move.goto_previous_end(outer_query)
           end, { desc = 'Previous ' .. query .. ' end' })
         end

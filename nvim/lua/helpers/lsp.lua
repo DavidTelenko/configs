@@ -6,7 +6,7 @@ M = {}
 M.on_attach = function(client, buffer)
   local telescope = require 'telescope.builtin'
   local map = function(keys, desc, func)
-    vim.keymap.set('n', keys, func, {
+    vim.keymap.set({ 'n', 'v' }, keys, func, {
       buffer = buffer,
       desc = desc,
     })

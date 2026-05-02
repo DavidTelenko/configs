@@ -2,26 +2,43 @@
 
 # Should all of this be on per-package basis?
 
-rpm-fusion() {
-  echo "https://download1.rpmfusion.org/$1/fedora/rpmfusion-$1-release-$(rpm -E %fedora).noarch.rpm"
-}
+if ! command -v dnf >/dev/null 2>&1; then
+  rpm-fusion() {
+    echo "https://download1.rpmfusion.org/$1/fedora/rpmfusion-$1-release-$(rpm -E %fedora).noarch.rpm"
+  }
 
-dnf install $(rpm-fusion free)
-dnf install $(rpm-fusion nonfree)
+  dnf install dnf-plugins-core
+  dnf install $(rpm-fusion free)
+  dnf install $(rpm-fusion nonfree)
 
-dnf copr enable agriffis/neovim-nightly
-dnf copr enable alternateved/keyd
-dnf copr enable codifryed/CoolerControl
-dnf copr enable rivenirvana/ghostty
-dnf copr enable sneexy/zen-browser
-dnf copr enable solopasha/hyprland
+  dnf copr enable agriffis/neovim-nightly
+  dnf copr enable alternateved/keyd
+  dnf copr enable codifryed/CoolerControl
+  dnf copr enable rivenirvana/ghostty
+  dnf copr enable sneexy/zen-browser
+  dnf copr enable solopasha/hyprland
+fi
+
+if ! command -v apt >/dev/null 2>&1; then
+  add-apt-repository universe
+  add-apt-repository multiverse
+
+  curl -1sLf \
+    'https://dl.cloudsmith.io/public/coolercontrol/coolercontrol/setup.deb.sh' |
+    bash
+  add-apt-repository ppa:neovim-ppa/unstable
+  add-apt-repository ppa:fnm-ppa/unstable
+
+  curl -1sLf 'https://apt.fury.io/nushell/gpg.key'
+  | gpg --dearmor -o '/etc/apt/keyrings/fury-nushell.gpg'
+  echo "deb [signed-by=/etc/apt/keyrings/fury-nushell.gpg] https://apt.fury.io/nushell/ /"
+  >/etc/apt/sources.list.d/fury-nushell.list
+fi
 
 dnf install acpi
 dnf install aria2c
 dnf install cmus
 dnf install coolercontrol
-dnf install discord
-dnf install dnf-plugins-core
 dnf install dunst
 dnf install gh
 dnf install ghostty
@@ -56,7 +73,6 @@ dnf install zen-browser
 rustup update
 
 cargo install nu
-cargo install git-delta
 cargo install vivid
 cargo install zoxide
 cargo install hyprland-per-window-layout

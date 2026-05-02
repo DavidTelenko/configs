@@ -153,6 +153,7 @@ if not (is-windows) {
     $'($env.HOME)/bin',
     $'($env.HOME)/.local/bin',
     $'($env.HOME)/.local/share/soar/bin'
+    $'($env.HOME)/.local/share/nvim/mason/bin'
     $'($env.HOME)/.bun/bin',
     $'($env.HOME)/.cargo/bin',
     $'($env.HOME)/.spicetify',

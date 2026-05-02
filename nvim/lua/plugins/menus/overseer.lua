@@ -1,5 +1,6 @@
 return {
   'stevearc/overseer.nvim',
+  enabled = false,
   keys = {
     {
       '<leader>co',

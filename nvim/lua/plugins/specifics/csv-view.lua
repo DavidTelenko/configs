@@ -1,5 +1,6 @@
 return {
   'hat0uma/csvview.nvim',
+  enabled = false,
   keys = { { '<leader>cv', desc = 'Toggle csv view' } },
   ---@module "csvview"
   ---@type CsvView.Options

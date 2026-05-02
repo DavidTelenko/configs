@@ -46,6 +46,7 @@
   lol = log --oneline --graph --all
   ambient-pull = !git stash && git switch $1 && git pull && git switch - && git stash pop && :
   pushf = push --force-with-lease
+  filter-repo = git-filter-repo
 [pull]
   rebase = true
 [push]

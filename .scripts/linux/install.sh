@@ -26,6 +26,7 @@ dnf install dunst
 dnf install gh
 dnf install ghostty
 dnf install git
+dnf install git-filter-repo
 dnf install go
 dnf install grim
 dnf install hypridle

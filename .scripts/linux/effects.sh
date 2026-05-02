@@ -4,6 +4,7 @@
 
 sudo cp -rf ./keyd /etc/keyd
 git config --global --add include.path "$(pwd)/git/.gitconfig"
+git config --local --add include.path "../.gitconfig"
 gh config set editor nvim # TODO figure out if gh is installed
 
 # systemctl

@@ -1,0 +1,3 @@
+[remote "origin"]
+	pushurl = git@gitlab.com:davidtelenko/configs
+	pushurl = git@github.com:davidtelenko/configs

@@ -1,5 +1,6 @@
 return {
   'akinsho/toggleterm.nvim',
+  enabled = false,
   keys = {
     {
       '<leader>tt',

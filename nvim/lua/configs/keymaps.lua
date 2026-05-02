@@ -80,6 +80,9 @@ do -- QoL improvements
 
   -- How do i exit terminal in vim?
   map('t', '<C-ESC>', '<C-\\><C-n>')
+  map('n', '<leader>t', function()
+    vim.cmd 'term'
+  end)
 
   -- Toggle quickfix
   map('n', '<leader>q', function()

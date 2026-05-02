@@ -20,3 +20,4 @@ link ttyper
 link waybar
 link wezterm
 link zellij
+link helix

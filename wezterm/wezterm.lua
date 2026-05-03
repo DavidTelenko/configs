@@ -99,7 +99,7 @@ config.keys = {
   },
   {
     key = 't',
-    mods = 'CTRL|SHIFT',
+    mods = 'ALT', -- 'CTRL|SHIFT',
     action = keybinds.spawn_next_tab,
   },
   {

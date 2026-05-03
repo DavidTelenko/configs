@@ -192,6 +192,10 @@
       "Source": "main"
     },
     {
+      "Name": "openssh",
+      "Source": "main"
+    },
+    {
       "Name": "paint.net",
       "Source": "extras"
     },

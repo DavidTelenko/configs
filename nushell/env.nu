@@ -123,7 +123,9 @@ $env.NU_PLUGIN_DIRS = [
   ($nu.default-config-dir | path join 'plugins') # add <nushell-config-dir>/plugins
 ]
 
-user-env | load-env
+try {
+  user-env | load-env
+}
 
 if not (is-windows) {
   # Assume apple silicon

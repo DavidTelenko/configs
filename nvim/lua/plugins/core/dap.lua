@@ -5,6 +5,7 @@ return {
   { 'nvim-neotest/nvim-nio' },
   {
     'mfussenegger/nvim-dap',
+    enabled = false,
     keys = {
       { '<leader>du', desc = 'Open Ui' },
       { '<leader>dB', desc = 'Set Breakpoint' },

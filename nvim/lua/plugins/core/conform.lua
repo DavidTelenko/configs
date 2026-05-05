@@ -55,6 +55,7 @@ return {
           mdx = ox_or_prettier, -- 'injected' },
           python = { 'black' },
           sh = { 'shfmt' },
+          bash = { 'shfmt' },
           svelte = ox_or_prettier,
           typescript = js_ts_formatters,
           typescriptreact = js_ts_formatters,

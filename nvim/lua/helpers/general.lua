@@ -82,6 +82,35 @@ M.root_relative = function(search, root, stop)
   end
 end
 
+---Transforms table of arguments to cli arguments
+---@param args? table<string,string|number|boolean>
+---@return table<string>
+M.make_args = function(args)
+  return vim
+    .iter(args or {})
+    :map(function(key, value)
+      if type(value) == 'boolean' then
+        if not value then
+          return
+        end
+        return '--' .. key
+      end
+      return '--' .. key .. '=' .. tostring(value)
+    end)
+    :totable()
+end
+
+---Safer vim.notify for fast event contexts
+M.notify = function(msg, level)
+  if vim.in_fast_event() then
+    vim.schedule(function()
+      vim.notify(msg, level)
+    end)
+  else
+    vim.notify(msg, level)
+  end
+end
+
 M.require_available = make_require(is_available)
 M.require_config = make_require(is_config_present)
 

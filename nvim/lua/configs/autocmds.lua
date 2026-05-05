@@ -23,6 +23,15 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
+-- Git specific features (TODO: research ftplugin a bit more)
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'git', 'gitrebase', 'fugitive' },
+  group = vim.api.nvim_create_augroup('GitMappings', {
+    clear = true,
+  }),
+  callback = require('helpers.git').setup,
+})
+
 -- Clear redundant spaces at the end of lines
 vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
   group = vim.api.nvim_create_augroup('ClearPostSpaces', { clear = true }),

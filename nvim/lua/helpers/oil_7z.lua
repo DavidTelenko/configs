@@ -5,7 +5,7 @@ local function make_oil_7z_handler(config)
     local oil = require 'oil'
     local Progress = require 'oil.mutator.progress'
     local entry = oil.get_cursor_entry()
-    local notify = require 'helpers.notify'
+    local g = require 'helpers.general'
 
     local progress = Progress.new()
     -- This is hackish
@@ -47,11 +47,11 @@ local function make_oil_7z_handler(config)
         vim.cmd.edit()
 
         if out.code == 0 then
-          notify('Successfully ' .. config.name .. 'ed!')
+          g.notify('Successfully ' .. config.name .. 'ed!')
           return
         else
-          notify('Failed to unpack', vim.log.levels.ERROR)
-          notify(vim.inspect(out), vim.log.levels.WARN)
+          g.notify('Failed to unpack', vim.log.levels.ERROR)
+          g.notify(vim.inspect(out), vim.log.levels.WARN)
         end
       end)
     )

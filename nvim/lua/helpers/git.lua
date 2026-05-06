@@ -52,6 +52,9 @@ M.setup = function()
     -- TODO: verify that word under cursor is indeed a commit hash
     show_commit(vim.fn.expand '<cword>', { ['name-only'] = true })
   end)
+
+  -- Uses custom alias
+  vim.keymap.set({ 'n' }, 'rI', '<cmd>Git restack<cr>')
 end
 
 return M

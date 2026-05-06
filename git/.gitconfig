@@ -40,13 +40,6 @@
   ; sslBackend = openssl
 [sendpack]
   sideband = false
-[alias]
-  unstage = reset HEAD --
-  last = log -1 HEAD
-  lol = log --oneline --graph --all
-  ambient-pull = !git stash && git switch $1 && git pull && git switch - && git stash pop && :
-  pushf = push --force-with-lease
-  filter-repo = git-filter-repo
 [pull]
   rebase = true
 [push]
@@ -68,3 +61,39 @@
   autoSquash = true
   autoStash = true
   updateRefs = true
+[alias]
+  unstage = "reset HEAD --"
+  last = "log -1 HEAD"
+  lol = "log --oneline --graph --all"
+  ambient-pull = "!f() { \
+    git stash; \
+    git switch ${1-$(git default-branch)}; \
+    git pull; \
+    git switch -; \
+    git stash pop; \
+  };f "
+  pushf = "push --force-with-lease"
+  pruner = "!git prune --expire=now; git reflog expire --expire-unreachable=now --rewrite --all"
+  filter-repo = "!git-filter-repo"
+  default-branch = "!f() { \
+    REF=$(git symbolic-ref refs/remotes/origin/HEAD); \
+    echo ${REF##*/}; \
+  };f "
+  upstream-branch = "!git for-each-ref --format='%(upstream:short)' \"$(git symbolic-ref -q HEAD)\""
+  merge-base-origin = "!f() { git merge-base ${1-HEAD} origin/$(git default-branch); };f "
+  restack = "!f() { git rebase -i $(git merge-base-origin ${1-HEAD}); };f "
+  stack = "!f() { \
+    BRANCH=${1-HEAD}; \
+    MERGE_BASE=$(git merge-base-origin $BRANCH); \
+    git log \
+      --decorate-refs=refs/heads \
+      --simplify-by-decoration \
+      --pretty=format:\"%(decorate:prefix=,suffix=,tag=,separator=%n)\" \
+      $MERGE_BASE..$BRANCH; \
+  };f "
+	push-stack = "!f() { \
+    for ref in $(git stack ${1-HEAD}); do \
+      git pushf origin $ref; \
+    done \
+	};f "
+  clone-lean = "clone --depth 1 --filter=combine:blob:none+tree:0 --no-checkout"

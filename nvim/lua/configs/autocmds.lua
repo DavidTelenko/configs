@@ -67,3 +67,23 @@ vim.api.nvim_create_user_command('ToggleQuickfix', function()
     print 'Quickfix list is empty'
   end
 end, {})
+
+vim.api.nvim_create_autocmd('User', {
+  desc = 'Close buffers when files are deleted in Oil',
+  pattern = 'OilActionsPost',
+  callback = function(args)
+    if args.data.err then
+      return
+    end
+
+    for _, action in ipairs(args.data.actions) do
+      if action.type == 'delete' then
+        local _, path = require('oil.util').parse_url(action.url)
+        local bufnr = vim.fn.bufnr(path)
+        if bufnr ~= -1 and vim.api.nvim_buf_is_valid(bufnr) then
+          pcall(vim.cmd, 'bwipeout! ' .. bufnr) ---@diagnostic disable-line: param-type-mismatch
+        end
+      end
+    end
+  end,
+})

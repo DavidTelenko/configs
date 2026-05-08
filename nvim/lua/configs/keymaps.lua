@@ -67,9 +67,9 @@ do -- QoL improvements
   map('i', '<A-w>', '<C-o>w')
 
   -- Actions in insert mode
-  map({ 'i', 't' }, '<C-H>', '<C-w>')
-  map({ 'i', 't' }, '<C-BS>', '<C-w>')
-  map({ 'i', 't' }, '<A-BS>', '<C-w>')
+  map({ 'i', 't', 'c' }, '<C-H>', '<C-w>')
+  map({ 'i', 't', 'c' }, '<C-BS>', '<C-w>')
+  map({ 'i', 't', 'c' }, '<A-BS>', '<C-w>')
   map({ 'i', 't' }, '<C-D>', '<C-o>dw')
 
   -- Remaps for dealing with word wrap

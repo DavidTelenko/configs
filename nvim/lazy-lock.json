@@ -50,7 +50,7 @@
   "overseer.nvim": { "branch": "master", "commit": "f818eefff81f4b12fb7cf236f1b6c16768a2fcbc" },
   "plenary.nvim": { "branch": "master", "commit": "74b06c6c75e4eeb3108ec01852001636d85a932b" },
   "quicker.nvim": { "branch": "master", "commit": "063cc44da1eef8681bbd653b29d3bc961780886a" },
-  "refactoring.nvim": { "branch": "master", "commit": "29bada48407a9e00d670207d00bbdc0c46c5dc58" },
+  "refactoring.nvim": { "branch": "1.0", "commit": "6784b54587e6d8a6b9ea199318512170ffb9e418" },
   "schemastore.nvim": { "branch": "main", "commit": "1ccbd3720b5064146b16d7761957da302ea1e86f" },
   "snacks.nvim": { "branch": "main", "commit": "ad9ede6a9cddf16cedbd31b8932d6dcdee9b716e" },
   "sonarlint.nvim": { "branch": "main", "commit": "8c13a7f294eaaed01b86be3113c608dc28bc5a27" },

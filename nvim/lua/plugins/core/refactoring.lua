@@ -1,5 +1,6 @@
 return {
   'ThePrimeagen/refactoring.nvim',
+  branch = '1.0',
   dependencies = {
     'nvim-lua/plenary.nvim',
     'lewis6991/async.nvim',

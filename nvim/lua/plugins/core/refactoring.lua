@@ -1,5 +1,9 @@
 return {
   'ThePrimeagen/refactoring.nvim',
+  dependencies = {
+    'nvim-lua/plenary.nvim',
+    'lewis6991/async.nvim',
+  },
   keys = {
     { '<leader>re', ':Refactor extract ', mode = 'x', desc = 'Extract' },
     {

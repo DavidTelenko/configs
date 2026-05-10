@@ -65,6 +65,11 @@
   unstage = "reset HEAD --"
   last = "log -1 HEAD"
   lol = "log --oneline --graph --all"
+  auto-commit = "!f() { \
+    git add .; \
+    git commit -m \"${1-$(date)}\"; \
+    git push; \
+  };f "
   ambient-pull = "!f() { \
     git stash; \
     git switch ${1-$(git default-branch)}; \

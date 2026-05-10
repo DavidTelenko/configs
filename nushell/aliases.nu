@@ -45,12 +45,6 @@ def __scoop_renew [package: string] {
   scoop cleanup $package
 }
 
-def auto-commit [] {
-  git add .
-  git commit -m $'(date now)'
-  git push
-}
-
 def search-kill [processName: string] {
   let toKill = ps | where name =~ ("(?i)" + $processName)
 

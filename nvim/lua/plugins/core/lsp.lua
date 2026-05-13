@@ -183,7 +183,7 @@ return {
           desc = 'Open floating diagnostic message',
         })
 
-        vim.keymap.set('n', '<leader>cR', '<cmd>LspRestart<cr>', {
+        vim.keymap.set('n', '<leader>cR', '<cmd>lsp restart<cr>', {
           desc = 'Restart Lsp Server',
         })
       end

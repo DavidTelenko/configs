@@ -10,14 +10,15 @@ link cmus
 link dunst
 link foot
 link ghostty
+link helix
 link hypr
 link kitty
 link mpv
 link nushell
 link nvim
 link rofi
+link tmux
 link ttyper
 link waybar
 link wezterm
 link zellij
-link helix

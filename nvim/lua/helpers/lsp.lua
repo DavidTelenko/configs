@@ -12,6 +12,13 @@ M.on_attach = function(client, buffer)
     })
   end
 
+  local mapn = function(keys, desc, func)
+    vim.keymap.set('n', keys, func, {
+      buffer = buffer,
+      desc = desc,
+    })
+  end
+
   local function map_next_prev_diagnostic(config)
     local next = { key = ']', count = 1, message = 'Next' }
     local prev = { key = '[', count = -1, message = 'Previous' }
@@ -50,9 +57,9 @@ M.on_attach = function(client, buffer)
   end
 
   do -- Go to
-    map('gd', 'Definition', telescope.lsp_definitions)
-    map('gR', 'References', telescope.lsp_references)
-    map('gI', 'Implementation', telescope.lsp_implementations)
+    mapn('gd', 'Definition', telescope.lsp_definitions)
+    mapn('gR', 'References', telescope.lsp_references)
+    mapn('gI', 'Implementation', telescope.lsp_implementations)
 
     -- map('gd', 'Definition', vim.lsp.buf.definition)
     -- map('gR', 'References', vim.lsp.buf.references)
@@ -73,7 +80,7 @@ M.on_attach = function(client, buffer)
   end
 
   do -- search
-    map('<leader>ss', 'Document Symbols', telescope.lsp_document_symbols)
+    mapn('<leader>ss', 'Document Symbols', telescope.lsp_document_symbols)
   end
 
   do --help
@@ -88,8 +95,9 @@ M.on_attach = function(client, buffer)
   end
 
   do -- workspace
+    mapn('<leader>ws', 'Symbols', telescope.lsp_dynamic_workspace_symbols)
+
     map('<leader>wa', 'Add Folder', vim.lsp.buf.add_workspace_folder)
-    map('<leader>ws', 'Symbols', telescope.lsp_dynamic_workspace_symbols)
     map('<leader>wr', 'Remove Folder', vim.lsp.buf.remove_workspace_folder)
     map('<leader>wl', 'List Folders', function()
       vim.print(vim.lsp.buf.list_workspace_folders())

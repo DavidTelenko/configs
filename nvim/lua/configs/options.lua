@@ -5,6 +5,9 @@ vim.g.maplocalleader = ' '
 -- Fallback theme
 vim.cmd.colorscheme 'retrobox'
 
+-- window border
+vim.o.winborder = 'rounded'
+
 -- Set highlight on search
 vim.o.hlsearch = false
 

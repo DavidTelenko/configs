@@ -80,7 +80,7 @@ return {
   command = {
     a = { bg = colors.bright_green, fg = colors.dark0, gui = 'bold' },
     b = { bg = colors.dark0, fg = colors.light2 },
-    c = { bg = colors.black, fg = colors.dark0 },
+    c = { bg = colors.black, fg = colors.gray },
   },
   inactive = {
     a = { bg = colors.dark0, fg = colors.gray, gui = 'bold' },

@@ -42,19 +42,20 @@ local show_commit = function(commit, opts)
   )
 end
 
-M.setup = function()
+--- @param args vim.api.keyset.create_autocmd.callback_args
+M.setup = function(args)
   vim.keymap.set({ 'n' }, 'gd', function()
     -- TODO: verify that word under cursor is indeed a commit hash
     show_commit(vim.fn.expand '<cword>')
-  end)
+  end, { buf = args.buf })
 
   vim.keymap.set({ 'n' }, 'gD', function()
     -- TODO: verify that word under cursor is indeed a commit hash
     show_commit(vim.fn.expand '<cword>', { ['name-only'] = true })
-  end)
+  end, { buf = args.buf })
 
   -- Uses custom alias
-  vim.keymap.set({ 'n' }, 'rI', '<cmd>Git restack<cr>')
+  vim.keymap.set({ 'n' }, 'rI', '<cmd>Git restack<cr>', { buf = args.buf })
 end
 
 return M

@@ -7,6 +7,7 @@ return {
     local basic = require 'nvim-autopairs.rules.basic'
 
     autopairs.setup {
+      disable_filetype = { 'TelescopePrompt', 'fff_input' },
       map_cr = true,
       map_bs = true,
     }

@@ -87,10 +87,10 @@ return {
       ['qq'] = 'actions.send_to_qflist',
       ['<leader>so'] = {
         function()
-          require('telescope.builtin').find_files {
-            cwd = require('oil').get_current_dir(),
-            prompt_title = 'Find Files in Oil Dir',
-          }
+          local dir = require('oil').get_current_dir()
+          if dir then
+            require('fff').find_files_in_dir(dir)
+          end
         end,
         mode = 'n',
         nowait = true,
@@ -98,9 +98,9 @@ return {
       },
       ['<leader>sG'] = {
         function()
-          require('telescope.builtin').live_grep {
+          require('fff').live_grep {
             cwd = require('oil').get_current_dir(),
-            prompt_title = 'Live grep in Oil Dir',
+            title = 'Live grep in Oil Dir',
           }
         end,
         mode = 'n',

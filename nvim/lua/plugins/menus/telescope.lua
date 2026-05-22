@@ -110,41 +110,41 @@ return {
       }
     end, { desc = 'In current buffer' })
 
-    vim.keymap.set('n', '<leader>sf', builtin.find_files, {
-      desc = 'Files',
-    })
-
     vim.keymap.set('n', '<leader>sh', builtin.help_tags, {
       desc = 'Help',
     })
 
-    vim.keymap.set('n', '<leader>sH', function()
-      builtin.find_files { hidden = true, no_ignore = true }
-    end, {
-      desc = 'Hidden',
-    })
+    -- vim.keymap.set('n', '<leader>sf', builtin.find_files, {
+    --   desc = 'Files',
+    -- })
 
-    vim.keymap.set('n', '<leader>sw', builtin.grep_string, {
-      desc = 'Current word',
-    })
+    -- vim.keymap.set('n', '<leader>sH', function()
+    --   builtin.find_files { hidden = true, no_ignore = true }
+    -- end, {
+    --   desc = 'Hidden',
+    -- })
 
-    vim.keymap.set(
-      'v',
-      '<leader>s',
-      builtin.grep_string,
-      { desc = 'Search current selection' }
-    )
+    -- vim.keymap.set('n', '<leader>sw', builtin.grep_string, {
+    --   desc = 'Current word',
+    -- })
 
-    vim.keymap.set('n', '<leader>sg', builtin.live_grep, {
-      desc = 'By grep',
-    })
+    -- vim.keymap.set(
+    --   'v',
+    --   '<leader>s',
+    --   builtin.grep_string,
+    --   { desc = 'Search current selection' }
+    -- )
 
-    vim.keymap.set(
-      'n',
-      '<leader>sG',
-      telescope.extensions.live_grep_args.live_grep_args,
-      { desc = 'By Grep With Args' }
-    )
+    -- vim.keymap.set('n', '<leader>sg', builtin.live_grep, {
+    --   desc = 'By grep',
+    -- })
+
+    -- vim.keymap.set(
+    --   'n',
+    --   '<leader>sG',
+    --   telescope.extensions.live_grep_args.live_grep_args,
+    --   { desc = 'By Grep With Args' }
+    -- )
 
     vim.keymap.set('n', '<leader>sd', builtin.diagnostics, {
       desc = 'Diagnostics',

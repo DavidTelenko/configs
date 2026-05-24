@@ -23,6 +23,7 @@ dnf install coolercontrol
 dnf install discord
 dnf install dnf-plugins-core
 dnf install dunst
+dnf install foot
 dnf install gh
 dnf install ghostty
 dnf install git

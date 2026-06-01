@@ -45,6 +45,7 @@ return {
           elixir = { 'mix' },
           graphql = ox_or_prettier,
           html = ox_or_prettier,
+          svg = ox_or_prettier,
           javascript = js_ts_formatters,
           javascriptreact = js_ts_formatters,
           json = ox_or_prettier,

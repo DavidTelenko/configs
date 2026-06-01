@@ -21,7 +21,7 @@ return {
     wrap_around = true,
   },
   keys = {
-    { '<leader>s', desc = 'Search', mode = { 'n', 'v' } },
+    { '<leader>s', desc = 'Search', mode = { 'n', 'v', 'x' } },
   },
   config = function(_, opts)
     local fff = require 'fff'

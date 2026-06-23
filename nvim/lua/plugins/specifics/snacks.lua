@@ -4,7 +4,13 @@ return {
   ---@module "snacks"
   ---@type snacks.Config
   opts = {
-    gitbrowse = { enabled = true },
+    gitbrowse = {
+      enabled = true,
+      notify = false,
+      open = function(url)
+        vim.fn.setreg('+', url)
+      end,
+    },
     quickfile = { enabled = true },
     indent = {
       enabled = true,

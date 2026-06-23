@@ -131,6 +131,7 @@ vim.filetype.add {
     ['c3i'] = 'c3',
     ['c3t'] = 'c3',
     ['kitty-session'] = 'kitty',
+    ['me3'] = 'toml',
   },
 }
 

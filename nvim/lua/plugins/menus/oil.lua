@@ -87,25 +87,25 @@ return {
       ['qq'] = 'actions.send_to_qflist',
       ['<leader>so'] = {
         function()
-          local dir = require('oil').get_current_dir()
-          if dir then
-            require('fff').find_files_in_dir(dir)
-          end
-        end,
-        mode = 'n',
-        nowait = true,
-        desc = 'Files in cwd [oil]',
-      },
-      ['<leader>sG'] = {
-        function()
-          require('fff').live_grep {
+          require('telescope.builtin').find_files {
             cwd = require('oil').get_current_dir(),
-            title = 'Live grep in Oil Dir',
+            prompt_title = 'Find Files in Oil Dir',
           }
         end,
         mode = 'n',
         nowait = true,
-        desc = 'Grep in cwd [oil]',
+        desc = 'Files in cwd',
+      },
+      ['<leader>sG'] = {
+        function()
+          require('telescope.builtin').live_grep {
+            cwd = require('oil').get_current_dir(),
+            prompt_title = 'Live grep in Oil Dir',
+          }
+        end,
+        mode = 'n',
+        nowait = true,
+        desc = 'Grep in cwd',
       },
       ['gr'] = {
         function()

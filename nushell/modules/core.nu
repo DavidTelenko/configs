@@ -34,6 +34,7 @@ export def retry [
 export def user-env [] {
   [$configDir, '.env'] | path join | read-lines $in | if not ($in | is-empty) {
     $in
+    | where not ($it | is-empty)
     | each { split row '=' | { $in.0: $in.1 } }
     | reduce { |it| merge $it }
   }

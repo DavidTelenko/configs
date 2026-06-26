@@ -179,3 +179,12 @@ end
 do -- built-in plugin keymaps
   map({ 'n' }, '<leader>u', '<cmd>Undotree<cr>')
 end
+
+do -- global git keymaps
+  map(
+    { 'n' },
+    '<leader>gu',
+    require('helpers.git').show_uncommitted,
+    { desc = 'Uncommitted quickfix list' }
+  )
+end

@@ -1,5 +1,8 @@
 return {
   'dmtrKovalenko/fff.nvim',
+  keys = {
+    { '<leader>s', desc = 'Search', mode = { 'n', 'v', 'x' } },
+  },
   build = function()
     require('fff.download').download_or_build_binary()
   end,
@@ -20,9 +23,6 @@ return {
     },
     wrap_around = true,
   },
-  keys = {
-    { '<leader>s', desc = 'Search', mode = { 'n', 'v', 'x' } },
-  },
   config = function(_, opts)
     local fff = require 'fff'
     fff.setup(opts)
@@ -39,17 +39,13 @@ return {
     --   fff.live_grep { grep = { modes = { 'fuzzy', 'plain' } } }
     -- end, { desc = 'By fuzzy grep' })
 
+    vim.keymap.set('n', 'gf', fff.open_file_under_cursor)
+
     vim.keymap.set({ 'v', 'x' }, '<leader>s', function()
-      local saved_reg = vim.fn.getreg 'v'
-      vim.cmd [[noautocmd silent norm! "vy]]
-      local selection = vim.fn.getreg 'v'
-      vim.fn.setreg('v', saved_reg)
-      fff.live_grep {
-        query = selection,
+      require('fff').live_grep {
+        query = require('helpers.general').visual_selection(),
         title = 'Current selection',
       }
     end, { desc = 'Current selection' })
-
-    vim.keymap.set('n', 'gf', fff.open_file_under_cursor)
   end,
 }

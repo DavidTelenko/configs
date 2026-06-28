@@ -1,23 +1,21 @@
 M = {}
 
+local make_map = function(mode, buffer)
+  return function(keys, desc, func)
+    vim.keymap.set(mode, keys, func, {
+      buffer = buffer,
+      desc = desc,
+    })
+  end
+end
+
 --- This function is for LSP when it connects to a particular buffer.
 ---@param client vim.lsp.Client
 ---@param buffer number
 M.on_attach = function(client, buffer)
   local telescope = require 'telescope.builtin'
-  local map = function(keys, desc, func)
-    vim.keymap.set({ 'n', 'v' }, keys, func, {
-      buffer = buffer,
-      desc = desc,
-    })
-  end
-
-  local mapn = function(keys, desc, func)
-    vim.keymap.set('n', keys, func, {
-      buffer = buffer,
-      desc = desc,
-    })
-  end
+  local map = make_map({ 'n', 'v' }, buffer)
+  local nmap = make_map({ 'n' }, buffer)
 
   local function map_next_prev_diagnostic(config)
     local next = { key = ']', count = 1, message = 'Next' }
@@ -57,9 +55,9 @@ M.on_attach = function(client, buffer)
   end
 
   do -- Go to
-    mapn('gd', 'Definition', telescope.lsp_definitions)
-    mapn('gR', 'References', telescope.lsp_references)
-    mapn('gI', 'Implementation', telescope.lsp_implementations)
+    nmap('gd', 'Definition', telescope.lsp_definitions)
+    nmap('gR', 'References', telescope.lsp_references)
+    nmap('gI', 'Implementation', telescope.lsp_implementations)
 
     -- map('gd', 'Definition', vim.lsp.buf.definition)
     -- map('gR', 'References', vim.lsp.buf.references)
@@ -80,7 +78,7 @@ M.on_attach = function(client, buffer)
   end
 
   do -- search
-    mapn('<leader>ss', 'Document Symbols', telescope.lsp_document_symbols)
+    nmap('<leader>ss', 'Document Symbols', telescope.lsp_document_symbols)
   end
 
   do --help
@@ -95,7 +93,7 @@ M.on_attach = function(client, buffer)
   end
 
   do -- workspace
-    mapn('<leader>ws', 'Symbols', telescope.lsp_dynamic_workspace_symbols)
+    nmap('<leader>ws', 'Symbols', telescope.lsp_dynamic_workspace_symbols)
 
     map('<leader>wa', 'Add Folder', vim.lsp.buf.add_workspace_folder)
     map('<leader>wr', 'Remove Folder', vim.lsp.buf.remove_workspace_folder)

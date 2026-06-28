@@ -135,7 +135,6 @@ return {
   {
     'tpope/vim-fugitive',
     cmd = 'Git',
-    enabled = true,
     -- TODO: add git push --force-with-lease keybinding
     keys = {
       {

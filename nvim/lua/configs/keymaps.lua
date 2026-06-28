@@ -181,10 +181,7 @@ do -- built-in plugin keymaps
 end
 
 do -- global git keymaps
-  map(
-    { 'n' },
-    '<leader>gu',
-    require('helpers.git').show_uncommitted,
-    { desc = 'Uncommitted quickfix list' }
-  )
+  map({ 'n' }, '<leader>gu', require('helpers.git').show_uncommitted, {
+    desc = 'Uncommitted quickfix list',
+  })
 end

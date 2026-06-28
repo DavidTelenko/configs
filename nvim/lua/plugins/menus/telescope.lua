@@ -1,7 +1,7 @@
 return {
   'nvim-telescope/telescope.nvim',
   keys = {
-    { '<leader>s', desc = 'Search', mode = { 'n', 'v' } },
+    { '<leader>s', desc = 'Search', mode = { 'n' } },
   },
   dependencies = {
     'nvim-lua/plenary.nvim',

@@ -31,3 +31,5 @@ kitty/sessions/*
 
 .env
 .path
+
+tmp/

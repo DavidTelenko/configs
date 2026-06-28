@@ -111,6 +111,16 @@ M.notify = function(msg, level)
   end
 end
 
+---Returns current visual selection by temporarily copying it to register `v`
+---@return string
+M.visual_selection = function()
+  local saved_reg = vim.fn.getreg 'v'
+  vim.cmd [[noa silent norm! "vy]]
+  local selection = vim.fn.getreg 'v'
+  vim.fn.setreg('v', saved_reg)
+  return selection
+end
+
 M.require_available = make_require(is_available)
 M.require_config = make_require(is_config_present)
 

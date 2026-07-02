@@ -84,7 +84,10 @@ return {
     branch = 'main',
     lazy = false,
     build = ':TSUpdate',
+    dependencies = { 'Hdoc1509/gh-actions.nvim' },
     config = function()
+      require('gh-actions.tree-sitter').setup()
+
       local languages = {
         'bash',
         'c',

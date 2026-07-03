@@ -86,6 +86,7 @@ local function get_servers(context)
       },
     },
     taplo = {},
+    gh_actions_ls = {},
     -- harper_ls = {},
   }, {
     nushell = {},

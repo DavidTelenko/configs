@@ -9,7 +9,7 @@ return {
   --- @type texel.Config
   opts = {
     tgpt = {
-      provider = 'sky',
+      provider = 'pollinations',
       -- key = vim.env.GEMINI_API_KEY,
     },
   },

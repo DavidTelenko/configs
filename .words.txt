@@ -496,6 +496,7 @@ platformtheme
 playerctl
 playonly
 playpause
+pollinations
 popin
 popupmenu
 positon

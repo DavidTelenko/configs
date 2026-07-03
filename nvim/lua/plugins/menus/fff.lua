@@ -35,10 +35,6 @@ return {
       fff.live_grep { title = 'Grep' }
     end, { desc = 'Grep' })
 
-    -- vim.keymap.set('n', '<leader>sz', function()
-    --   fff.live_grep { grep = { modes = { 'fuzzy', 'plain' } } }
-    -- end, { desc = 'By fuzzy grep' })
-
     vim.keymap.set('n', 'gf', fff.open_file_under_cursor)
 
     vim.keymap.set({ 'v', 'x' }, '<leader>s', function()

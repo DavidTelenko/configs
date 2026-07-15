@@ -67,9 +67,11 @@ do -- QoL improvements
   map('i', '<A-w>', '<C-o>w')
 
   -- Actions in insert mode
-  map({ 'i', 't', 'c' }, '<C-H>', '<C-w>')
-  map({ 'i', 't', 'c' }, '<C-BS>', '<C-w>')
-  map({ 'i', 't', 'c' }, '<A-BS>', '<C-w>')
+  -- C-S-w instead of C-w for situations when C-w is interpreted as +window
+  -- command prefix (e.g in prompt buffers)
+  map({ 'i', 't', 'c' }, '<C-H>', '<C-S-w>')
+  map({ 'i', 't', 'c' }, '<C-BS>', '<C-S-w>')
+  map({ 'i', 't', 'c' }, '<A-BS>', '<C-S-w>')
   map({ 'i', 't' }, '<C-D>', '<C-o>dw')
 
   -- Remaps for dealing with word wrap
@@ -179,13 +181,13 @@ do -- global git keymaps
 end
 
 do -- custom quickfix mappings
-  map({ 'n' }, '<leader>qs', require('helpers.qf').save_to_buffer, {
+  map({ 'n' }, '<leader>Qs', require('helpers.qf').save_to_buffer, {
     desc = 'Save qflist',
   })
-  map({ 'n' }, '<leader>ql', require('helpers.qf').load_from_buffer, {
+  map({ 'n' }, '<leader>Ql', require('helpers.qf').load_from_buffer, {
     desc = 'Load qflist',
   })
-  map('n', '<leader>qq', function()
+  map('n', '<leader>q', function()
     vim.cmd 'ToggleQuickfix'
   end, {
     silent = true,

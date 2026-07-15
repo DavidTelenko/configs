@@ -84,14 +84,6 @@ do -- QoL improvements
     vim.cmd 'term'
   end)
 
-  -- Toggle quickfix
-  map('n', '<leader>q', function()
-    vim.cmd 'ToggleQuickfix'
-  end, {
-    silent = true,
-    desc = 'Toggle quickfix',
-  })
-
   -- Zen mode
   map('n', '<leader>z', require('helpers.zen').toggle_zen_mode, {
     desc = 'Zen Mode',
@@ -183,5 +175,20 @@ end
 do -- global git keymaps
   map({ 'n' }, '<leader>gu', require('helpers.git').show_uncommitted, {
     desc = 'Uncommitted quickfix list',
+  })
+end
+
+do -- custom quickfix mappings
+  map({ 'n' }, '<leader>qs', require('helpers.qf').save_to_buffer, {
+    desc = 'Save qflist',
+  })
+  map({ 'n' }, '<leader>ql', require('helpers.qf').load_from_buffer, {
+    desc = 'Load qflist',
+  })
+  map('n', '<leader>qq', function()
+    vim.cmd 'ToggleQuickfix'
+  end, {
+    silent = true,
+    desc = 'Toggle quickfix',
   })
 end

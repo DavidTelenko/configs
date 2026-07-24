@@ -17,6 +17,7 @@ return {
       animate = { enabled = false },
     },
     input = { enabled = true },
+    image = { enabled = true },
   },
   keys = {
     {

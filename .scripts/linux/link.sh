@@ -19,6 +19,7 @@ link nvim
 link rofi
 link tmux
 link ttyper
+link tuicr
 link waybar
 link wezterm
 link zellij

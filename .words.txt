@@ -671,6 +671,7 @@ tpope
 trav
 trunc
 ttyper
+tuicr
 uall
 ulauncher
 unar

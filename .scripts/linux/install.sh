@@ -57,7 +57,7 @@ dnf install zen-browser
 rustup update
 
 cargo install nu
-cargo install git-delta
+cargo install tuicr
 cargo install vivid
 cargo install zoxide
 cargo install hyprland-per-window-layout

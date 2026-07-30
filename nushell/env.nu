@@ -155,6 +155,7 @@ if not (is-windows) {
     $'($env.HOME)/bin',
     $'($env.HOME)/.local/bin',
     $'($env.HOME)/.local/share/soar/bin'
+    $"($env.HOME)/.local/share/pnpm"
     $'($env.HOME)/.bun/bin',
     $'($env.HOME)/.cargo/bin',
     $'($env.HOME)/.spicetify',
@@ -185,13 +186,13 @@ try-init zoxide {
 if not (which fnm | is-empty) {
   fnm env --json | from json | load-env
 
-  $env.PATH ++= [(
+  $env.PATH = $env.PATH | prepend (
     $env.FNM_MULTISHELL_PATH | path join (if (is-windows) {
       ''
     } else {
       'bin'
     })
-  )]
+  )
 
   $env.config.hooks.env_change.PWD = (
     $env.config.hooks.env_change.PWD | append {

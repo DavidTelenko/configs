@@ -5,6 +5,7 @@ return {
     float = {
       width = 1,
       height = 1,
+      border = 'none',
     },
   },
 }

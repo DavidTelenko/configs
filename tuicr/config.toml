@@ -1,8 +1,10 @@
 theme = "gruvbox-dark"
 # diff_view = "side-by-side"   # or "unified"
 diff_view = "unified"
-ignore_whitespace = false    # ignore all whitespace in local VCS diffs
+ignore_whitespace = false
 mouse = true
-leader = ";"                  # configurable prefix for leader shortcuts
-comment_vim = true           # vim modal editing in the review comment box
-review_watch_interval_ms = 1000 # set to 0 to disable persisted-review polling
+leader = ";"
+comment_vim = true
+review_watch_interval_ms = 1000
+show_commits = false
+show_file_list = false

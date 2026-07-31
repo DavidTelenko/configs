@@ -111,6 +111,7 @@ return {
         'typescript',
         'vim',
         'vimdoc',
+        'yaml',
         'zig',
       }
       require('nvim-treesitter').install(languages)

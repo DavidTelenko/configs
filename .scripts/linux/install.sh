@@ -6,8 +6,8 @@ rpm-fusion() {
   echo "https://download1.rpmfusion.org/$1/fedora/rpmfusion-$1-release-$(rpm -E %fedora).noarch.rpm"
 }
 
-dnf install $(rpm-fusion free)
-dnf install $(rpm-fusion nonfree)
+dnf install "$(rpm-fusion free)"
+dnf install "$(rpm-fusion nonfree)"
 
 dnf copr enable agriffis/neovim-nightly
 dnf copr enable alternateved/keyd

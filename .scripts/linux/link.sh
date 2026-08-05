@@ -31,6 +31,7 @@ link rofi
 link tmux
 link ttyper
 link tuicr
+link vcmi
 link waybar
 link wezterm
 link zellij

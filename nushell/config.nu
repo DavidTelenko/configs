@@ -773,9 +773,13 @@ $env.config = {
 
 use './dirs.nu' *
 # const welcomeBanner = ([$nushellDir, welcome-banner.txt] | path join)
-const zoxide = [$autoload, zoxide.nu] | path join
 
+const zoxide = [$autoload zoxide.nu] | path join
 source $zoxide
+
+const asdfCompletions = [$autoload asdf-completions.nu] | path join
+source $asdfCompletions
+
 source $aliases
 
 use $completions *

@@ -63,5 +63,6 @@ cargo install zoxide
 cargo install hyprland-per-window-layout
 
 go install github.com/aandrew-me/tgpt/v2@latest
+go install github.com/asdf-vm/asdf/cmd/asdf@vlatest
 
 bash <(curl -sSL https://raw.githubusercontent.com/SpotX-Official/SpotX-Bash/main/spotx.sh)

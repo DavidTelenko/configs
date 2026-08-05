@@ -100,10 +100,6 @@
       "Source": "main"
     },
     {
-      "Name": "fnm",
-      "Source": "main"
-    },
-    {
       "Name": "ffmpeg",
       "Source": "main"
     },

@@ -344,6 +344,7 @@ libva
 libx
 liga
 linehl
+linuxbrew
 listchars
 listview
 lmet

@@ -5,6 +5,17 @@ link() {
   ln -sfn "$(pwd)/$1" "$HOME/.config/$1"
 }
 
+link_rc() {
+  # NOTE: this is stiff but succint
+  local from
+  from="$(pwd)/$1/.$1rc"
+  local to
+  to="$HOME/.$1rc"
+
+  echo "link $to -> $from"
+  ln -sfn "$from" "$to"
+}
+
 link alacritty
 link cmus
 link dunst
@@ -23,3 +34,5 @@ link tuicr
 link waybar
 link wezterm
 link zellij
+
+link_rc asdf

@@ -28,7 +28,7 @@ def try-init [util, cmd] {
     return
   }
 
-  $"($util) failed to run, try to install this util with cargo or package manager"
+  $"($util) failed to run, try to install this util with package manager"
 }
 
 def get-prompt-dir [] {
@@ -130,15 +130,15 @@ try {
 if not (is-windows) {
   # Assume apple silicon
   let HOMEBREW_PREFIX = if (is-macos) {
-    '/opt/homebrew'
+    [/ opt homebrew] | path join
   } else {
-    '/home/linuxbrew/.linuxbrew'
+    [/ home linuxbrew .linuxbrew] | path join
   }
 
   $env.PATH ++= [
-    $'($HOMEBREW_PREFIX)/bin',
-    $'($HOMEBREW_PREFIX)/sbin',
-  ]
+    [$HOMEBREW_PREFIX, bin]
+    [$HOMEBREW_PREFIX, sbin]
+  ] | each { path join }
 
   if not (which brew | is-empty) {
     $env.HOMEBREW_PREFIX = $HOMEBREW_PREFIX
@@ -151,19 +151,18 @@ if not (is-windows) {
   $env.MANPAGER = 'nvim +Man!'
 
   $env.PATH ++= [
-    '/usr/local/bin',
-    $'($env.HOME)/bin',
-    $'($env.HOME)/.local/bin',
-    $'($env.HOME)/.local/share/soar/bin'
-    $"($env.HOME)/.local/share/pnpm"
-    $'($env.HOME)/.bun/bin',
-    $'($env.HOME)/.cargo/bin',
-    $'($env.HOME)/.spicetify',
-    $'($env.HOME)/.zvm/self',
-    $'($env.HOME)/.zvm/bin',
-    $'($env.HOME)/go/bin',
+    [/ usr local bin]
+    [$env.HOME bin]
+    [$env.HOME .local bin]
+    [$env.HOME .local share soar bin]
+    [$env.HOME .local share pnpm]
+    [$env.HOME .asdf shims]
+    [$env.HOME .bun bin]
+    [$env.HOME .cargo bin]
+    [$env.HOME .spicetify]
+    [$env.HOME go bin]
     # (read-lines '.path') # for now disable
-  ]
+  ] | each { path join }
 }
 
 if (is-windows) {
@@ -179,33 +178,13 @@ try-init vivid {
 }
 
 try-init zoxide {
-  zoxide init nushell | save -f ([$autoload, zoxide.nu] | path join)
+  zoxide init nushell | save -f ([$autoload zoxide.nu] | path join)
 }
 
-# fnm env hook
-if not (which fnm | is-empty) {
-  fnm env --json | from json | load-env
-
-  $env.PATH = $env.PATH | prepend (
-    $env.FNM_MULTISHELL_PATH | path join (if (is-windows) {
-      ''
-    } else {
-      'bin'
-    })
-  )
-
-  $env.config.hooks.env_change.PWD = (
-    $env.config.hooks.env_change.PWD | append {
-      condition: {
-        ['.nvmrc' '.node-version', 'package.json']
-        | any { path exists }
-      }
-      code: {
-        fnm use --install-if-missing --silent-if-unchanged
-      }
-    }
-  )
+try-init asdf {
+  asdf completion nushell | save -f ([$autoload asdf-completions.nu] | path join)
 }
+$env.ASDF_NODEJS_LEGACY_FILE_DYNAMIC_STRATEGY = "latest_installed"
 
 # zellij tab name env hook
 if (is-zellij) {

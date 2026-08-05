@@ -1,0 +1,455 @@
+{
+	"joystickAxes" : {
+		"mouseCursorX" : "leftx",
+		"mouseCursorY" : "lefty",
+		"mouseSwipeX" : "rightx",
+		"mouseSwipeY" : "righty"
+	},
+	"joystickButtons" : {
+		"adventureCastSpell" : "righttrigger",
+		"adventureEndTurn" : "back",
+		"adventureExitWorldView" : [
+			"a",
+			"b"
+		],
+		"adventureGameOptions" : "start",
+		"adventureKingdomOverview" : "dpdown",
+		"adventureNextHero" : "leftshoulder",
+		"adventureNextTown" : "rightshoulder",
+		"adventureThievesGuild" : "dpright",
+		"adventureToggleGrid" : "rightstick",
+		"adventureToggleMapLevel" : "leftstick",
+		"adventureViewScenario" : "dpleft",
+		"adventureViewSelected" : "a",
+		"adventureViewWorld" : "dpup",
+		"adventureVisitObject" : "lefttrigger",
+		"battleAutocombatEnd" : "back",
+		"battleCastSpell" : "righttrigger",
+		"battleConsoleDown" : "dpdown",
+		"battleConsoleUp" : "dpup",
+		"battleDefend" : "leftshoulder",
+		"battleTacticsEnd" : "a",
+		"battleTacticsNext" : "lefttrigger",
+		"battleToggleHeroesStats" : "leftstick",
+		"battleToggleQueue" : "rightstick",
+		"battleUseCreatureSpell" : "lefttrigger",
+		"battleWait" : "rightshoulder",
+		"globalAccept" : "a",
+		"globalCancel" : "b",
+		"globalOptions" : "start",
+		"globalReturn" : [
+			"a",
+			"b"
+		],
+		"lobbyBeginCampaign" : "a",
+		"lobbyBeginStandardGame" : "a",
+		"lobbyLoadGame" : "a",
+		"lobbySaveGame" : "a",
+		"mouseClickLeft" : "x",
+		"mouseClickRight" : "y",
+		"moveDown" : "dpdown",
+		"moveLeft" : "dpleft",
+		"moveRight" : "dpright",
+		"moveUp" : "dpup",
+		"recruitmentMax" : "dpup",
+		"recruitmentMin" : "dpdown",
+		"recruitmentUpgrade" : "dpup",
+		"recruitmentUpgradeAll" : "dpup"
+	},
+	"keyboard" : {
+		"adventureCastSpell" : "C",
+		"adventureDigGrail" : "D",
+		"adventureEndTurn" : "E",
+		"adventureExitWorldView" : [
+			"Escape",
+			"Return",
+			"Keypad Enter"
+		],
+		"adventureFirstHero" : "Ctrl+H",
+		"adventureFirstTown" : "Ctrl+T",
+		"adventureGameOptions" : "O",
+		"adventureKingdomOverview" : "K",
+		"adventureLoadGame" : "L",
+		"adventureMainMenu" : "Ctrl+M",
+		"adventureMarketplace" : "B",
+		"adventureMoveHero" : "M",
+		"adventureMoveHeroEE" : [
+			"Keypad 6",
+			"Right"
+		],
+		"adventureMoveHeroNE" : [
+			"Keypad 9",
+			"PageUp"
+		],
+		"adventureMoveHeroNN" : [
+			"Keypad 8",
+			"Up"
+		],
+		"adventureMoveHeroNW" : [
+			"Keypad 7",
+			"Home"
+		],
+		"adventureMoveHeroSE" : [
+			"Keypad 3",
+			"PageDown"
+		],
+		"adventureMoveHeroSS" : [
+			"Keypad 2",
+			"Down"
+		],
+		"adventureMoveHeroSW" : [
+			"Keypad 1",
+			"End"
+		],
+		"adventureMoveHeroWW" : [
+			"Keypad 4",
+			"Left"
+		],
+		"adventureNewGame" : "Ctrl+N",
+		"adventureNextHero" : "H",
+		"adventureNextObject" : "N",
+		"adventureNextTown" : "T",
+		"adventureOpenWiki" : "F1",
+		"adventureQuestLog" : "Q",
+		"adventureQuickLoad" : [
+			"F9"
+		],
+		"adventureQuickSave" : [
+			"F5"
+		],
+		"adventureQuitGame" : "Ctrl+Q",
+		"adventureReplayTurn" : [
+		],
+		"adventureRestartGame" : "R",
+		"adventureSaveGame" : "S",
+		"adventureSearch" : "Ctrl+F",
+		"adventureSearchContinue" : "Alt+F",
+		"adventureSetHeroAsleep" : "Z",
+		"adventureSetHeroAwake" : "W",
+		"adventureThievesGuild" : "G",
+		"adventureToggleBlocked" : [
+		],
+		"adventureToggleGrid" : "F6",
+		"adventureToggleMapLevel" : "U",
+		"adventureToggleSleep" : [
+		],
+		"adventureToggleVisitable" : [
+		],
+		"adventureTrackHero" : "F5",
+		"adventureViewPuzzle" : "P",
+		"adventureViewScenario" : "I",
+		"adventureViewSelected" : [
+			"Return",
+			"Keypad Enter"
+		],
+		"adventureViewStatistic" : "J",
+		"adventureViewWorld" : "V",
+		"adventureViewWorld1" : "1",
+		"adventureViewWorld2" : "2",
+		"adventureViewWorld4" : "4",
+		"adventureVisitObject" : "Space",
+		"adventureZoomIn" : "Keypad +",
+		"adventureZoomOut" : "Keypad -",
+		"adventureZoomReset" : "Backspace",
+		"battleAutocombat" : "A",
+		"battleAutocombatEnd" : "Q",
+		"battleCastSpell" : "C",
+		"battleConsoleDown" : "Down",
+		"battleConsoleUp" : "Up",
+		"battleDefend" : [
+			"D",
+			"Space"
+		],
+		"battleOpenActiveUnit" : "I",
+		"battleOpenHoveredUnit" : "V",
+		"battleRetreat" : "R",
+		"battleSpellShortcut0" : "1",
+		"battleSpellShortcut1" : "2",
+		"battleSpellShortcut10" : "N",
+		"battleSpellShortcut11" : "M",
+		"battleSpellShortcut2" : "3",
+		"battleSpellShortcut3" : "4",
+		"battleSpellShortcut4" : "5",
+		"battleSpellShortcut5" : "6",
+		"battleSpellShortcut6" : "7",
+		"battleSpellShortcut7" : "8",
+		"battleSpellShortcut8" : "9",
+		"battleSpellShortcut9" : "0",
+		"battleSurrender" : "S",
+		"battleTacticsEnd" : [
+			"Return",
+			"Keypad Enter"
+		],
+		"battleTacticsNext" : "Space",
+		"battleToggleHeroesStats" : [
+		],
+		"battleToggleQueue" : "Z",
+		"battleToggleQuickSpell" : "T",
+		"battleUseCreatureSpell" : [
+			"F",
+			"G"
+		],
+		"battleWait" : "W",
+		"exchangeArmySwap" : [
+			"F10",
+			"Q"
+		],
+		"exchangeArmyToLeft" : [
+		],
+		"exchangeArmyToRight" : [
+		],
+		"exchangeArtifactsSwap" : [
+			"F11",
+			"Q"
+		],
+		"exchangeArtifactsToLeft" : [
+		],
+		"exchangeArtifactsToRight" : [
+		],
+		"exchangeBackpackLeft" : [
+		],
+		"exchangeBackpackRight" : [
+		],
+		"exchangeBackpackSwap" : "Shift+F11",
+		"exchangeBackpackToLeft" : [
+		],
+		"exchangeBackpackToRight" : [
+		],
+		"exchangeEquippedSwap" : "Ctrl+F11",
+		"exchangeEquippedToLeft" : [
+		],
+		"exchangeEquippedToRight" : [
+		],
+		"gameActivateConsole" : "Tab",
+		"globalAccept" : [
+			"Return",
+			"Keypad Enter"
+		],
+		"globalBackspace" : "Backspace",
+		"globalCancel" : "Escape",
+		"globalFullscreen" : "F4",
+		"globalMoveFocus" : "Tab",
+		"globalOptions" : "O",
+		"globalReturn" : [
+			"Escape",
+			"Return",
+			"Keypad Enter"
+		],
+		"globalScreenshot" : "F3",
+		"heroArmySplit" : "S",
+		"heroBackpack" : "B",
+		"heroCommander" : "C",
+		"heroCostumeLoad0" : "0",
+		"heroCostumeLoad1" : "1",
+		"heroCostumeLoad2" : "2",
+		"heroCostumeLoad3" : "3",
+		"heroCostumeLoad4" : "4",
+		"heroCostumeLoad5" : "5",
+		"heroCostumeLoad6" : "6",
+		"heroCostumeLoad7" : "7",
+		"heroCostumeLoad8" : "8",
+		"heroCostumeLoad9" : "9",
+		"heroCostumeSave0" : "Ctrl+0",
+		"heroCostumeSave1" : "Ctrl+1",
+		"heroCostumeSave2" : "Ctrl+2",
+		"heroCostumeSave3" : "Ctrl+3",
+		"heroCostumeSave4" : "Ctrl+4",
+		"heroCostumeSave5" : "Ctrl+5",
+		"heroCostumeSave6" : "Ctrl+6",
+		"heroCostumeSave7" : "Ctrl+7",
+		"heroCostumeSave8" : "Ctrl+8",
+		"heroCostumeSave9" : "Ctrl+9",
+		"heroDismiss" : "D",
+		"heroLooseFormation" : "L",
+		"heroTightFormation" : "T",
+		"heroToggleTactics" : "B",
+		"highScoresCampaigns" : "C",
+		"highScoresReset" : "R",
+		"highScoresScenarios" : "S",
+		"highScoresStatistics" : ".",
+		"kingdomHeroesTab" : "H",
+		"kingdomTownsTab" : "T",
+		"listHeroBottom" : "Ctrl+End",
+		"listHeroDismiss" : "Delete",
+		"listHeroDown" : "Ctrl+PageDown",
+		"listHeroTop" : "Ctrl+Home",
+		"listHeroUp" : "Ctrl+PageUp",
+		"listTownBottom" : "Ctrl+End",
+		"listTownDown" : "Ctrl+PageDown",
+		"listTownTop" : "Ctrl+Home",
+		"listTownUp" : "Ctrl+PageUp",
+		"lobbyAdditionalOptions" : "A",
+		"lobbyBattleMode" : "X",
+		"lobbyBeginCampaign" : [
+			"Return",
+			"Keypad Enter"
+		],
+		"lobbyBeginStandardGame" : "B",
+		"lobbyCampaignSets" : "G",
+		"lobbyExtraOptions" : "E",
+		"lobbyFlipCoin" : "F",
+		"lobbyHandicap" : "H",
+		"lobbyInvitePlayers" : "I",
+		"lobbyLoadGame" : [
+			"L",
+			"Return",
+			"Keypad Enter"
+		],
+		"lobbyRandomMap" : "R",
+		"lobbyRandomTown" : "T",
+		"lobbyRandomTownVs" : "V",
+		"lobbyReplayVideo" : "R",
+		"lobbySaveGame" : [
+			"S",
+			"Return",
+			"Keypad Enter"
+		],
+		"lobbySelectScenario" : "S",
+		"lobbyToggleChat" : "C",
+		"lobbyTurnOptions" : "T",
+		"mainMenuBack" : [
+			"B",
+			"Escape"
+		],
+		"mainMenuCampaign" : "C",
+		"mainMenuCampaignAb" : "A",
+		"mainMenuCampaignChr" : "T",
+		"mainMenuCampaignCustom" : "C",
+		"mainMenuCampaignHota" : "H",
+		"mainMenuCampaignRoe" : "R",
+		"mainMenuCampaignSod" : "S",
+		"mainMenuCampaignVCMI" : "V",
+		"mainMenuCampaignWog" : "W",
+		"mainMenuCredits" : "C",
+		"mainMenuHighScores" : "H",
+		"mainMenuHostGame" : "C",
+		"mainMenuHotseat" : "H",
+		"mainMenuJoinGame" : "J",
+		"mainMenuLoadGame" : "L",
+		"mainMenuLobby" : "Ctrl+Tab",
+		"mainMenuMultiplayer" : "M",
+		"mainMenuNewGame" : "N",
+		"mainMenuQuit" : [
+			"Q",
+			"Escape"
+		],
+		"mainMenuSingleplayer" : "S",
+		"mainMenuTutorial" : "T",
+		"mapsSizeAll" : [
+		],
+		"mapsSizeG" : [
+		],
+		"mapsSizeH" : [
+		],
+		"mapsSizeL" : [
+		],
+		"mapsSizeM" : [
+		],
+		"mapsSizeS" : [
+		],
+		"mapsSizeXh" : [
+		],
+		"mapsSizeXl" : [
+		],
+		"mapsSortChangedate" : [
+		],
+		"mapsSortDefeat" : [
+		],
+		"mapsSortFormat" : [
+		],
+		"mapsSortMaps" : [
+		],
+		"mapsSortName" : [
+		],
+		"mapsSortPlayers" : [
+		],
+		"mapsSortSize" : [
+		],
+		"mapsSortVictory" : [
+		],
+		"marketArtifactExperience" : [
+		],
+		"marketArtifactResource" : [
+		],
+		"marketCreatureExperience" : [
+		],
+		"marketCreatureResource" : [
+		],
+		"marketDeal" : "Space",
+		"marketMaxAmount" : "M",
+		"marketResourceArtifact" : [
+		],
+		"marketResourcePlayer" : [
+		],
+		"marketResourceResource" : [
+		],
+		"marketSacrificeAll" : "A",
+		"marketSacrificeBackpack" : "B",
+		"mouseClickLeft" : [
+		],
+		"mouseClickRight" : [
+		],
+		"mouseCursorX" : [
+		],
+		"mouseCursorY" : [
+		],
+		"mouseSwipeX" : [
+		],
+		"mouseSwipeY" : [
+		],
+		"moveDown" : "Down",
+		"moveFirst" : "Home",
+		"moveLast" : "End",
+		"moveLeft" : "Left",
+		"movePageDown" : "PageDown",
+		"movePageUp" : "PageUp",
+		"moveRight" : "Right",
+		"moveUp" : "Up",
+		"recruitmentMax" : [
+			"End",
+			"M"
+		],
+		"recruitmentMin" : "Home",
+		"recruitmentSwitchLevel" : "Tab",
+		"recruitmentUpgrade" : "U",
+		"recruitmentUpgradeAll" : [
+			"A",
+			"U"
+		],
+		"selectIndex1" : "1",
+		"selectIndex2" : "2",
+		"selectIndex3" : "3",
+		"selectIndex4" : "4",
+		"selectIndex5" : "5",
+		"selectIndex6" : "6",
+		"selectIndex7" : "7",
+		"selectIndex8" : "8",
+		"settingsLoadGame" : "L",
+		"settingsNewGame" : "N",
+		"settingsQuitGame" : "Q",
+		"settingsRestartGame" : "R",
+		"settingsSaveGame" : "S",
+		"settingsToMainMenu" : "M",
+		"spectateSkipBattle" : [
+		],
+		"spectateSkipBattleResult" : [
+		],
+		"spectateTrackHero" : [
+		],
+		"spellbookSearchFocus" : "Tab",
+		"spellbookTabAdventure" : "A",
+		"spellbookTabCombat" : "C",
+		"townOpenFort" : "F",
+		"townOpenGarrisonedHero" : "Shift+H",
+		"townOpenHall" : "B",
+		"townOpenHero" : "H",
+		"townOpenHeroExchange" : "E",
+		"townOpenMageGuild" : "G",
+		"townOpenMarket" : "M",
+		"townOpenRecruitment" : "R",
+		"townOpenTavern" : "T",
+		"townOpenThievesGuild" : "G",
+		"townOpenVisitingHero" : "Ctrl+H",
+		"townSwapArmies" : "Space"
+	}
+}

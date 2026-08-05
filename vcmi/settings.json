@@ -1,0 +1,45 @@
+{
+	"adventure" : {
+		"heroMoveTime" : 100,
+		"quickCombat" : true,
+		"rightButtonDrag" : true
+	},
+	"battle" : {
+		"cellBorders" : true,
+		"rangeLimitHighlightOnHover" : true,
+		"showHealthBar" : true,
+		"speedFactor" : 6
+	},
+	"gameTweaks" : {
+		"availableCreaturesAsDwellingLabel" : true,
+		"forceMovementInfo" : true,
+		"infoBarPick" : true,
+		"numericCreaturesQuantities" : true,
+		"skipAdventureMapAnimations" : true
+	},
+	"general" : {
+		"audioMuteFocus" : true,
+		"autosaveCountLimit" : 20,
+		"lastDifficulty" : 4,
+		"lastMap" : "MAPS/Warmongers",
+		"lastSave" : "SAVES/AUTOSAVE/2026-08-05_22-53_WARMONGERS/1",
+		"lastSettingsTab" : 2,
+		"saveBeforeVisit" : true
+	},
+	"launcher" : {
+		"setupCompleted" : true
+	},
+	"video" : {
+		"fontsType" : "scalable",
+		"performanceOverlay" : {
+		},
+		"realFullscreen" : true,
+		"resolution" : {
+			"height" : 1080,
+			"scaling" : 150,
+			"width" : 1920
+		},
+		"showIntro" : false,
+		"spellbookAnimation" : false
+	}
+}

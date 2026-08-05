@@ -1,98 +1,104 @@
 --- This is a main config of servers extracted for readability purposes.
 ---
 --- All servers are separated into:
----  - internal (managed by Mason, first tuple element)
----  - external (managed by me, second tuple element)
+---  - mason (managed by Mason, first tuple element)
+---  - site (managed by me, second tuple element)
 ---
 --- *Some server require external config, so we pass that through context
 --- parameter
----@return table<string,vim.lsp.Config>, table<string,vim.lsp.Config>
+---@class LSPConfigs
+---@field mason table<string, vim.lsp.Config>
+---@field site table<string, vim.lsp.Config>
+---@return LSPConfigs
 local function get_servers(context)
   return {
-    ols = {},
-    bashls = {},
-    pyright = {},
-    cssls = {},
-    html = {
-      filetypes = {
-        'html',
-        'twig',
-        'hbs',
+    mason = {
+      ols = {},
+      bashls = {},
+      pyright = {},
+      cssls = {},
+      html = {
+        filetypes = {
+          'html',
+          'twig',
+          'hbs',
+        },
       },
-    },
-    -- elixirls = {
-    --   cmd = { 'elixir-ls' },
-    -- },
-    clangd = {},
-    emmet_language_server = {},
-    gopls = {},
-    -- jdtls = {
-    --   -- TODO: I may want to use JDTLS_JVM_ARGS env var instead
-    --   cmd = vim.list_extend(
-    --     vim.lsp.config['jdtls'].cmd, ---@diagnostic disable-line: param-type-mismatch
-    --     {
-    --       '--jvm-arg=-javaagent:'
-    --         .. vim.fn.expand '$MASON/share/jdtls/lombok.jar',
-    --     }
-    --   ),
-    -- },
-    lua_ls = {
-      settings = {
-        Lua = {
-          hint = { enable = true },
-          workspace = {
-            checkThirdParty = false,
-          },
-          telemetry = {
-            enable = false,
-          },
-          diagnostics = {
-            disable = {
-              'missing-fields',
-              'unused-function', -- unused name will still be reported
+      -- elixirls = {
+      --   cmd = { 'elixir-ls' },
+      -- },
+      clangd = {},
+      emmet_language_server = {},
+      gopls = {},
+      -- jdtls = {
+      --   -- TODO: I may want to use JDTLS_JVM_ARGS env var instead
+      --   cmd = vim.list_extend(
+      --     vim.lsp.config['jdtls'].cmd, ---@diagnostic disable-line: param-type-mismatch
+      --     {
+      --       '--jvm-arg=-javaagent:'
+      --         .. vim.fn.expand '$MASON/share/jdtls/lombok.jar',
+      --     }
+      --   ),
+      -- },
+      lua_ls = {
+        settings = {
+          Lua = {
+            hint = { enable = true },
+            workspace = {
+              checkThirdParty = false,
+            },
+            telemetry = {
+              enable = false,
+            },
+            diagnostics = {
+              disable = {
+                'missing-fields',
+                'unused-function', -- unused name will still be reported
+              },
             },
           },
         },
       },
-    },
-    rust_analyzer = {},
-    svelte = {},
-    tailwindcss = {},
-    biome = {},
-    oxlint = {},
-    tsgo = {},
-    -- ts_ls = {},
-    -- vtsls = {},
-    -- kotlin_language_server = {},
-    jsonls = {
-      settings = {
-        json = {
-          schemas = context.schemas.json.schemas(),
-          validate = {
-            enable = true,
+      rust_analyzer = {},
+      svelte = {},
+      tailwindcss = {},
+      biome = {},
+      oxlint = {},
+      tsgo = {},
+      -- ts_ls = {},
+      -- vtsls = {},
+      -- kotlin_language_server = {},
+      jsonls = {
+        settings = {
+          json = {
+            schemas = context.schemas.json.schemas(),
+            validate = {
+              enable = true,
+            },
           },
         },
       },
-    },
-    yamlls = {
-      settings = {
-        yaml = {
-          schemas = context.schemas.yaml.schemas(),
-          schemaStore = {
-            enable = false,
-            url = '',
+      yamlls = {
+        settings = {
+          yaml = {
+            schemas = context.schemas.yaml.schemas(),
+            schemaStore = {
+              enable = false,
+              url = '',
+            },
           },
         },
       },
+      taplo = {},
+      gh_actions_ls = {},
+      -- harper_ls = {},
     },
-    taplo = {},
-    gh_actions_ls = {},
-    -- harper_ls = {},
-  }, {
-    nushell = {},
-    c3_lsp = {},
-    zls = {},
-    gleam = {},
+    site = {
+      nushell = {},
+      c3_lsp = {},
+      zls = {},
+      gleam = {},
+    },
   }
 end
 
@@ -194,20 +200,19 @@ return {
         -- Load server configs:
         --   internal_servers - installed and managed by Mason
         --   external_servers - by User
-        local internal_servers, external_servers = get_servers {
+        local servers = get_servers {
           schemas = require 'schemastore',
         }
 
         -- Ensure internal servers are installed
         ---@type MasonLspconfigSettings
         mason_lspconfig.setup {
-          ensure_installed = vim.tbl_keys(internal_servers),
+          ensure_installed = vim.tbl_keys(servers.mason),
           automatic_enable = false,
         }
 
         ---@type table<string,vim.lsp.Config>
-        local all_servers =
-          vim.tbl_extend('error', internal_servers, external_servers)
+        local all_servers = vim.tbl_extend('error', servers.mason, servers.site)
 
         -- nvim-cmp capabilities
         local capabilities = require('cmp_nvim_lsp').default_capabilities(

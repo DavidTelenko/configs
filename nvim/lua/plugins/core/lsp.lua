@@ -92,6 +92,7 @@ local function get_servers(context)
     nushell = {},
     c3_lsp = {},
     zls = {},
+    gleam = {},
   }
 end
 

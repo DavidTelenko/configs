@@ -18,7 +18,9 @@ def read-lines [path: string] {
 
 def git_head [] {
   if ('.git' | path exists) {
-    return (git rev-parse --abbrev-ref HEAD)
+    try {
+      return (git rev-parse --abbrev-ref HEAD)
+    }
   }
 }
 

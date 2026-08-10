@@ -152,6 +152,9 @@ if not (is-windows) {
   $env.EDITOR = 'nvim'
   $env.MANPAGER = 'nvim +Man!'
 
+  # asdf setup
+  $env.ASDF_NODEJS_LEGACY_FILE_DYNAMIC_STRATEGY = "latest_installed"
+
   $env.PATH ++= [
     [/ usr local bin]
     [$env.HOME bin]
@@ -182,11 +185,6 @@ try-init vivid {
 try-init zoxide {
   zoxide init nushell | save -f ([$autoload zoxide.nu] | path join)
 }
-
-try-init asdf {
-  asdf completion nushell | save -f ([$autoload asdf-completions.nu] | path join)
-}
-$env.ASDF_NODEJS_LEGACY_FILE_DYNAMIC_STRATEGY = "latest_installed"
 
 # zellij tab name env hook
 if (is-zellij) {

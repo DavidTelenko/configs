@@ -776,10 +776,6 @@ use './dirs.nu' *
 
 const zoxide = [$autoload zoxide.nu] | path join
 source $zoxide
-
-const asdfCompletions = [$autoload asdf-completions.nu] | path join
-source $asdfCompletions
-
 source $aliases
 
 use $completions *

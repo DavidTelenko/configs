@@ -1,8 +1,10 @@
 {
 	"adventure" : {
-		"heroMoveTime" : 100,
+		"enemyMoveTime" : 25,
+		"heroMoveTime" : 50,
 		"quickCombat" : true,
-		"rightButtonDrag" : true
+		"rightButtonDrag" : true,
+		"scrollSpeedPixels" : 800
 	},
 	"battle" : {
 		"cellBorders" : true,
@@ -15,16 +17,19 @@
 		"forceMovementInfo" : true,
 		"infoBarPick" : true,
 		"numericCreaturesQuantities" : true,
-		"skipAdventureMapAnimations" : true
+		"skipAdventureMapAnimations" : true,
+		"skipBattleIntroMusic" : true
 	},
 	"general" : {
 		"audioMuteFocus" : true,
 		"autosaveCountLimit" : 20,
 		"lastDifficulty" : 4,
-		"lastMap" : "MAPS/Meeting in Muzgob",
+		"lastMap" : "MAPS/Dragon Orb",
 		"lastSave" : "SAVES/BEFOREVISITSAVE",
-		"lastSettingsTab" : 2,
-		"saveBeforeVisit" : true
+		"lastSettingsTab" : 1,
+		"music" : 88,
+		"saveBeforeVisit" : true,
+		"sound" : 88
 	},
 	"launcher" : {
 		"setupCompleted" : true

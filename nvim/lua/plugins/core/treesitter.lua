@@ -88,6 +88,22 @@ return {
     config = function()
       require('gh-actions.tree-sitter').setup()
 
+      vim.api.nvim_create_autocmd('User', {
+        pattern = 'TSUpdate',
+        callback = function()
+          require('nvim-treesitter.parsers').koka = {
+            install_info = {
+              url = 'https://github.com/koka-community/tree-sitter-koka',
+              location = '',
+              generate = false,
+              generate_from_json = false,
+              queries = 'queries',
+            },
+          }
+        end,
+      })
+      vim.treesitter.language.register('koka', { 'kk' })
+
       local languages = {
         'bash',
         'c',

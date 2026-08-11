@@ -98,6 +98,7 @@ local function get_servers(context)
       c3_lsp = {},
       zls = {},
       gleam = {},
+      koka = {},
     },
   }
 end

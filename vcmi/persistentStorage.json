@@ -5,86 +5,120 @@
 		"slots" : [
 			{
 				"primSkillLevel" : [
-					2,
-					2,
-					1,
-					1
+					39,
+					44,
+					44,
+					59
 				],
 				"secSkillLevel" : [
 					{
-						"masteryLevel" : "basic",
+						"masteryLevel" : "expert",
 						 // game
-						"skill" : "core:leadership"
+						"skill" : "core:wisdom"
 					},
 					{
-						"masteryLevel" : "basic",
+						"masteryLevel" : "expert",
 						 // game
-						"skill" : "core:scouting"
+						"skill" : "core:fireMagic"
 					},
 					{
+						"masteryLevel" : "expert",
+						 // game
+						"skill" : "core:waterMagic"
 					},
 					{
+						"masteryLevel" : "expert",
+						 // game
+						"skill" : "core:airMagic"
 					},
 					{
+						"masteryLevel" : "expert",
+						 // game
+						"skill" : "core:earthMagic"
 					},
 					{
+						"masteryLevel" : "expert",
+						 // game
+						"skill" : "core:armorer"
 					},
 					{
+						"masteryLevel" : "expert",
+						 // game
+						"skill" : "core:intelligence"
 					},
 					{
+						"masteryLevel" : "expert",
+						 // game
+						"skill" : "core:logistics"
 					}
 				],
 				"selectedArmy" : [
 					{
-						"amount" : 100,
+						"amount" : 1,
 						 // game
-						"type" : "core:chaosHydra"
+						"type" : "core:phoenix"
 					},
 					{
-						"amount" : 100,
+						"amount" : 1,
 						 // game
-						"type" : "core:hydra"
+						"type" : "core:phoenix"
 					},
 					{
-						"amount" : 100,
+						"amount" : 1,
 						 // game
-						"type" : "core:nagaQueen"
+						"type" : "core:phoenix"
 					},
 					{
-						"amount" : 100,
+						"amount" : 1,
 						 // game
-						"type" : "core:naga"
+						"type" : "core:phoenix"
 					},
 					{
-						"amount" : -1
+						"amount" : 1,
+						 // game
+						"type" : "core:efreet"
 					},
 					{
-						"amount" : -1
+						"amount" : 1,
+						 // game
+						"type" : "core:efreet"
 					},
 					{
-						"amount" : -1
+						"amount" : 1,
+						 // game
+						"type" : "core:efreet"
 					}
 				],
 				 // game
-				"selectedHero" : "hota.heroes:beatrice"
+				"selectedHero" : "core:luna",
+				"spellBook" : true,
+				"spells" : [
+					"core:armageddon",
+					"core:slow",
+					"core:implosion",
+					"core:chainLightning",
+					"core:resurrection",
+					"core:deathRipple",
+					"core:berserk"
+				]
 			},
 			{
 				"primSkillLevel" : [
-					1,
-					3,
-					1,
-					1
+					46,
+					44,
+					38,
+					47
 				],
 				"secSkillLevel" : [
 					{
-						"masteryLevel" : "basic",
+						"masteryLevel" : "expert",
 						 // game
-						"skill" : "core:luck"
+						"skill" : "core:artillery"
 					},
 					{
-						"masteryLevel" : "basic",
+						"masteryLevel" : "expert",
 						 // game
-						"skill" : "hota.interference:interference"
+						"skill" : "core:offence"
 					},
 					{
 					},
@@ -101,43 +135,43 @@
 				],
 				"selectedArmy" : [
 					{
-						"amount" : 100,
+						"amount" : 154,
 						 // game
-						"type" : "core:dwarf"
+						"type" : "core:enchanter"
 					},
 					{
-						"amount" : 100,
+						"amount" : 353,
 						 // game
-						"type" : "core:dwarf"
+						"type" : "core:pitLord"
 					},
 					{
-						"amount" : 100,
+						"amount" : 155,
 						 // game
-						"type" : "core:dwarf"
+						"type" : "core:enchanter"
 					},
 					{
-						"amount" : 100,
+						"amount" : 683,
 						 // game
-						"type" : "core:dwarf"
+						"type" : "core:energyElemental"
 					},
 					{
-						"amount" : 100,
+						"amount" : 749,
 						 // game
-						"type" : "core:dwarf"
+						"type" : "core:stormElemental"
 					},
 					{
-						"amount" : 100,
+						"amount" : 133,
 						 // game
-						"type" : "core:dwarf"
+						"type" : "core:archDevil"
 					},
 					{
-						"amount" : 100,
+						"amount" : 155,
 						 // game
-						"type" : "core:dwarf"
+						"type" : "core:phoenix"
 					}
 				],
 				 // game
-				"selectedHero" : "core:ufretin"
+				"selectedHero" : "core:ignissa"
 			}
 		]
 	},
@@ -127387,7 +127421,6 @@
 							"armyStrength" : 14767,
 							"day" : 1,
 							"income" : 500,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.0166408,
 							"maxHeroLevel" : 1,
@@ -127406,9 +127439,7 @@
 							"numberHeroes" : 3,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 15,
@@ -127438,7 +127469,6 @@
 							"day" : 1,
 							"income" : 500,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.0394867,
 							"maxHeroLevel" : 1,
@@ -127456,9 +127486,7 @@
 							"numberHeroes" : 1,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"gold" : 1100,
@@ -127475,7 +127503,6 @@
 							"armyStrength" : 19954,
 							"day" : 1,
 							"income" : 500,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.0544352,
 							"maxHeroLevel" : 4,
@@ -127493,9 +127520,7 @@
 							"numberHeroes" : 4,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 6,
@@ -127529,7 +127554,6 @@
 							"armyStrength" : 17170,
 							"day" : 1,
 							"income" : 500,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.0510506,
 							"maxHeroLevel" : 4,
@@ -127547,9 +127571,7 @@
 							"numberHeroes" : 4,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 6,
@@ -127583,7 +127605,6 @@
 							"armyStrength" : 14767,
 							"day" : 2,
 							"income" : 500,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.059371,
 							"maxHeroLevel" : 1,
@@ -127602,9 +127623,7 @@
 							"numberHeroes" : 3,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 15,
@@ -127634,7 +127653,6 @@
 							"day" : 2,
 							"income" : 500,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.0401918,
 							"maxHeroLevel" : 1,
@@ -127654,9 +127672,7 @@
 							"numberHeroes" : 3,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"gold" : 100,
@@ -127679,7 +127695,6 @@
 							"armyStrength" : 19954,
 							"day" : 2,
 							"income" : 1000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.0751657,
 							"maxHeroLevel" : 4,
@@ -127697,9 +127712,7 @@
 							"numberHeroes" : 4,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 6,
@@ -127733,7 +127746,6 @@
 							"armyStrength" : 16993,
 							"day" : 2,
 							"income" : 1000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.0636017,
 							"maxHeroLevel" : 5,
@@ -127751,9 +127763,7 @@
 							"numberHeroes" : 4,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 6,
@@ -127787,7 +127797,6 @@
 							"armyStrength" : 14167,
 							"day" : 3,
 							"income" : 1000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.059371,
 							"maxHeroLevel" : 1,
@@ -127806,9 +127815,7 @@
 							"numberHeroes" : 3,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 15,
@@ -127838,7 +127845,6 @@
 							"day" : 3,
 							"income" : 500,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.041179,
 							"maxHeroLevel" : 1,
@@ -127858,9 +127864,7 @@
 							"numberHeroes" : 3,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"gems" : 3,
@@ -127884,7 +127888,6 @@
 							"armyStrength" : 19954,
 							"day" : 3,
 							"income" : 1000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.103653,
 							"maxHeroLevel" : 4,
@@ -127902,9 +127905,7 @@
 							"numberHeroes" : 4,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 6,
@@ -127938,7 +127939,6 @@
 							"armyStrength" : 17175,
 							"day" : 3,
 							"income" : 1000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.136088,
 							"maxHeroLevel" : 5,
@@ -127956,9 +127956,7 @@
 							"numberHeroes" : 6,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 6,
@@ -127992,7 +127990,6 @@
 							"armyStrength" : 14167,
 							"day" : 4,
 							"income" : 1000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.059371,
 							"maxHeroLevel" : 1,
@@ -128013,9 +128010,7 @@
 							"numberHeroes" : 3,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 15,
@@ -128046,7 +128041,6 @@
 							"day" : 4,
 							"income" : 500,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.041179,
 							"maxHeroLevel" : 1,
@@ -128067,9 +128061,7 @@
 							"numberHeroes" : 3,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"gems" : 3,
@@ -128097,7 +128089,6 @@
 							"armyStrength" : 17827,
 							"day" : 4,
 							"income" : 1000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.111127,
 							"maxHeroLevel" : 4,
@@ -128115,9 +128106,7 @@
 							"numberHeroes" : 4,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 6,
@@ -128151,7 +128140,6 @@
 							"armyStrength" : 23919,
 							"day" : 4,
 							"income" : 1000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.147229,
 							"maxHeroLevel" : 5,
@@ -128171,9 +128159,7 @@
 							"numberHeroes" : 6,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 6,
@@ -128207,7 +128193,6 @@
 							"armyStrength" : 17105,
 							"day" : 5,
 							"income" : 1000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.059371,
 							"maxHeroLevel" : 1,
@@ -128228,9 +128213,7 @@
 							"numberHeroes" : 3,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 20,
@@ -128261,7 +128244,6 @@
 							"day" : 5,
 							"income" : 500,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.041179,
 							"maxHeroLevel" : 1,
@@ -128283,9 +128265,7 @@
 							"numberHeroes" : 3,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"gems" : 4,
@@ -128313,7 +128293,6 @@
 							"armyStrength" : 17407,
 							"day" : 5,
 							"income" : 1000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.115781,
 							"maxHeroLevel" : 4,
@@ -128331,9 +128310,7 @@
 							"numberHeroes" : 4,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 6,
@@ -128367,7 +128344,6 @@
 							"armyStrength" : 23919,
 							"day" : 5,
 							"income" : 1000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.162459,
 							"maxHeroLevel" : 5,
@@ -128388,9 +128364,7 @@
 							"numberHeroes" : 6,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 6,
@@ -128424,7 +128398,6 @@
 							"armyStrength" : 13773,
 							"day" : 6,
 							"income" : 1000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.0604992,
 							"maxHeroLevel" : 2,
@@ -128445,9 +128418,7 @@
 							"numberHeroes" : 3,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 20,
@@ -128478,7 +128449,6 @@
 							"day" : 6,
 							"income" : 500,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.041179,
 							"maxHeroLevel" : 1,
@@ -128500,9 +128470,7 @@
 							"numberHeroes" : 3,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"crystal" : 4,
@@ -128532,7 +128500,6 @@
 							"armyStrength" : 19605,
 							"day" : 6,
 							"income" : 1000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.127909,
 							"maxHeroLevel" : 4,
@@ -128550,9 +128517,7 @@
 							"numberHeroes" : 4,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 6,
@@ -128586,7 +128551,6 @@
 							"armyStrength" : 22394,
 							"day" : 6,
 							"income" : 1000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.178677,
 							"maxHeroLevel" : 5,
@@ -128609,9 +128573,7 @@
 							"numberHeroes" : 6,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 7,
@@ -128645,7 +128607,6 @@
 							"armyStrength" : 13773,
 							"day" : 7,
 							"income" : 2000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.0604992,
 							"maxHeroLevel" : 2,
@@ -128666,9 +128627,7 @@
 							"numberHeroes" : 3,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 20,
@@ -128699,7 +128658,6 @@
 							"day" : 7,
 							"income" : 1000,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.0420251,
 							"maxHeroLevel" : 2,
@@ -128721,9 +128679,7 @@
 							"numberHeroes" : 3,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"crystal" : 4,
@@ -128753,7 +128709,6 @@
 							"armyStrength" : 20431,
 							"day" : 7,
 							"income" : 2000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.147793,
 							"maxHeroLevel" : 4,
@@ -128771,9 +128726,7 @@
 							"numberHeroes" : 4,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 6,
@@ -128807,7 +128760,6 @@
 							"armyStrength" : 22296,
 							"day" : 7,
 							"income" : 1000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.192215,
 							"maxHeroLevel" : 6,
@@ -128831,9 +128783,7 @@
 							"numberHeroes" : 6,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 6,
@@ -128867,7 +128817,6 @@
 							"armyStrength" : 21083,
 							"day" : 8,
 							"income" : 2000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.0604992,
 							"maxHeroLevel" : 2,
@@ -128889,9 +128838,7 @@
 							"numberHeroes" : 4,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 20,
@@ -128922,7 +128869,6 @@
 							"day" : 8,
 							"income" : 1000,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.0447046,
 							"maxHeroLevel" : 2,
@@ -128946,9 +128892,7 @@
 							"numberHeroes" : 3,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"crystal" : 4,
@@ -128978,7 +128922,6 @@
 							"armyStrength" : 32243,
 							"day" : 8,
 							"income" : 2000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.153011,
 							"maxHeroLevel" : 4,
@@ -128996,9 +128939,7 @@
 							"numberHeroes" : 4,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 6,
@@ -129032,7 +128973,6 @@
 							"armyStrength" : 31238,
 							"day" : 8,
 							"income" : 1000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.196305,
 							"maxHeroLevel" : 6,
@@ -129056,9 +128996,7 @@
 							"numberHeroes" : 6,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 8,
@@ -129092,7 +129030,6 @@
 							"armyStrength" : 21151,
 							"day" : 9,
 							"income" : 2000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.0630377,
 							"maxHeroLevel" : 2,
@@ -129115,9 +129052,7 @@
 							"numberHeroes" : 4,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 20,
@@ -129152,7 +129087,6 @@
 							"day" : 9,
 							"income" : 1000,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.0514737,
 							"maxHeroLevel" : 2,
@@ -129176,9 +129110,7 @@
 							"numberHeroes" : 3,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"crystal" : 1,
@@ -129212,7 +129144,6 @@
 							"armyStrength" : 33069,
 							"day" : 9,
 							"income" : 2000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.155549,
 							"maxHeroLevel" : 4,
@@ -129230,9 +129161,7 @@
 							"numberHeroes" : 4,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 6,
@@ -129266,7 +129195,6 @@
 							"armyStrength" : 31238,
 							"day" : 9,
 							"income" : 2000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.197574,
 							"maxHeroLevel" : 6,
@@ -129290,9 +129218,7 @@
 							"numberHeroes" : 6,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 9,
@@ -129326,7 +129252,6 @@
 							"armyStrength" : 23619,
 							"day" : 10,
 							"income" : 2350,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.0678325,
 							"maxHeroLevel" : 3,
@@ -129349,9 +129274,7 @@
 							"numberHeroes" : 5,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 21,
@@ -129386,7 +129309,6 @@
 							"day" : 10,
 							"income" : 2000,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.0644479,
 							"maxHeroLevel" : 2,
@@ -129411,9 +129333,7 @@
 							"numberHeroes" : 3,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"crystal" : 2,
@@ -129447,7 +129367,6 @@
 							"armyStrength" : 33069,
 							"day" : 10,
 							"income" : 2000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.158088,
 							"maxHeroLevel" : 4,
@@ -129465,9 +129384,7 @@
 							"numberHeroes" : 4,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 6,
@@ -129505,7 +129422,6 @@
 							"armyStrength" : 31238,
 							"day" : 10,
 							"income" : 2000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.199549,
 							"maxHeroLevel" : 6,
@@ -129529,9 +129445,7 @@
 							"numberHeroes" : 6,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 10,
@@ -129565,7 +129479,6 @@
 							"armyStrength" : 23619,
 							"day" : 11,
 							"income" : 4350,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.0747426,
 							"maxHeroLevel" : 3,
@@ -129588,9 +129501,7 @@
 							"numberHeroes" : 5,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 22,
@@ -129625,7 +129536,6 @@
 							"day" : 11,
 							"income" : 3000,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.0705119,
 							"maxHeroLevel" : 2,
@@ -129650,9 +129560,7 @@
 							"numberHeroes" : 3,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"crystal" : 3,
@@ -129686,7 +129594,6 @@
 							"armyStrength" : 33069,
 							"day" : 11,
 							"income" : 2000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.162177,
 							"maxHeroLevel" : 4,
@@ -129704,9 +129611,7 @@
 							"numberHeroes" : 4,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 6,
@@ -129744,7 +129649,6 @@
 							"armyStrength" : 31238,
 							"day" : 11,
 							"income" : 4000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.203638,
 							"maxHeroLevel" : 6,
@@ -129768,9 +129672,7 @@
 							"numberHeroes" : 6,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 11,
@@ -129804,7 +129706,6 @@
 							"armyStrength" : 27609,
 							"day" : 12,
 							"income" : 4350,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.0758708,
 							"maxHeroLevel" : 3,
@@ -129827,9 +129728,7 @@
 							"numberHeroes" : 5,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 18,
@@ -129866,7 +129765,6 @@
 							"eventCapturedTown" : true,
 							"income" : 3500,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.0789733,
 							"maxHeroLevel" : 3,
@@ -129891,9 +129789,7 @@
 							"numberHeroes" : 3,
 							"numberTowns" : 2,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"crystal" : 4,
@@ -129927,7 +129823,6 @@
 							"armyStrength" : 33069,
 							"day" : 12,
 							"income" : 2000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.168947,
 							"maxHeroLevel" : 4,
@@ -129946,9 +129841,7 @@
 							"numberHeroes" : 4,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 6,
@@ -129986,7 +129879,6 @@
 							"armyStrength" : 33772,
 							"day" : 12,
 							"income" : 4000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.208292,
 							"maxHeroLevel" : 6,
@@ -130010,9 +129902,7 @@
 							"numberHeroes" : 6,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 13,
@@ -130046,7 +129936,6 @@
 							"armyStrength" : 27659,
 							"day" : 13,
 							"income" : 4350,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.076858,
 							"maxHeroLevel" : 4,
@@ -130069,9 +129958,7 @@
 							"numberHeroes" : 6,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 19,
@@ -130107,7 +129994,6 @@
 							"day" : 13,
 							"income" : 3500,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.0891271,
 							"maxHeroLevel" : 3,
@@ -130132,9 +130018,7 @@
 							"numberHeroes" : 4,
 							"numberTowns" : 2,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"crystal" : 5,
@@ -130168,7 +130052,6 @@
 							"armyStrength" : 33069,
 							"day" : 13,
 							"income" : 2000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.183895,
 							"maxHeroLevel" : 4,
@@ -130189,9 +130072,7 @@
 							"numberHeroes" : 4,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 6,
@@ -130229,7 +130110,6 @@
 							"armyStrength" : 33772,
 							"day" : 13,
 							"income" : 4000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.211677,
 							"maxHeroLevel" : 7,
@@ -130253,9 +130133,7 @@
 							"numberHeroes" : 6,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 14,
@@ -130289,7 +130167,6 @@
 							"armyStrength" : 32870,
 							"day" : 14,
 							"income" : 4350,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.0799605,
 							"maxHeroLevel" : 4,
@@ -130312,9 +130189,7 @@
 							"numberHeroes" : 5,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 16,
@@ -130353,7 +130228,6 @@
 							"day" : 14,
 							"income" : 4000,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.0967423,
 							"maxHeroLevel" : 4,
@@ -130378,9 +130252,7 @@
 							"numberHeroes" : 4,
 							"numberTowns" : 2,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"gems" : 7,
@@ -130413,7 +130285,6 @@
 							"armyStrength" : 40433,
 							"day" : 14,
 							"income" : 2350,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.193767,
 							"maxHeroLevel" : 4,
@@ -130436,9 +130307,7 @@
 							"numberHeroes" : 6,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 5,
@@ -130476,7 +130345,6 @@
 							"armyStrength" : 37575,
 							"day" : 14,
 							"income" : 4000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.213933,
 							"maxHeroLevel" : 7,
@@ -130500,9 +130368,7 @@
 							"numberHeroes" : 6,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 15,
@@ -130536,7 +130402,6 @@
 							"armyStrength" : 51506,
 							"day" : 15,
 							"income" : 4350,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.0799605,
 							"maxHeroLevel" : 5,
@@ -130558,9 +130423,7 @@
 							"numberHeroes" : 5,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 24,
@@ -130600,7 +130463,6 @@
 							"day" : 15,
 							"income" : 4000,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.0975885,
 							"maxHeroLevel" : 4,
@@ -130625,9 +130487,7 @@
 							"numberHeroes" : 4,
 							"numberTowns" : 2,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"crystal" : 1,
@@ -130661,7 +130521,6 @@
 							"armyStrength" : 48521,
 							"day" : 15,
 							"income" : 2350,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.19969,
 							"maxHeroLevel" : 4,
@@ -130685,9 +130544,7 @@
 							"numberHeroes" : 6,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 12,
@@ -130727,7 +130584,6 @@
 							"armyStrength" : 63706,
 							"day" : 15,
 							"income" : 4000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.219151,
 							"maxHeroLevel" : 7,
@@ -130751,9 +130607,7 @@
 							"numberHeroes" : 6,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 13,
@@ -130787,7 +130641,6 @@
 							"armyStrength" : 60628,
 							"day" : 16,
 							"income" : 4350,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.0848963,
 							"maxHeroLevel" : 5,
@@ -130809,9 +130662,7 @@
 							"numberHeroes" : 6,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 11,
@@ -130852,7 +130703,6 @@
 							"day" : 16,
 							"income" : 4000,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.0981526,
 							"maxHeroLevel" : 4,
@@ -130877,9 +130727,7 @@
 							"numberHeroes" : 4,
 							"numberTowns" : 2,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"crystal" : 2,
@@ -130913,7 +130761,6 @@
 							"armyStrength" : 48521,
 							"day" : 16,
 							"income" : 2350,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.202228,
 							"maxHeroLevel" : 4,
@@ -130937,9 +130784,7 @@
 							"numberHeroes" : 6,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 13,
@@ -130979,7 +130824,6 @@
 							"armyStrength" : 63706,
 							"day" : 16,
 							"income" : 4000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.223382,
 							"maxHeroLevel" : 7,
@@ -131003,9 +130847,7 @@
 							"numberHeroes" : 6,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 7,
@@ -131045,7 +130887,6 @@
 							"armyStrength" : 67828,
 							"day" : 17,
 							"income" : 4350,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.0848963,
 							"maxHeroLevel" : 5,
@@ -131066,9 +130907,7 @@
 							"numberHeroes" : 6,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 12,
@@ -131109,7 +130948,6 @@
 							"day" : 17,
 							"income" : 4000,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.0981526,
 							"maxHeroLevel" : 5,
@@ -131134,9 +130972,7 @@
 							"numberHeroes" : 4,
 							"numberTowns" : 2,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"crystal" : 3,
@@ -131170,7 +131006,6 @@
 							"armyStrength" : 48521,
 							"day" : 17,
 							"income" : 2350,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.204485,
 							"maxHeroLevel" : 4,
@@ -131194,9 +131029,7 @@
 							"numberHeroes" : 6,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 14,
@@ -131236,7 +131069,6 @@
 							"armyStrength" : 63706,
 							"day" : 17,
 							"income" : 4000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.223523,
 							"maxHeroLevel" : 7,
@@ -131260,9 +131092,7 @@
 							"numberHeroes" : 6,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 7,
@@ -131303,7 +131133,6 @@
 							"armyStrength" : 67828,
 							"day" : 18,
 							"income" : 4350,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.0848963,
 							"maxHeroLevel" : 5,
@@ -131325,9 +131154,7 @@
 							"numberHeroes" : 6,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 12,
@@ -131368,7 +131195,6 @@
 							"day" : 18,
 							"income" : 4000,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.100409,
 							"maxHeroLevel" : 6,
@@ -131393,9 +131219,7 @@
 							"numberHeroes" : 4,
 							"numberTowns" : 2,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"crystal" : 4,
@@ -131429,7 +131253,6 @@
 							"armyStrength" : 48521,
 							"day" : 18,
 							"income" : 2350,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.228741,
 							"maxHeroLevel" : 4,
@@ -131453,9 +131276,7 @@
 							"numberHeroes" : 6,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 15,
@@ -131495,7 +131316,6 @@
 							"armyStrength" : 63706,
 							"day" : 18,
 							"income" : 4000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.223523,
 							"maxHeroLevel" : 7,
@@ -131519,9 +131339,7 @@
 							"numberHeroes" : 6,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 7,
@@ -131562,7 +131380,6 @@
 							"armyStrength" : 72840,
 							"day" : 19,
 							"income" : 4350,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.0848963,
 							"maxHeroLevel" : 5,
@@ -131584,9 +131401,7 @@
 							"numberHeroes" : 6,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 12,
@@ -131627,7 +131442,6 @@
 							"day" : 19,
 							"income" : 4000,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.100409,
 							"maxHeroLevel" : 6,
@@ -131652,9 +131466,7 @@
 							"numberHeroes" : 4,
 							"numberTowns" : 2,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"crystal" : 5,
@@ -131688,7 +131500,6 @@
 							"armyStrength" : 50589,
 							"day" : 19,
 							"income" : 2350,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.231843,
 							"maxHeroLevel" : 5,
@@ -131712,9 +131523,7 @@
 							"numberHeroes" : 6,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 17,
@@ -131753,7 +131562,6 @@
 							"armyStrength" : 71196,
 							"day" : 19,
 							"income" : 4000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.223523,
 							"maxHeroLevel" : 7,
@@ -131777,9 +131585,7 @@
 							"numberHeroes" : 6,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 10,
@@ -131820,7 +131626,6 @@
 							"armyStrength" : 72702,
 							"day" : 20,
 							"income" : 4350,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.0848963,
 							"maxHeroLevel" : 6,
@@ -131843,9 +131648,7 @@
 							"numberHeroes" : 5,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 12,
@@ -131886,7 +131689,6 @@
 							"day" : 20,
 							"income" : 4000,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.10196,
 							"maxHeroLevel" : 6,
@@ -131911,9 +131713,7 @@
 							"numberHeroes" : 4,
 							"numberTowns" : 2,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"crystal" : 6,
@@ -131947,7 +131747,6 @@
 							"armyStrength" : 51147,
 							"day" : 20,
 							"income" : 2350,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.232125,
 							"maxHeroLevel" : 5,
@@ -131971,9 +131770,7 @@
 							"numberHeroes" : 5,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 18,
@@ -132013,7 +131810,6 @@
 							"armyStrength" : 71196,
 							"day" : 20,
 							"income" : 4000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.227048,
 							"maxHeroLevel" : 7,
@@ -132037,9 +131833,7 @@
 							"numberHeroes" : 6,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 12,
@@ -132081,7 +131875,6 @@
 							"armyStrength" : 64264,
 							"day" : 21,
 							"income" : 4350,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.0848963,
 							"maxHeroLevel" : 6,
@@ -132104,9 +131897,7 @@
 							"numberHeroes" : 5,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 17,
@@ -132147,7 +131938,6 @@
 							"day" : 21,
 							"income" : 4000,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.10464,
 							"maxHeroLevel" : 7,
@@ -132172,9 +131962,7 @@
 							"numberHeroes" : 4,
 							"numberTowns" : 2,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"crystal" : 1,
@@ -132207,7 +131995,6 @@
 							"armyStrength" : 54826,
 							"day" : 21,
 							"income" : 2350,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.232689,
 							"maxHeroLevel" : 5,
@@ -132231,9 +132018,7 @@
 							"numberHeroes" : 6,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 19,
@@ -132273,7 +132058,6 @@
 							"armyStrength" : 71895,
 							"day" : 21,
 							"income" : 4000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.240446,
 							"maxHeroLevel" : 7,
@@ -132297,9 +132081,7 @@
 							"numberHeroes" : 6,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 13,
@@ -132341,7 +132123,6 @@
 							"armyStrength" : 64264,
 							"day" : 22,
 							"income" : 4350,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.0848963,
 							"maxHeroLevel" : 6,
@@ -132364,9 +132145,7 @@
 							"numberHeroes" : 5,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 17,
@@ -132407,7 +132186,6 @@
 							"day" : 22,
 							"income" : 3000,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.109576,
 							"maxHeroLevel" : 8,
@@ -132432,9 +132210,7 @@
 							"numberHeroes" : 4,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"crystal" : 2,
@@ -132468,7 +132244,6 @@
 							"armyStrength" : 51526,
 							"day" : 22,
 							"income" : 4350,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.233253,
 							"maxHeroLevel" : 5,
@@ -132492,9 +132267,7 @@
 							"numberHeroes" : 6,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 21,
@@ -132535,7 +132308,6 @@
 							"day" : 22,
 							"eventCapturedTown" : true,
 							"income" : 5000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.253138,
 							"maxHeroLevel" : 7,
@@ -132559,9 +132331,7 @@
 							"numberHeroes" : 6,
 							"numberTowns" : 2,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 13,
@@ -132603,7 +132373,6 @@
 							"armyStrength" : 65664,
 							"day" : 23,
 							"income" : 4350,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.0848963,
 							"maxHeroLevel" : 6,
@@ -132625,9 +132394,7 @@
 							"numberHeroes" : 5,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 18,
@@ -132668,7 +132435,6 @@
 							"day" : 23,
 							"income" : 3000,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.113665,
 							"maxHeroLevel" : 8,
@@ -132693,9 +132459,7 @@
 							"numberHeroes" : 4,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"crystal" : 3,
@@ -132729,7 +132493,6 @@
 							"armyStrength" : 48202,
 							"day" : 23,
 							"income" : 4350,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.233394,
 							"maxHeroLevel" : 5,
@@ -132753,9 +132516,7 @@
 							"numberHeroes" : 6,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 16,
@@ -132797,7 +132558,6 @@
 							"armyStrength" : 121750,
 							"day" : 23,
 							"income" : 6000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.256663,
 							"maxHeroLevel" : 7,
@@ -132821,9 +132581,7 @@
 							"numberHeroes" : 7,
 							"numberTowns" : 2,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 13,
@@ -132865,7 +132623,6 @@
 							"armyStrength" : 102751,
 							"day" : 24,
 							"income" : 4350,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.0848963,
 							"maxHeroLevel" : 6,
@@ -132886,9 +132643,7 @@
 							"numberHeroes" : 6,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 17,
@@ -132929,7 +132684,6 @@
 							"day" : 24,
 							"income" : 3000,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.114511,
 							"maxHeroLevel" : 8,
@@ -132954,9 +132708,7 @@
 							"numberHeroes" : 4,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"crystal" : 1,
@@ -132991,7 +132743,6 @@
 							"day" : 24,
 							"eventCapturedTown" : true,
 							"income" : 6350,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.239176,
 							"maxHeroLevel" : 6,
@@ -133015,9 +132766,7 @@
 							"numberHeroes" : 8,
 							"numberTowns" : 2,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 10,
@@ -133060,7 +132809,6 @@
 							"armyStrength" : 104966,
 							"day" : 24,
 							"income" : 4000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.260471,
 							"maxHeroLevel" : 7,
@@ -133084,9 +132832,7 @@
 							"numberHeroes" : 4,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 17,
@@ -133128,7 +132874,6 @@
 							"armyStrength" : 100418,
 							"day" : 25,
 							"income" : 4000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.0848963,
 							"maxHeroLevel" : 6,
@@ -133150,9 +132895,7 @@
 							"numberHeroes" : 5,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 17,
@@ -133193,7 +132936,6 @@
 							"day" : 25,
 							"income" : 3000,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.115075,
 							"maxHeroLevel" : 8,
@@ -133218,9 +132960,7 @@
 							"numberHeroes" : 4,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"crystal" : 2,
@@ -133255,7 +132995,6 @@
 							"day" : 25,
 							"eventDefeatedStrongestHero" : true,
 							"income" : 6350,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.251163,
 							"maxHeroLevel" : 8,
@@ -133279,9 +133018,7 @@
 							"numberHeroes" : 8,
 							"numberTowns" : 2,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 11,
@@ -133324,7 +133061,6 @@
 							"armyStrength" : 107549,
 							"day" : 25,
 							"income" : 4000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.265407,
 							"maxHeroLevel" : 8,
@@ -133348,9 +133084,7 @@
 							"numberHeroes" : 4,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 19,
@@ -133392,7 +133126,6 @@
 							"armyStrength" : 104420,
 							"day" : 26,
 							"income" : 4000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.0860245,
 							"maxHeroLevel" : 6,
@@ -133414,9 +133147,7 @@
 							"numberHeroes" : 5,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 17,
@@ -133457,7 +133188,6 @@
 							"day" : 26,
 							"income" : 3000,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.115075,
 							"maxHeroLevel" : 9,
@@ -133482,9 +133212,7 @@
 							"numberHeroes" : 4,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"crystal" : 3,
@@ -133522,7 +133250,6 @@
 							"armyStrength" : 64416,
 							"day" : 26,
 							"income" : 6350,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.253702,
 							"maxHeroLevel" : 8,
@@ -133546,9 +133273,7 @@
 							"numberHeroes" : 8,
 							"numberTowns" : 2,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 10,
@@ -133591,7 +133316,6 @@
 							"armyStrength" : 110933,
 							"day" : 26,
 							"income" : 4000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.265407,
 							"maxHeroLevel" : 8,
@@ -133615,9 +133339,7 @@
 							"numberHeroes" : 6,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 16,
@@ -133659,7 +133381,6 @@
 							"armyStrength" : 104074,
 							"day" : 27,
 							"income" : 4000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.0961783,
 							"maxHeroLevel" : 6,
@@ -133681,9 +133402,7 @@
 							"numberHeroes" : 4,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 17,
@@ -133723,7 +133442,6 @@
 							"day" : 27,
 							"income" : 5000,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.115357,
 							"maxHeroLevel" : 9,
@@ -133748,9 +133466,7 @@
 							"numberHeroes" : 4,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"crystal" : 4,
@@ -133789,7 +133505,6 @@
 							"armyStrength" : 49993,
 							"day" : 27,
 							"income" : 4350,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.254407,
 							"maxHeroLevel" : 2,
@@ -133813,9 +133528,7 @@
 							"numberHeroes" : 7,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 7,
@@ -133859,7 +133572,6 @@
 							"eventCapturedTown" : true,
 							"eventDefeatedStrongestHero" : true,
 							"income" : 6000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.265407,
 							"maxHeroLevel" : 9,
@@ -133883,9 +133595,7 @@
 							"numberHeroes" : 6,
 							"numberTowns" : 2,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 10,
@@ -133928,7 +133638,6 @@
 							"armyStrength" : 106990,
 							"day" : 28,
 							"income" : 4000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.100127,
 							"maxHeroLevel" : 6,
@@ -133950,9 +133659,7 @@
 							"numberHeroes" : 5,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 17,
@@ -133993,7 +133700,6 @@
 							"day" : 28,
 							"income" : 5000,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.115357,
 							"maxHeroLevel" : 9,
@@ -134018,9 +133724,7 @@
 							"numberHeroes" : 4,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"crystal" : 5,
@@ -134059,7 +133763,6 @@
 							"armyStrength" : 49839,
 							"day" : 28,
 							"income" : 4350,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.254407,
 							"maxHeroLevel" : 2,
@@ -134083,9 +133786,7 @@
 							"numberHeroes" : 6,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 8,
@@ -134128,7 +133829,6 @@
 							"armyStrength" : 112697,
 							"day" : 28,
 							"income" : 6000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.265407,
 							"maxHeroLevel" : 9,
@@ -134152,9 +133852,7 @@
 							"numberHeroes" : 6,
 							"numberTowns" : 2,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 13,
@@ -134197,7 +133895,6 @@
 							"armyStrength" : 162305,
 							"day" : 29,
 							"income" : 4000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.11155,
 							"maxHeroLevel" : 6,
@@ -134218,9 +133915,7 @@
 							"numberHeroes" : 5,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 15,
@@ -134262,7 +133957,6 @@
 							"day" : 29,
 							"income" : 5350,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.115357,
 							"maxHeroLevel" : 9,
@@ -134287,9 +133981,7 @@
 							"numberHeroes" : 5,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"crystal" : 1,
@@ -134328,7 +134020,6 @@
 							"armyStrength" : 88708,
 							"day" : 29,
 							"income" : 4350,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.254407,
 							"maxHeroLevel" : 2,
@@ -134352,9 +134043,7 @@
 							"numberHeroes" : 6,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 7,
@@ -134397,7 +134086,6 @@
 							"armyStrength" : 112697,
 							"day" : 29,
 							"income" : 6000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.268791,
 							"maxHeroLevel" : 9,
@@ -134421,9 +134109,7 @@
 							"numberHeroes" : 6,
 							"numberTowns" : 2,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 16,
@@ -134466,7 +134152,6 @@
 							"armyStrength" : 166075,
 							"day" : 30,
 							"income" : 4350,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.119588,
 							"maxHeroLevel" : 6,
@@ -134488,9 +134173,7 @@
 							"numberHeroes" : 6,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 15,
@@ -134532,7 +134215,6 @@
 							"day" : 30,
 							"income" : 5350,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.116204,
 							"maxHeroLevel" : 9,
@@ -134557,9 +134239,7 @@
 							"numberHeroes" : 5,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"crystal" : 2,
@@ -134598,7 +134278,6 @@
 							"armyStrength" : 89534,
 							"day" : 30,
 							"income" : 4350,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.254971,
 							"maxHeroLevel" : 2,
@@ -134622,9 +134301,7 @@
 							"numberHeroes" : 6,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 8,
@@ -134667,7 +134344,6 @@
 							"armyStrength" : 156685,
 							"day" : 30,
 							"income" : 6000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.271048,
 							"maxHeroLevel" : 9,
@@ -134691,9 +134367,7 @@
 							"numberHeroes" : 6,
 							"numberTowns" : 2,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 18,
@@ -134736,7 +134410,6 @@
 							"armyStrength" : 166075,
 							"day" : 31,
 							"income" : 4350,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.126357,
 							"maxHeroLevel" : 6,
@@ -134758,9 +134431,7 @@
 							"numberHeroes" : 6,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 10,
@@ -134802,7 +134473,6 @@
 							"day" : 31,
 							"income" : 5350,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.119729,
 							"maxHeroLevel" : 9,
@@ -134827,9 +134497,7 @@
 							"numberHeroes" : 5,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"crystal" : 1,
@@ -134867,7 +134535,6 @@
 							"armyStrength" : 89534,
 							"day" : 31,
 							"income" : 4350,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.256945,
 							"maxHeroLevel" : 2,
@@ -134891,9 +134558,7 @@
 							"numberHeroes" : 6,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 9,
@@ -134936,7 +134601,6 @@
 							"armyStrength" : 164462,
 							"day" : 31,
 							"income" : 6000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.275702,
 							"maxHeroLevel" : 10,
@@ -134960,9 +134624,7 @@
 							"numberHeroes" : 6,
 							"numberTowns" : 2,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 21,
@@ -135005,7 +134667,6 @@
 							"armyStrength" : 153464,
 							"day" : 32,
 							"income" : 4000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.144973,
 							"maxHeroLevel" : 6,
@@ -135027,9 +134688,7 @@
 							"numberHeroes" : 5,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 20,
@@ -135071,7 +134730,6 @@
 							"day" : 32,
 							"income" : 5350,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.173459,
 							"maxHeroLevel" : 9,
@@ -135096,9 +134754,7 @@
 							"numberHeroes" : 5,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"crystal" : 2,
@@ -135137,7 +134793,6 @@
 							"armyStrength" : 89266,
 							"day" : 32,
 							"income" : 4350,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.257227,
 							"maxHeroLevel" : 2,
@@ -135161,9 +134816,7 @@
 							"numberHeroes" : 5,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 10,
@@ -135206,7 +134859,6 @@
 							"armyStrength" : 168378,
 							"day" : 32,
 							"income" : 6023,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.275702,
 							"maxHeroLevel" : 10,
@@ -135230,9 +134882,7 @@
 							"numberHeroes" : 8,
 							"numberTowns" : 2,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 11,
@@ -135276,7 +134926,6 @@
 							"armyStrength" : 129305,
 							"day" : 33,
 							"income" : 4000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.157242,
 							"maxHeroLevel" : 6,
@@ -135298,9 +134947,7 @@
 							"numberHeroes" : 4,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 10,
@@ -135342,7 +134989,6 @@
 							"day" : 33,
 							"income" : 5350,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.173459,
 							"maxHeroLevel" : 10,
@@ -135367,9 +135013,7 @@
 							"numberHeroes" : 5,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"crystal" : 3,
@@ -135408,7 +135052,6 @@
 							"armyStrength" : 89266,
 							"day" : 33,
 							"income" : 4350,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.257369,
 							"maxHeroLevel" : 2,
@@ -135432,9 +135075,7 @@
 							"numberHeroes" : 5,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 12,
@@ -135477,7 +135118,6 @@
 							"armyStrength" : 164870,
 							"day" : 33,
 							"income" : 6023,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.276971,
 							"maxHeroLevel" : 10,
@@ -135501,9 +135141,7 @@
 							"numberHeroes" : 8,
 							"numberTowns" : 2,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 22,
@@ -135548,7 +135186,6 @@
 							"day" : 34,
 							"eventDefeatedStrongestHero" : true,
 							"income" : 4000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.157242,
 							"maxHeroLevel" : 7,
@@ -135571,9 +135208,7 @@
 							"numberHeroes" : 4,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 11,
@@ -135615,7 +135250,6 @@
 							"day" : 34,
 							"income" : 5350,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.173459,
 							"maxHeroLevel" : 11,
@@ -135640,9 +135274,7 @@
 							"numberHeroes" : 5,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"crystal" : 4,
@@ -135681,7 +135313,6 @@
 							"armyStrength" : 93868,
 							"day" : 34,
 							"income" : 4350,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.257369,
 							"maxHeroLevel" : 2,
@@ -135705,9 +135336,7 @@
 							"numberHeroes" : 6,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 13,
@@ -135750,7 +135379,6 @@
 							"armyStrength" : 136609,
 							"day" : 34,
 							"income" : 6373,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.276971,
 							"maxHeroLevel" : 10,
@@ -135774,9 +135402,7 @@
 							"numberHeroes" : 8,
 							"numberTowns" : 2,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 24,
@@ -135820,7 +135446,6 @@
 							"armyStrength" : 119020,
 							"day" : 35,
 							"income" : 4000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.157242,
 							"maxHeroLevel" : 7,
@@ -135843,9 +135468,7 @@
 							"numberHeroes" : 4,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 12,
@@ -135887,7 +135510,6 @@
 							"day" : 35,
 							"income" : 5350,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.176985,
 							"maxHeroLevel" : 12,
@@ -135912,9 +135534,7 @@
 							"numberHeroes" : 5,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"crystal" : 5,
@@ -135953,7 +135573,6 @@
 							"armyStrength" : 93868,
 							"day" : 35,
 							"income" : 4350,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.257369,
 							"maxHeroLevel" : 3,
@@ -135977,9 +135596,7 @@
 							"numberHeroes" : 6,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 14,
@@ -136022,7 +135639,6 @@
 							"armyStrength" : 136609,
 							"day" : 35,
 							"income" : 6373,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.276971,
 							"maxHeroLevel" : 10,
@@ -136046,9 +135662,7 @@
 							"numberHeroes" : 8,
 							"numberTowns" : 2,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 27,
@@ -136092,7 +135706,6 @@
 							"armyStrength" : 166653,
 							"day" : 36,
 							"income" : 4000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.157242,
 							"maxHeroLevel" : 7,
@@ -136115,9 +135728,7 @@
 							"numberHeroes" : 4,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 10,
@@ -136160,7 +135771,6 @@
 							"day" : 36,
 							"income" : 5350,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.176985,
 							"maxHeroLevel" : 12,
@@ -136185,9 +135795,7 @@
 							"numberHeroes" : 4,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"crystal" : 6,
@@ -136225,7 +135833,6 @@
 							"armyStrength" : 121397,
 							"day" : 36,
 							"income" : 4350,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.257369,
 							"maxHeroLevel" : 3,
@@ -136249,9 +135856,7 @@
 							"numberHeroes" : 6,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 16,
@@ -136294,7 +135899,6 @@
 							"armyStrength" : 195543,
 							"day" : 36,
 							"income" : 6365,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.281907,
 							"maxHeroLevel" : 10,
@@ -136318,9 +135922,7 @@
 							"numberHeroes" : 8,
 							"numberTowns" : 2,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 19,
@@ -136364,7 +135966,6 @@
 							"armyStrength" : 169954,
 							"day" : 37,
 							"income" : 4000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.157242,
 							"maxHeroLevel" : 7,
@@ -136388,9 +135989,7 @@
 							"numberHeroes" : 4,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 11,
@@ -136433,7 +136032,6 @@
 							"day" : 37,
 							"income" : 5350,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.176985,
 							"maxHeroLevel" : 12,
@@ -136458,9 +136056,7 @@
 							"numberHeroes" : 5,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"crystal" : 7,
@@ -136500,7 +136096,6 @@
 							"armyStrength" : 121414,
 							"day" : 37,
 							"income" : 4350,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.257369,
 							"maxHeroLevel" : 4,
@@ -136524,9 +136119,7 @@
 							"numberHeroes" : 6,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 17,
@@ -136568,7 +136161,6 @@
 							"armyStrength" : 195543,
 							"day" : 37,
 							"income" : 6365,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.290509,
 							"maxHeroLevel" : 10,
@@ -136592,9 +136184,7 @@
 							"numberHeroes" : 8,
 							"numberTowns" : 2,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 21,
@@ -136638,7 +136228,6 @@
 							"armyStrength" : 169954,
 							"day" : 38,
 							"income" : 4000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.157242,
 							"maxHeroLevel" : 7,
@@ -136662,9 +136251,7 @@
 							"numberHeroes" : 4,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 14,
@@ -136707,7 +136294,6 @@
 							"day" : 38,
 							"income" : 5350,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.196023,
 							"maxHeroLevel" : 13,
@@ -136732,9 +136318,7 @@
 							"numberHeroes" : 5,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"crystal" : 8,
@@ -136774,7 +136358,6 @@
 							"armyStrength" : 88814,
 							"day" : 38,
 							"income" : 4350,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.257369,
 							"maxHeroLevel" : 4,
@@ -136798,9 +136381,7 @@
 							"numberHeroes" : 4,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 18,
@@ -136843,7 +136424,6 @@
 							"armyStrength" : 217813,
 							"day" : 38,
 							"income" : 6365,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.292765,
 							"maxHeroLevel" : 10,
@@ -136867,9 +136447,7 @@
 							"numberHeroes" : 7,
 							"numberTowns" : 2,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 22,
@@ -136913,7 +136491,6 @@
 							"armyStrength" : 181216,
 							"day" : 39,
 							"income" : 0,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.157242,
 							"maxHeroLevel" : 7,
@@ -136937,9 +136514,7 @@
 							"numberHeroes" : 5,
 							"numberTowns" : 0,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 14,
@@ -136983,7 +136558,6 @@
 							"eventCapturedTown" : true,
 							"income" : 7350,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.206882,
 							"maxHeroLevel" : 13,
@@ -137008,9 +136582,7 @@
 							"numberHeroes" : 5,
 							"numberTowns" : 2,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"crystal" : 9,
@@ -137050,7 +136622,6 @@
 							"armyStrength" : 83671,
 							"day" : 39,
 							"income" : 350,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.257369,
 							"maxHeroLevel" : 3,
@@ -137074,9 +136645,7 @@
 							"numberHeroes" : 3,
 							"numberTowns" : 0,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 19,
@@ -137121,7 +136690,6 @@
 							"day" : 39,
 							"eventCapturedTown" : true,
 							"income" : 8365,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.294317,
 							"maxHeroLevel" : 10,
@@ -137145,9 +136713,7 @@
 							"numberHeroes" : 7,
 							"numberTowns" : 3,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 23,
@@ -137191,7 +136757,6 @@
 							"armyStrength" : 111653,
 							"day" : 40,
 							"income" : 0,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.157242,
 							"maxHeroLevel" : 7,
@@ -137215,9 +136780,7 @@
 							"numberHeroes" : 3,
 							"numberTowns" : 0,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 16,
@@ -137260,7 +136823,6 @@
 							"day" : 40,
 							"income" : 7350,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.231138,
 							"maxHeroLevel" : 13,
@@ -137285,9 +136847,7 @@
 							"numberHeroes" : 8,
 							"numberTowns" : 2,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"crystal" : 10,
@@ -137327,7 +136887,6 @@
 							"armyStrength" : 82607,
 							"day" : 40,
 							"income" : 0,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.257369,
 							"maxHeroLevel" : 3,
@@ -137351,9 +136910,7 @@
 							"numberHeroes" : 2,
 							"numberTowns" : 0,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 21,
@@ -137397,7 +136954,6 @@
 							"armyStrength" : 211356,
 							"day" : 40,
 							"income" : 8365,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.297419,
 							"maxHeroLevel" : 12,
@@ -137421,9 +136977,7 @@
 							"numberHeroes" : 8,
 							"numberTowns" : 3,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 26,
@@ -137467,7 +137021,6 @@
 							"armyStrength" : 114453,
 							"day" : 41,
 							"income" : 0,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.157242,
 							"maxHeroLevel" : 7,
@@ -137490,9 +137043,7 @@
 							"numberHeroes" : 3,
 							"numberTowns" : 0,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 17,
@@ -137535,7 +137086,6 @@
 							"day" : 41,
 							"income" : 7350,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.250035,
 							"maxHeroLevel" : 13,
@@ -137560,9 +137110,7 @@
 							"numberHeroes" : 8,
 							"numberTowns" : 2,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"crystal" : 6,
@@ -137601,7 +137149,6 @@
 							"armyStrength" : 82507,
 							"day" : 41,
 							"income" : 0,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.257369,
 							"maxHeroLevel" : 3,
@@ -137622,9 +137169,7 @@
 							"numberHeroes" : 1,
 							"numberTowns" : 0,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 22,
@@ -137668,7 +137213,6 @@
 							"armyStrength" : 212425,
 							"day" : 41,
 							"income" : 8365,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.29756,
 							"maxHeroLevel" : 12,
@@ -137692,9 +137236,7 @@
 							"numberHeroes" : 8,
 							"numberTowns" : 3,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 28,
@@ -137739,7 +137281,6 @@
 							"day" : 42,
 							"eventCapturedTown" : true,
 							"income" : 4000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.159498,
 							"maxHeroLevel" : 7,
@@ -137762,9 +137303,7 @@
 							"numberHeroes" : 2,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 18,
@@ -137807,7 +137346,6 @@
 							"day" : 42,
 							"income" : 7350,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.280637,
 							"maxHeroLevel" : 14,
@@ -137832,9 +137370,7 @@
 							"numberHeroes" : 8,
 							"numberTowns" : 2,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"crystal" : 8,
@@ -137874,7 +137410,6 @@
 							"armyStrength" : 0,
 							"day" : 42,
 							"income" : 0,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.257369,
 							"maxHeroLevel" : 0,
@@ -137892,9 +137427,7 @@
 							"numberHeroes" : 0,
 							"numberTowns" : 0,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 22,
@@ -137938,7 +137471,6 @@
 							"armyStrength" : 208390,
 							"day" : 42,
 							"income" : 6365,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.29756,
 							"maxHeroLevel" : 12,
@@ -137962,9 +137494,7 @@
 							"numberHeroes" : 8,
 							"numberTowns" : 2,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 31,
@@ -138007,7 +137537,6 @@
 							"armyStrength" : 127540,
 							"day" : 43,
 							"income" : 4000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.159498,
 							"maxHeroLevel" : 7,
@@ -138029,9 +137558,7 @@
 							"numberHeroes" : 2,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 17,
@@ -138075,7 +137602,6 @@
 							"eventCapturedTown" : true,
 							"income" : 9350,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.295163,
 							"maxHeroLevel" : 14,
@@ -138100,9 +137626,7 @@
 							"numberHeroes" : 9,
 							"numberTowns" : 3,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"crystal" : 6,
@@ -138142,7 +137666,6 @@
 							"armyStrength" : 0,
 							"day" : 43,
 							"income" : 0,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.257369,
 							"maxHeroLevel" : 0,
@@ -138160,9 +137683,7 @@
 							"numberHeroes" : 0,
 							"numberTowns" : 0,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 22,
@@ -138206,7 +137727,6 @@
 							"armyStrength" : 255166,
 							"day" : 43,
 							"income" : 4365,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.298547,
 							"maxHeroLevel" : 12,
@@ -138230,9 +137750,7 @@
 							"numberHeroes" : 8,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 28,
@@ -138276,7 +137794,6 @@
 							"armyStrength" : 143965,
 							"day" : 44,
 							"income" : 4000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.159498,
 							"maxHeroLevel" : 7,
@@ -138298,9 +137815,7 @@
 							"numberHeroes" : 2,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 19,
@@ -138343,7 +137858,6 @@
 							"day" : 44,
 							"income" : 9350,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.296855,
 							"maxHeroLevel" : 14,
@@ -138368,9 +137882,7 @@
 							"numberHeroes" : 9,
 							"numberTowns" : 3,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"crystal" : 2,
@@ -138409,7 +137921,6 @@
 							"armyStrength" : 0,
 							"day" : 44,
 							"income" : 0,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.257369,
 							"maxHeroLevel" : 0,
@@ -138427,9 +137938,7 @@
 							"numberHeroes" : 0,
 							"numberTowns" : 0,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 22,
@@ -138473,7 +137982,6 @@
 							"armyStrength" : 255166,
 							"day" : 44,
 							"income" : 4365,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.30165,
 							"maxHeroLevel" : 12,
@@ -138497,9 +138005,7 @@
 							"numberHeroes" : 8,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 29,
@@ -138543,7 +138049,6 @@
 							"armyStrength" : 154279,
 							"day" : 45,
 							"income" : 4000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.159498,
 							"maxHeroLevel" : 7,
@@ -138565,9 +138070,7 @@
 							"numberHeroes" : 2,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 22,
@@ -138611,7 +138114,6 @@
 							"day" : 45,
 							"income" : 9350,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.299253,
 							"maxHeroLevel" : 14,
@@ -138636,9 +138138,7 @@
 							"numberHeroes" : 9,
 							"numberTowns" : 3,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"crystal" : 4,
@@ -138678,7 +138178,6 @@
 							"armyStrength" : 0,
 							"day" : 45,
 							"income" : 0,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.257369,
 							"maxHeroLevel" : 0,
@@ -138696,9 +138195,7 @@
 							"numberHeroes" : 0,
 							"numberTowns" : 0,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 22,
@@ -138742,7 +138239,6 @@
 							"armyStrength" : 250660,
 							"day" : 45,
 							"income" : 4365,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.307291,
 							"maxHeroLevel" : 12,
@@ -138766,9 +138262,7 @@
 							"numberHeroes" : 7,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 38,
@@ -138812,7 +138306,6 @@
 							"armyStrength" : 163421,
 							"day" : 46,
 							"income" : 4000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.159498,
 							"maxHeroLevel" : 8,
@@ -138834,9 +138327,7 @@
 							"numberHeroes" : 3,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 24,
@@ -138880,7 +138371,6 @@
 							"day" : 46,
 							"income" : 7350,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.313919,
 							"maxHeroLevel" : 14,
@@ -138905,9 +138395,7 @@
 							"numberHeroes" : 7,
 							"numberTowns" : 2,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"crystal" : 6,
@@ -138948,7 +138436,6 @@
 							"armyStrength" : 0,
 							"day" : 46,
 							"income" : 0,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.257369,
 							"maxHeroLevel" : 0,
@@ -138966,9 +138453,7 @@
 							"numberHeroes" : 0,
 							"numberTowns" : 0,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 22,
@@ -139013,7 +138498,6 @@
 							"day" : 46,
 							"eventCapturedTown" : true,
 							"income" : 6365,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.307996,
 							"maxHeroLevel" : 12,
@@ -139037,9 +138521,7 @@
 							"numberHeroes" : 8,
 							"numberTowns" : 2,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 39,
@@ -139083,7 +138565,6 @@
 							"armyStrength" : 27928,
 							"day" : 47,
 							"income" : 4000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.159498,
 							"maxHeroLevel" : 1,
@@ -139104,9 +138585,7 @@
 							"numberHeroes" : 2,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 27,
@@ -139151,7 +138630,6 @@
 							"eventDefeatedStrongestHero" : true,
 							"income" : 7350,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.324637,
 							"maxHeroLevel" : 16,
@@ -139176,9 +138654,7 @@
 							"numberHeroes" : 7,
 							"numberTowns" : 2,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"crystal" : 8,
@@ -139219,7 +138695,6 @@
 							"armyStrength" : 0,
 							"day" : 47,
 							"income" : 0,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.257369,
 							"maxHeroLevel" : 0,
@@ -139237,9 +138712,7 @@
 							"numberHeroes" : 0,
 							"numberTowns" : 0,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 22,
@@ -139283,7 +138756,6 @@
 							"armyStrength" : 217712,
 							"day" : 47,
 							"income" : 6365,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.314342,
 							"maxHeroLevel" : 12,
@@ -139307,9 +138779,7 @@
 							"numberHeroes" : 8,
 							"numberTowns" : 2,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 42,
@@ -139353,7 +138823,6 @@
 							"armyStrength" : 22795,
 							"day" : 48,
 							"income" : 0,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.159498,
 							"maxHeroLevel" : 1,
@@ -139374,9 +138843,7 @@
 							"numberHeroes" : 1,
 							"numberTowns" : 0,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 29,
@@ -139421,7 +138888,6 @@
 							"eventCapturedTown" : true,
 							"income" : 9350,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.355944,
 							"maxHeroLevel" : 16,
@@ -139446,9 +138912,7 @@
 							"numberHeroes" : 8,
 							"numberTowns" : 3,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"crystal" : 10,
@@ -139489,7 +138953,6 @@
 							"armyStrength" : 0,
 							"day" : 48,
 							"income" : 0,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.257369,
 							"maxHeroLevel" : 0,
@@ -139507,9 +138970,7 @@
 							"numberHeroes" : 0,
 							"numberTowns" : 0,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 22,
@@ -139553,7 +139014,6 @@
 							"armyStrength" : 217712,
 							"day" : 48,
 							"income" : 6365,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.319701,
 							"maxHeroLevel" : 13,
@@ -139577,9 +139037,7 @@
 							"numberHeroes" : 8,
 							"numberTowns" : 2,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 44,
@@ -139623,7 +139081,6 @@
 							"armyStrength" : 0,
 							"day" : 49,
 							"income" : 0,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.159498,
 							"maxHeroLevel" : 0,
@@ -139641,9 +139098,7 @@
 							"numberHeroes" : 0,
 							"numberTowns" : 0,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 30,
@@ -139687,7 +139142,6 @@
 							"day" : 49,
 							"income" : 9350,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.355944,
 							"maxHeroLevel" : 16,
@@ -139712,9 +139166,7 @@
 							"numberHeroes" : 8,
 							"numberTowns" : 3,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"crystal" : 13,
@@ -139755,7 +139207,6 @@
 							"armyStrength" : 0,
 							"day" : 49,
 							"income" : 0,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.257369,
 							"maxHeroLevel" : 0,
@@ -139773,9 +139224,7 @@
 							"numberHeroes" : 0,
 							"numberTowns" : 0,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 22,
@@ -139819,7 +139268,6 @@
 							"armyStrength" : 214610,
 							"day" : 49,
 							"income" : 6365,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.325624,
 							"maxHeroLevel" : 13,
@@ -139843,9 +139291,7 @@
 							"numberHeroes" : 8,
 							"numberTowns" : 2,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 49,
@@ -139889,7 +139335,6 @@
 							"armyStrength" : 0,
 							"day" : 50,
 							"income" : 0,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.159498,
 							"maxHeroLevel" : 0,
@@ -139907,9 +139352,7 @@
 							"numberHeroes" : 0,
 							"numberTowns" : 0,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 30,
@@ -139953,7 +139396,6 @@
 							"day" : 50,
 							"income" : 9350,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.355944,
 							"maxHeroLevel" : 16,
@@ -139978,9 +139420,7 @@
 							"numberHeroes" : 8,
 							"numberTowns" : 3,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"crystal" : 16,
@@ -140021,7 +139461,6 @@
 							"armyStrength" : 0,
 							"day" : 50,
 							"income" : 0,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.257369,
 							"maxHeroLevel" : 0,
@@ -140039,9 +139478,7 @@
 							"numberHeroes" : 0,
 							"numberTowns" : 0,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 22,
@@ -140085,7 +139522,6 @@
 							"armyStrength" : 214725,
 							"day" : 50,
 							"income" : 6365,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.325624,
 							"maxHeroLevel" : 13,
@@ -140109,9 +139545,7 @@
 							"numberHeroes" : 8,
 							"numberTowns" : 2,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 18,
@@ -140155,7 +139589,6 @@
 							"armyStrength" : 0,
 							"day" : 51,
 							"income" : 0,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.159498,
 							"maxHeroLevel" : 0,
@@ -140173,9 +139606,7 @@
 							"numberHeroes" : 0,
 							"numberTowns" : 0,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 30,
@@ -140219,7 +139650,6 @@
 							"day" : 51,
 							"income" : 9350,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.355944,
 							"maxHeroLevel" : 16,
@@ -140244,9 +139674,7 @@
 							"numberHeroes" : 8,
 							"numberTowns" : 3,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"crystal" : 15,
@@ -140288,7 +139716,6 @@
 							"armyStrength" : 0,
 							"day" : 51,
 							"income" : 0,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.257369,
 							"maxHeroLevel" : 0,
@@ -140306,9 +139733,7 @@
 							"numberHeroes" : 0,
 							"numberTowns" : 0,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 22,
@@ -140352,7 +139777,6 @@
 							"armyStrength" : 261596,
 							"day" : 51,
 							"income" : 6015,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.325624,
 							"maxHeroLevel" : 13,
@@ -140376,9 +139800,7 @@
 							"numberHeroes" : 7,
 							"numberTowns" : 2,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 20,
@@ -140422,7 +139844,6 @@
 							"armyStrength" : 0,
 							"day" : 52,
 							"income" : 0,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.159498,
 							"maxHeroLevel" : 0,
@@ -140440,9 +139861,7 @@
 							"numberHeroes" : 0,
 							"numberTowns" : 0,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 30,
@@ -140486,7 +139905,6 @@
 							"day" : 52,
 							"income" : 9350,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.355944,
 							"maxHeroLevel" : 5,
@@ -140511,9 +139929,7 @@
 							"numberHeroes" : 8,
 							"numberTowns" : 3,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"crystal" : 18,
@@ -140558,7 +139974,6 @@
 							"armyStrength" : 0,
 							"day" : 52,
 							"income" : 0,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.257369,
 							"maxHeroLevel" : 0,
@@ -140576,9 +139991,7 @@
 							"numberHeroes" : 0,
 							"numberTowns" : 0,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 22,
@@ -140623,7 +140036,6 @@
 							"day" : 52,
 							"eventDefeatedStrongestHero" : true,
 							"income" : 6015,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.325624,
 							"maxHeroLevel" : 14,
@@ -140647,9 +140059,7 @@
 							"numberHeroes" : 6,
 							"numberTowns" : 2,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 23,
@@ -140693,7 +140103,6 @@
 							"armyStrength" : 0,
 							"day" : 53,
 							"income" : 0,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.159498,
 							"maxHeroLevel" : 0,
@@ -140711,9 +140120,7 @@
 							"numberHeroes" : 0,
 							"numberTowns" : 0,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 30,
@@ -140757,7 +140164,6 @@
 							"day" : 53,
 							"income" : 7350,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.355944,
 							"maxHeroLevel" : 17,
@@ -140782,9 +140188,7 @@
 							"numberHeroes" : 9,
 							"numberTowns" : 2,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"crystal" : 9,
@@ -140830,7 +140234,6 @@
 							"armyStrength" : 0,
 							"day" : 53,
 							"income" : 0,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.257369,
 							"maxHeroLevel" : 0,
@@ -140848,9 +140251,7 @@
 							"numberHeroes" : 0,
 							"numberTowns" : 0,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 22,
@@ -140896,7 +140297,6 @@
 							"eventCapturedTown" : true,
 							"eventDefeatedStrongestHero" : true,
 							"income" : 8015,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.325624,
 							"maxHeroLevel" : 14,
@@ -140920,9 +140320,7 @@
 							"numberHeroes" : 7,
 							"numberTowns" : 3,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 25,
@@ -140966,7 +140364,6 @@
 							"armyStrength" : 0,
 							"day" : 54,
 							"income" : 0,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.159498,
 							"maxHeroLevel" : 0,
@@ -140984,9 +140381,7 @@
 							"numberHeroes" : 0,
 							"numberTowns" : 0,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 30,
@@ -141031,7 +140426,6 @@
 							"eventCapturedTown" : true,
 							"income" : 9350,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.355944,
 							"maxHeroLevel" : 17,
@@ -141056,9 +140450,7 @@
 							"numberHeroes" : 8,
 							"numberTowns" : 3,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"crystal" : 11,
@@ -141104,7 +140496,6 @@
 							"armyStrength" : 0,
 							"day" : 54,
 							"income" : 0,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.257369,
 							"maxHeroLevel" : 0,
@@ -141122,9 +140513,7 @@
 							"numberHeroes" : 0,
 							"numberTowns" : 0,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 22,
@@ -141168,7 +140557,6 @@
 							"armyStrength" : 130680,
 							"day" : 54,
 							"income" : 6015,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.328162,
 							"maxHeroLevel" : 14,
@@ -141192,9 +140580,7 @@
 							"numberHeroes" : 6,
 							"numberTowns" : 2,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 29,
@@ -141238,7 +140624,6 @@
 							"armyStrength" : 0,
 							"day" : 55,
 							"income" : 0,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.159498,
 							"maxHeroLevel" : 0,
@@ -141256,9 +140641,7 @@
 							"numberHeroes" : 0,
 							"numberTowns" : 0,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 30,
@@ -141302,7 +140685,6 @@
 							"day" : 55,
 							"income" : 9350,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.355944,
 							"maxHeroLevel" : 17,
@@ -141327,9 +140709,7 @@
 							"numberHeroes" : 7,
 							"numberTowns" : 3,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"crystal" : 4,
@@ -141374,7 +140754,6 @@
 							"armyStrength" : 0,
 							"day" : 55,
 							"income" : 0,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.257369,
 							"maxHeroLevel" : 0,
@@ -141392,9 +140771,7 @@
 							"numberHeroes" : 0,
 							"numberTowns" : 0,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 22,
@@ -141439,7 +140816,6 @@
 							"day" : 55,
 							"eventDefeatedStrongestHero" : true,
 							"income" : 6015,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.328162,
 							"maxHeroLevel" : 15,
@@ -141463,9 +140839,7 @@
 							"numberHeroes" : 6,
 							"numberTowns" : 2,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 31,
@@ -141509,7 +140883,6 @@
 							"armyStrength" : 0,
 							"day" : 56,
 							"income" : 0,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.159498,
 							"maxHeroLevel" : 0,
@@ -141527,9 +140900,7 @@
 							"numberHeroes" : 0,
 							"numberTowns" : 0,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 30,
@@ -141574,7 +140945,6 @@
 							"eventDefeatedStrongestHero" : true,
 							"income" : 9350,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.355944,
 							"maxHeroLevel" : 17,
@@ -141599,9 +140969,7 @@
 							"numberHeroes" : 7,
 							"numberTowns" : 3,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"crystal" : 7,
@@ -141647,7 +141015,6 @@
 							"armyStrength" : 0,
 							"day" : 56,
 							"income" : 0,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.257369,
 							"maxHeroLevel" : 0,
@@ -141665,9 +141032,7 @@
 							"numberHeroes" : 0,
 							"numberTowns" : 0,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 22,
@@ -141711,7 +141076,6 @@
 							"armyStrength" : 81940,
 							"day" : 56,
 							"income" : 6015,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.328162,
 							"maxHeroLevel" : 6,
@@ -141735,9 +141099,7 @@
 							"numberHeroes" : 5,
 							"numberTowns" : 2,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 34,
@@ -141781,7 +141143,6 @@
 							"armyStrength" : 0,
 							"day" : 57,
 							"income" : 0,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.159498,
 							"maxHeroLevel" : 0,
@@ -141799,9 +141160,7 @@
 							"numberHeroes" : 0,
 							"numberTowns" : 0,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 30,
@@ -141845,7 +141204,6 @@
 							"day" : 57,
 							"income" : 9350,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.355944,
 							"maxHeroLevel" : 17,
@@ -141870,9 +141228,7 @@
 							"numberHeroes" : 7,
 							"numberTowns" : 3,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"crystal" : 6,
@@ -141918,7 +141274,6 @@
 							"armyStrength" : 0,
 							"day" : 57,
 							"income" : 0,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.257369,
 							"maxHeroLevel" : 0,
@@ -141936,9 +141291,7 @@
 							"numberHeroes" : 0,
 							"numberTowns" : 0,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 22,
@@ -141982,7 +141335,6 @@
 							"armyStrength" : 155707,
 							"day" : 57,
 							"income" : 6000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.328162,
 							"maxHeroLevel" : 6,
@@ -142006,9 +141358,7 @@
 							"numberHeroes" : 5,
 							"numberTowns" : 2,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 37,
@@ -142052,7 +141402,6 @@
 							"armyStrength" : 0,
 							"day" : 58,
 							"income" : 0,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.159498,
 							"maxHeroLevel" : 0,
@@ -142070,9 +141419,7 @@
 							"numberHeroes" : 0,
 							"numberTowns" : 0,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 30,
@@ -142116,7 +141463,6 @@
 							"day" : 58,
 							"income" : 9350,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.355944,
 							"maxHeroLevel" : 17,
@@ -142141,9 +141487,7 @@
 							"numberHeroes" : 7,
 							"numberTowns" : 3,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"crystal" : 9,
@@ -142189,7 +141533,6 @@
 							"armyStrength" : 0,
 							"day" : 58,
 							"income" : 0,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.257369,
 							"maxHeroLevel" : 0,
@@ -142207,9 +141550,7 @@
 							"numberHeroes" : 0,
 							"numberTowns" : 0,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 22,
@@ -142253,7 +141594,6 @@
 							"armyStrength" : 151371,
 							"day" : 58,
 							"income" : 6000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.328162,
 							"maxHeroLevel" : 7,
@@ -142277,9 +141617,7 @@
 							"numberHeroes" : 5,
 							"numberTowns" : 2,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 39,
@@ -142323,7 +141661,6 @@
 							"armyStrength" : 0,
 							"day" : 59,
 							"income" : 0,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.159498,
 							"maxHeroLevel" : 0,
@@ -142341,9 +141678,7 @@
 							"numberHeroes" : 0,
 							"numberTowns" : 0,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 30,
@@ -142387,7 +141722,6 @@
 							"day" : 59,
 							"income" : 9350,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.355944,
 							"maxHeroLevel" : 17,
@@ -142412,9 +141746,7 @@
 							"numberHeroes" : 7,
 							"numberTowns" : 3,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"crystal" : 12,
@@ -142460,7 +141792,6 @@
 							"armyStrength" : 0,
 							"day" : 59,
 							"income" : 0,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.257369,
 							"maxHeroLevel" : 0,
@@ -142478,9 +141809,7 @@
 							"numberHeroes" : 0,
 							"numberTowns" : 0,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 22,
@@ -142524,7 +141853,6 @@
 							"armyStrength" : 158156,
 							"day" : 59,
 							"income" : 6000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.332252,
 							"maxHeroLevel" : 7,
@@ -142548,9 +141876,7 @@
 							"numberHeroes" : 7,
 							"numberTowns" : 2,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 42,
@@ -142594,7 +141920,6 @@
 							"armyStrength" : 0,
 							"day" : 60,
 							"income" : 0,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.159498,
 							"maxHeroLevel" : 0,
@@ -142612,9 +141937,7 @@
 							"numberHeroes" : 0,
 							"numberTowns" : 0,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 30,
@@ -142659,7 +141982,6 @@
 							"eventCapturedTown" : true,
 							"income" : 11350,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.355944,
 							"maxHeroLevel" : 17,
@@ -142684,9 +142006,7 @@
 							"numberHeroes" : 7,
 							"numberTowns" : 4,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"crystal" : 7,
@@ -142732,7 +142052,6 @@
 							"armyStrength" : 0,
 							"day" : 60,
 							"income" : 0,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.257369,
 							"maxHeroLevel" : 0,
@@ -142750,9 +142069,7 @@
 							"numberHeroes" : 0,
 							"numberTowns" : 0,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 22,
@@ -142796,7 +142113,6 @@
 							"armyStrength" : 142010,
 							"day" : 60,
 							"income" : 4000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.338034,
 							"maxHeroLevel" : 8,
@@ -142820,9 +142136,7 @@
 							"numberHeroes" : 6,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 44,
@@ -142866,7 +142180,6 @@
 							"armyStrength" : 0,
 							"day" : 61,
 							"income" : 0,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.159498,
 							"maxHeroLevel" : 0,
@@ -142884,9 +142197,7 @@
 							"numberHeroes" : 0,
 							"numberTowns" : 0,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 30,
@@ -142930,7 +142241,6 @@
 							"day" : 61,
 							"income" : 11350,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.355944,
 							"maxHeroLevel" : 17,
@@ -142955,9 +142265,7 @@
 							"numberHeroes" : 8,
 							"numberTowns" : 4,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"crystal" : 10,
@@ -143003,7 +142311,6 @@
 							"armyStrength" : 0,
 							"day" : 61,
 							"income" : 0,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.257369,
 							"maxHeroLevel" : 0,
@@ -143021,9 +142328,7 @@
 							"numberHeroes" : 0,
 							"numberTowns" : 0,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 22,
@@ -143067,7 +142372,6 @@
 							"armyStrength" : 141955,
 							"day" : 61,
 							"income" : 4000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.34706,
 							"maxHeroLevel" : 8,
@@ -143091,9 +142395,7 @@
 							"numberHeroes" : 5,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 47,
@@ -143137,7 +142439,6 @@
 							"armyStrength" : 0,
 							"day" : 62,
 							"income" : 0,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.159498,
 							"maxHeroLevel" : 0,
@@ -143155,9 +142456,7 @@
 							"numberHeroes" : 0,
 							"numberTowns" : 0,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 30,
@@ -143201,7 +142500,6 @@
 							"day" : 62,
 							"income" : 11350,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.37188,
 							"maxHeroLevel" : 17,
@@ -143226,9 +142524,7 @@
 							"numberHeroes" : 8,
 							"numberTowns" : 4,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"crystal" : 13,
@@ -143274,7 +142570,6 @@
 							"armyStrength" : 0,
 							"day" : 62,
 							"income" : 0,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.257369,
 							"maxHeroLevel" : 0,
@@ -143292,9 +142587,7 @@
 							"numberHeroes" : 0,
 							"numberTowns" : 0,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 22,
@@ -143338,7 +142631,6 @@
 							"armyStrength" : 110258,
 							"day" : 62,
 							"income" : 4000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.355944,
 							"maxHeroLevel" : 9,
@@ -143362,9 +142654,7 @@
 							"numberHeroes" : 6,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 41,
@@ -143408,7 +142698,6 @@
 							"armyStrength" : 0,
 							"day" : 63,
 							"income" : 0,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.159498,
 							"maxHeroLevel" : 0,
@@ -143426,9 +142715,7 @@
 							"numberHeroes" : 0,
 							"numberTowns" : 0,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 30,
@@ -143472,7 +142759,6 @@
 							"day" : 63,
 							"income" : 11350,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.379495,
 							"maxHeroLevel" : 17,
@@ -143497,9 +142783,7 @@
 							"numberHeroes" : 10,
 							"numberTowns" : 4,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"crystal" : 16,
@@ -143545,7 +142829,6 @@
 							"armyStrength" : 0,
 							"day" : 63,
 							"income" : 0,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.257369,
 							"maxHeroLevel" : 0,
@@ -143563,9 +142846,7 @@
 							"numberHeroes" : 0,
 							"numberTowns" : 0,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 22,
@@ -143609,7 +142890,6 @@
 							"armyStrength" : 111043,
 							"day" : 63,
 							"income" : 4000,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.357213,
 							"maxHeroLevel" : 15,
@@ -143633,9 +142913,7 @@
 							"numberHeroes" : 6,
 							"numberTowns" : 1,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 34,
@@ -143679,7 +142957,6 @@
 							"armyStrength" : 0,
 							"day" : 64,
 							"income" : 0,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.159498,
 							"maxHeroLevel" : 0,
@@ -143697,9 +142974,7 @@
 							"numberHeroes" : 0,
 							"numberTowns" : 0,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 30,
@@ -143745,7 +143020,6 @@
 							"eventDefeatedStrongestHero" : true,
 							"income" : 13350,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.398533,
 							"maxHeroLevel" : 18,
@@ -143770,9 +143044,7 @@
 							"numberHeroes" : 10,
 							"numberTowns" : 5,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"crystal" : 19,
@@ -143817,7 +143089,6 @@
 							"armyStrength" : 0,
 							"day" : 64,
 							"income" : 0,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.257369,
 							"maxHeroLevel" : 0,
@@ -143835,9 +143106,7 @@
 							"numberHeroes" : 0,
 							"numberTowns" : 0,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 22,
@@ -143881,7 +143150,6 @@
 							"armyStrength" : 6929,
 							"day" : 64,
 							"income" : 0,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.357213,
 							"maxHeroLevel" : 5,
@@ -143905,9 +143173,7 @@
 							"numberHeroes" : 3,
 							"numberTowns" : 0,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 37,
@@ -143951,7 +143217,6 @@
 							"armyStrength" : 0,
 							"day" : 65,
 							"income" : 0,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.159498,
 							"maxHeroLevel" : 0,
@@ -143969,9 +143234,7 @@
 							"numberHeroes" : 0,
 							"numberTowns" : 0,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 30,
@@ -144015,7 +143278,6 @@
 							"day" : 65,
 							"income" : 13350,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.4242,
 							"maxHeroLevel" : 18,
@@ -144040,9 +143302,7 @@
 							"numberHeroes" : 10,
 							"numberTowns" : 5,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"crystal" : 22,
@@ -144088,7 +143348,6 @@
 							"armyStrength" : 0,
 							"day" : 65,
 							"income" : 0,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.257369,
 							"maxHeroLevel" : 0,
@@ -144106,9 +143365,7 @@
 							"numberHeroes" : 0,
 							"numberTowns" : 0,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 22,
@@ -144152,7 +143409,6 @@
 							"armyStrength" : 6043,
 							"day" : 65,
 							"income" : 0,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.357213,
 							"maxHeroLevel" : 3,
@@ -144176,9 +143432,7 @@
 							"numberHeroes" : 2,
 							"numberTowns" : 0,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 38,
@@ -144222,7 +143476,6 @@
 							"armyStrength" : 0,
 							"day" : 66,
 							"income" : 0,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.159498,
 							"maxHeroLevel" : 0,
@@ -144240,9 +143493,7 @@
 							"numberHeroes" : 0,
 							"numberTowns" : 0,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 30,
@@ -144286,7 +143537,6 @@
 							"day" : 66,
 							"income" : 13350,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.485122,
 							"maxHeroLevel" : 18,
@@ -144311,9 +143561,7 @@
 							"numberHeroes" : 11,
 							"numberTowns" : 5,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"crystal" : 25,
@@ -144359,7 +143607,6 @@
 							"armyStrength" : 0,
 							"day" : 66,
 							"income" : 0,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.257369,
 							"maxHeroLevel" : 0,
@@ -144377,9 +143624,7 @@
 							"numberHeroes" : 0,
 							"numberTowns" : 0,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 22,
@@ -144423,7 +143668,6 @@
 							"armyStrength" : 6043,
 							"day" : 66,
 							"income" : 0,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.357213,
 							"maxHeroLevel" : 3,
@@ -144447,9 +143691,7 @@
 							"numberHeroes" : 2,
 							"numberTowns" : 0,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 39,
@@ -144493,7 +143735,6 @@
 							"armyStrength" : 0,
 							"day" : 67,
 							"income" : 0,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.159498,
 							"maxHeroLevel" : 0,
@@ -144511,9 +143752,7 @@
 							"numberHeroes" : 0,
 							"numberTowns" : 0,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 30,
@@ -144557,7 +143796,6 @@
 							"day" : 67,
 							"income" : 13350,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.500212,
 							"maxHeroLevel" : 18,
@@ -144582,9 +143820,7 @@
 							"numberHeroes" : 11,
 							"numberTowns" : 5,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"crystal" : 28,
@@ -144630,7 +143866,6 @@
 							"armyStrength" : 0,
 							"day" : 67,
 							"income" : 0,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.257369,
 							"maxHeroLevel" : 0,
@@ -144648,9 +143883,7 @@
 							"numberHeroes" : 0,
 							"numberTowns" : 0,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 22,
@@ -144694,7 +143927,6 @@
 							"armyStrength" : 154,
 							"day" : 67,
 							"income" : 0,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.357213,
 							"maxHeroLevel" : 3,
@@ -144717,9 +143949,7 @@
 							"numberHeroes" : 1,
 							"numberTowns" : 0,
 							"obeliskVisitedRatio" : 0.2,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 40,
@@ -144763,7 +143993,6 @@
 							"armyStrength" : 0,
 							"day" : 68,
 							"income" : 0,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.159498,
 							"maxHeroLevel" : 0,
@@ -144781,9 +144010,7 @@
 							"numberHeroes" : 0,
 							"numberTowns" : 0,
 							"obeliskVisitedRatio" : 0,
-							 // game
 							"player" : "red",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 30,
@@ -144827,7 +144054,6 @@
 							"day" : 68,
 							"income" : 13350,
 							"isHuman" : true,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.500212,
 							"maxHeroLevel" : 18,
@@ -144852,9 +144078,7 @@
 							"numberHeroes" : 11,
 							"numberTowns" : 5,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "blue",
-							 // game
 							"playerName" : "Player",
 							"resources" : {
 								"crystal" : 31,
@@ -144900,7 +144124,6 @@
 							"armyStrength" : 0,
 							"day" : 68,
 							"income" : 0,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.257369,
 							"maxHeroLevel" : 0,
@@ -144918,9 +144141,7 @@
 							"numberHeroes" : 0,
 							"numberTowns" : 0,
 							"obeliskVisitedRatio" : 0.1,
-							 // game
 							"player" : "tan",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 22,
@@ -144964,7 +144185,6 @@
 							"armyStrength" : 0,
 							"day" : 68,
 							"income" : 0,
-							 // game
 							"map" : "Dragon Orb",
 							"mapExploredRatio" : 0.357213,
 							"maxHeroLevel" : 0,
@@ -144982,9 +144202,7 @@
 							"numberHeroes" : 0,
 							"numberTowns" : 0,
 							"obeliskVisitedRatio" : 0.2,
-							 // game
 							"player" : "green",
-							 // game
 							"playerName" : "Computer",
 							"resources" : {
 								"crystal" : 42,

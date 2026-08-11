@@ -3,8 +3,7 @@
 		"enemyMoveTime" : 25,
 		"heroMoveTime" : 50,
 		"quickCombat" : true,
-		"rightButtonDrag" : true,
-		"scrollSpeedPixels" : 800
+		"rightButtonDrag" : true
 	},
 	"battle" : {
 		"cellBorders" : true,
@@ -24,12 +23,10 @@
 		"audioMuteFocus" : true,
 		"autosaveCountLimit" : 20,
 		"lastDifficulty" : 4,
-		"lastMap" : "MAPS/Dragon Orb",
+		"lastMap" : "Maps/Dragon Orb",
 		"lastSave" : "SAVES/BEFOREVISITSAVE",
-		"lastSettingsTab" : 1,
-		"music" : 88,
-		"saveBeforeVisit" : true,
-		"sound" : 88
+		"lastSettingsTab" : 2,
+		"saveBeforeVisit" : true
 	},
 	"launcher" : {
 		"setupCompleted" : true

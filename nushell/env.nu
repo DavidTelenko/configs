@@ -173,7 +173,7 @@ if not (is-windows) {
 if (is-windows) {
   $env.TERM = 'xterm-256color'
   $env.Path = ($env.Path | split row (char esep)
-    | prepend (read-lines '.path')
+    # | prepend (read-lines '.path')
     | uniq
   )
 }

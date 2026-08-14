@@ -31,11 +31,11 @@ export def retry [
 }
 
 # Load local config .env file, git ignored, machine local
-export def user-env [] {
-  [$configDir, '.env'] | path join | read-lines $in | if not ($in | is-empty) {
+export def user-env [root: string = $configDir] {
+  [$root '.env'] | path join | read-lines $in | if not ($in | is-empty) {
     $in
     | where not ($it | is-empty)
-    | each { split row '=' | { $in.0: $in.1 } }
+    | each { split row --number 2 '=' | { $in.0: $in.1 } }
     | reduce { |it| merge $it }
   }
 }

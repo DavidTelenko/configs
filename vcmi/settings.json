@@ -1,9 +1,10 @@
 {
 	"adventure" : {
-		"enemyMoveTime" : 25,
+		"enemyMoveTime" : 50,
 		"heroMoveTime" : 50,
 		"quickCombat" : true,
-		"rightButtonDrag" : true
+		"rightButtonDrag" : true,
+		"scrollSpeedPixels" : 800
 	},
 	"battle" : {
 		"cellBorders" : true,
@@ -23,10 +24,12 @@
 		"audioMuteFocus" : true,
 		"autosaveCountLimit" : 20,
 		"lastDifficulty" : 4,
-		"lastMap" : "Maps/Dragon Orb",
+		"lastMap" : "MAPS/Back For Revenge",
 		"lastSave" : "SAVES/BEFOREVISITSAVE",
 		"lastSettingsTab" : 2,
-		"saveBeforeVisit" : true
+		"music" : 88,
+		"saveBeforeVisit" : true,
+		"sound" : 88
 	},
 	"launcher" : {
 		"setupCompleted" : true

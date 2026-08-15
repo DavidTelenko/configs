@@ -30,6 +30,19 @@ export def retry [
   }
 }
 
+def read-lines [path: string] {
+  [$configDir $path]
+  | path join
+  | if ($in | path exists) {
+    $in
+    | open --raw
+    | lines
+    | where { $in !~ '^ *#.+$' }
+    | uniq
+    # remove inline comments here
+  }
+}
+
 # Load local config .env file, git ignored, machine local
 export def user-env [root: string = $configDir] {
   [$root '.env'] | path join | read-lines $in | if not ($in | is-empty) {

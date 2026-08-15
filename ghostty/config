@@ -1,6 +1,6 @@
 font-size = 18
 font-family = "RobotoMono Nerd Font"
-theme = GruvboxDark
+theme = Gruvbox Dark
 background = 000000
 confirm-close-surface = false
 gtk-tabs-location = hidden

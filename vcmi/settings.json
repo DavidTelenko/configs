@@ -3,8 +3,7 @@
 		"enemyMoveTime" : 50,
 		"heroMoveTime" : 50,
 		"quickCombat" : true,
-		"rightButtonDrag" : true,
-		"scrollSpeedPixels" : 800
+		"rightButtonDrag" : true
 	},
 	"battle" : {
 		"cellBorders" : true,
@@ -24,12 +23,11 @@
 		"audioMuteFocus" : true,
 		"autosaveCountLimit" : 20,
 		"lastDifficulty" : 4,
-		"lastMap" : "MAPS/Back For Revenge",
+		"lastMap" : "Maps/[HotA] Daggerwin Valley",
 		"lastSave" : "SAVES/BEFOREVISITSAVE",
 		"lastSettingsTab" : 2,
-		"music" : 88,
-		"saveBeforeVisit" : true,
-		"sound" : 88
+		"playerName" : "David",
+		"saveBeforeVisit" : true
 	},
 	"launcher" : {
 		"setupCompleted" : true

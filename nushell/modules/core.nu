@@ -31,26 +31,31 @@ export def retry [
 }
 
 def read-lines [path: string] {
-  [$configDir $path]
-  | path join
-  | if ($in | path exists) {
-    $in
-    | open --raw
-    | lines
-    | where { $in !~ '^ *#.+$' }
-    | uniq
-    # remove inline comments here
+  $in
+  | open --raw
+  | lines
+  | where { $in !~ '^ *#.+$' }
+  | uniq
+}
+
+export def parse-env [path: string] {
+  $path | if ($in | path exists) {
+    read-lines $in | if not ($in | is-empty) {
+      $in
+      | where not ($it | is-empty)
+      | each {
+        split row --number 2 '=' | {
+          $in.0: ($in.1 | str trim --char '"')
+        }
+      }
+      | reduce { |it| merge $it }
+    }
   }
 }
 
 # Load local config .env file, git ignored, machine local
 export def user-env [root: string = $configDir] {
-  [$root '.env'] | path join | read-lines $in | if not ($in | is-empty) {
-    $in
-    | where not ($it | is-empty)
-    | each { split row --number 2 '=' | { $in.0: $in.1 } }
-    | reduce { |it| merge $it }
-  }
+  [$root '.env'] | path join | parse-env $in
 }
 
 export def is-wezterm [] {

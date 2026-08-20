@@ -22,9 +22,9 @@
 	"general" : {
 		"audioMuteFocus" : true,
 		"autosaveCountLimit" : 20,
-		"lastDifficulty" : 4,
-		"lastMap" : "Maps/[HotA] Daggerwin Valley",
-		"lastSave" : "SAVES/QUICKSAVE",
+		"lastDifficulty" : 0,
+		"lastMap" : "MAPS/All for One",
+		"lastSave" : "SAVES/BEFOREVISITSAVE",
 		"lastSettingsTab" : 2,
 		"playerName" : "David",
 		"saveBeforeVisit" : true

@@ -109,7 +109,21 @@
 			}
 		]
 	},
+	"completedCampaigns" : {
+		"DATA/GOOD1" : true
+	},
 	"highscore" : {
+		"campaign" : [
+			{
+				"campaignName" : "Long Live the Queen",
+				"datetime" : "2026-08-18 22:47",
+				"days" : 70,
+				"player" : "David",
+				"points" : 958,
+				"posFlag" : null,
+				"statistic" : null
+			}
+		],
 		"scenario" : [
 			{
 				"datetime" : "2026-08-16 03:33",

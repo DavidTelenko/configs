@@ -40,7 +40,7 @@ $env.config = (
   | upsert hooks.env_change.PWD { default [] }
 )
 
-let should_show_git_branch = not (is-kitty) and not (is-wezterm)
+let should_show_git_branch = not (is-kitty) and not (is-wezterm) and not (is-tmux)
 
 $env.PROMPT_COMMAND = {||
   [

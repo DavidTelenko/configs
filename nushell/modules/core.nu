@@ -81,3 +81,7 @@ export def is-macos [] {
 export def is-nvim [] {
   "NVIM" in $env
 }
+
+export def is-tmux [] {
+  "TMUX" in $env
+}

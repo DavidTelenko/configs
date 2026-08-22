@@ -10,7 +10,7 @@ return {
   },
   {
     'davidmh/mdx.nvim',
-    opts = {},
+    ft = { 'mdx' },
     event = { 'BufEnter *.mdx' },
   },
 }

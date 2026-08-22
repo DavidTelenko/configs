@@ -299,6 +299,8 @@ iterm
 iven
 jankier
 jdtls
+jnvim
+journalctl
 jsgf
 jsonls
 jumplist

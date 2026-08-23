@@ -6,7 +6,7 @@ link() {
 }
 
 link_rc() {
-  # NOTE: this is stiff but succint
+  # NOTE: this is stiff but succinct
   local from
   from="$(pwd)/$1/.$1rc"
   local to

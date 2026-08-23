@@ -68,4 +68,9 @@ go install github.com/asdf-vm/asdf/cmd/asdf@v0.20.0
 asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
 asdf install nodejs latest
 
+curl -s -Lo ./INSTALL https://raw.githubusercontent.com/ivan-hc/AM/main/INSTALL
+chmod a+x ./INSTALL
+sudo ./INSTALL
+rm ./INSTALL
+
 bash <(curl -sSL https://raw.githubusercontent.com/SpotX-Official/SpotX-Bash/main/spotx.sh)

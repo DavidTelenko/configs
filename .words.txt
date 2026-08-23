@@ -701,6 +701,7 @@ userprofile
 vacheblan
 vardecl
 vato
+vcmi
 vcodec
 vencord
 vformats

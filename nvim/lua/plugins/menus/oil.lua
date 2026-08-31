@@ -69,14 +69,12 @@ return {
     -- See :help oil-actions for a list of all available actions
     keymaps = {
       ['g?'] = 'actions.show_help',
-      ['l'] = 'actions.select',
       ['<C-s>'] = 'actions.select_vsplit',
       ['<C-h>'] = 'actions.select_split',
       ['<C-t>'] = 'actions.select_tab',
       ['<C-p>'] = 'actions.preview',
       ['<C-c>'] = 'actions.close',
       ['<C-l>'] = 'actions.refresh',
-      ['h'] = 'actions.parent',
       ['_'] = 'actions.open_cwd',
       ['`'] = 'actions.cd',
       ['~'] = 'actions.tcd',
@@ -85,6 +83,20 @@ return {
       ['g.'] = 'actions.toggle_hidden',
       ['g\\'] = 'actions.toggle_trash',
       ['qq'] = 'actions.send_to_qflist',
+      ['l'] = {
+        function()
+          require('oil').select()
+        end,
+        mode = 'n',
+        nowait = true,
+      },
+      ['h'] = {
+        function()
+          require('oil').open()
+        end,
+        mode = 'n',
+        nowait = true,
+      },
       ['<leader>so'] = {
         function()
           require('telescope.builtin').find_files {

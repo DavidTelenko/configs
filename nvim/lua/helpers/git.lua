@@ -101,6 +101,52 @@ M.show_uncommitted = function(opts)
   )
 end
 
+---Show unstaged changes in quickfix list
+---@param opts? table<string, any>
+M.show_unstaged = function(opts)
+  local command = { 'git', 'diff', '--name-only', '--diff-filter=U' }
+
+  if opts and opts.args then
+    vim.list_extend(command, vim.split(opts.args, ' '))
+  end
+
+  vim.system(
+    command,
+    { text = true },
+    vim.schedule_wrap(function(out)
+      if out.code ~= 0 or not out.stdout then
+        g.notify('Not a git repository', vim.log.levels.ERROR)
+        return
+      end
+
+      local output = vim.split(out.stdout, '\n')
+      local qf_list = {}
+
+      for _, line in ipairs(output) do
+        if line ~= '' then
+          table.insert(qf_list, {
+            filename = line,
+            text = 'U' .. ' ' .. line,
+            lnum = 1,
+            col = 1,
+          })
+        end
+      end
+
+      if #qf_list > 0 then
+        vim.fn.setqflist(qf_list)
+        vim.api.nvim_command 'copen'
+        g.notify(
+          'Showing ' .. #qf_list .. ' unstaged changes',
+          vim.log.levels.INFO
+        )
+      else
+        g.notify('No unstaged changes found', vim.log.levels.INFO)
+      end
+    end)
+  )
+end
+
 --- @param args vim.api.keyset.create_autocmd.callback_args
 M.setup = function(args)
   vim.keymap.set({ 'n' }, 'gd', function()

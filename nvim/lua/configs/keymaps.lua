@@ -175,7 +175,7 @@ do -- built-in plugin keymaps
 end
 
 do -- global git keymaps
-  map({ 'n' }, '<leader>gu', require('helpers.git').show_uncommitted, {
+  map({ 'n' }, '<leader>gu', require('helpers.git').show_unstaged, {
     desc = 'Uncommitted quickfix list',
   })
 end

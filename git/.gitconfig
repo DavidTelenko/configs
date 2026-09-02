@@ -103,3 +103,5 @@
     done \
 	};f "
   clone-lean = "clone --depth 1 --filter=combine:blob:none+tree:0 --no-checkout"
+  ours = "!f() { git diff --name-only --diff-filter=U | xargs git checkout --ours; };f "
+  theirs = "!f() { git diff --name-only --diff-filter=U | xargs git checkout --theirs; };f "

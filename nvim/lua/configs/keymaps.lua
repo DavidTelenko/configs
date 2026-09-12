@@ -176,6 +176,10 @@ end
 
 do -- global git keymaps
   map({ 'n' }, '<leader>gu', require('helpers.git').show_unstaged, {
+    desc = 'Unstaged quickfix list',
+  })
+
+  map({ 'n' }, '<leader>gU', require('helpers.git').show_uncommitted, {
     desc = 'Uncommitted quickfix list',
   })
 end

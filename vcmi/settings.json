@@ -23,8 +23,8 @@
 		"audioMuteFocus" : true,
 		"autosaveCountLimit" : 20,
 		"lastDifficulty" : 4,
-		"lastMap" : "Maps/[HotA] Dead Man's Tales",
-		"lastSave" : "SAVES/QUICKSAVE",
+		"lastMap" : "MAPS/[HotA] In Defense",
+		"lastSave" : "SAVES/BEFOREVISITSAVE",
 		"lastSettingsTab" : 2,
 		"playerName" : "David",
 		"saveBeforeVisit" : true

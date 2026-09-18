@@ -64,7 +64,7 @@ local function get_servers(context)
       tailwindcss = {},
       biome = {},
       oxlint = {},
-      tsgo = {},
+      tsc = {},
       -- ts_ls = {},
       -- vtsls = {},
       -- kotlin_language_server = {},

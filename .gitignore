@@ -33,3 +33,5 @@ kitty/sessions/*
 .path
 
 tmp/
+
+vcmi/persistentStorage.json

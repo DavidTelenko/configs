@@ -175,13 +175,21 @@ do -- built-in plugin keymaps
 end
 
 do -- global git keymaps
-  map({ 'n' }, '<leader>gu', require('helpers.git').show_unstaged, {
+  map({ 'n' }, '<leader>gU', function()
+    require('helpers.git').git_diff_qf {
+      args = '--diff-filter=U',
+    }
+  end, { desc = 'Unmerged quickfix list' })
+
+  map({ 'n' }, '<leader>gu', require('helpers.git').git_diff_qf, {
     desc = 'Unstaged quickfix list',
   })
 
-  map({ 'n' }, '<leader>gU', require('helpers.git').show_uncommitted, {
-    desc = 'Uncommitted quickfix list',
-  })
+  map({ 'n' }, '<leader>gS', function()
+    require('helpers.git').git_diff_qf {
+      args = '--staged',
+    }
+  end, { desc = 'Staged quickfix list' })
 end
 
 do -- custom quickfix mappings

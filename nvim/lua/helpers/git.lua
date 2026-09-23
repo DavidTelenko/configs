@@ -101,10 +101,10 @@ M.show_uncommitted = function(opts)
   )
 end
 
----Show unstaged changes in quickfix list
+---Show git diff in quickfix list
 ---@param opts? table<string, any>
-M.show_unstaged = function(opts)
-  local command = { 'git', 'diff', '--name-only', '--diff-filter=U' }
+M.git_diff_qf = function(opts)
+  local command = { 'git', 'diff', '--name-only' }
 
   if opts and opts.args then
     vim.list_extend(command, vim.split(opts.args, ' '))
@@ -126,7 +126,7 @@ M.show_unstaged = function(opts)
         if line ~= '' then
           table.insert(qf_list, {
             filename = line,
-            text = 'U' .. ' ' .. line,
+            text = line,
             lnum = 1,
             col = 1,
           })
@@ -137,11 +137,18 @@ M.show_unstaged = function(opts)
         vim.fn.setqflist(qf_list)
         vim.api.nvim_command 'copen'
         g.notify(
-          'Showing ' .. #qf_list .. ' unstaged changes',
+          'Showing '
+            .. #qf_list
+            .. ' '
+            .. (opts and opts.filterName or 'git diff')
+            .. ' changes',
           vim.log.levels.INFO
         )
       else
-        g.notify('No unstaged changes found', vim.log.levels.INFO)
+        g.notify(
+          'No ' .. (opts and opts.filterName or 'git diff') .. ' changes found',
+          vim.log.levels.INFO
+        )
       end
     end)
   )

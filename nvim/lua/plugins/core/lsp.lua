@@ -224,7 +224,7 @@ return {
           vim.lsp.enable(name)
           vim.lsp.config(
             name,
-            vim.tbl_deep_extend('force', vim.lsp.config[name], config, {
+            vim.tbl_deep_extend('force', vim.lsp.config[name] or {}, config, {
               on_attach = helpers.on_attach,
               capabilities = capabilities,
             })

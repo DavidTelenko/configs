@@ -65,7 +65,7 @@ cargo install hyprland-per-window-layout
 go install github.com/aandrew-me/tgpt/v2@latest
 go install github.com/asdf-vm/asdf/cmd/asdf@v0.20.0
 
-asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+asdf plugin add nodejs
 asdf install nodejs latest
 
 curl -s -Lo ./INSTALL https://raw.githubusercontent.com/ivan-hc/AM/main/INSTALL

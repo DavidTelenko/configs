@@ -6,7 +6,6 @@ export def main [
 ] {(
   echo $text | piper
     --model ($voice | default $env.PIPER_VOICE)
-    --quiet
     --output-raw
   | ffplay
     -autoexit

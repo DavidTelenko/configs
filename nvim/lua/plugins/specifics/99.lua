@@ -11,7 +11,7 @@ return {
 
     _99.setup {
       provider = _99.Providers.OpenCodeProvider,
-      model = 'github-copilot/claude-sonnet-4.5',
+      model = 'github-copilot/claude-opus-4.8',
       logger = {
         level = _99.DEBUG,
         path = './tmp/99/debug.log',

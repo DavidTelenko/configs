@@ -23,7 +23,8 @@ dnf install coolercontrol
 dnf install discord
 dnf install dnf-plugins-core
 dnf install dunst
-dnf install foot
+dnf install fd-find
+dnf install gamemode
 dnf install gh
 dnf install ghostty
 dnf install git
@@ -36,15 +37,19 @@ dnf install hyprlock
 dnf install hyprsunset
 dnf install keyd
 dnf install lm-sensors
+dnf install mangohud
 dnf install mpv
 dnf install nodejs
+dnf install nushell
 dnf install oh-my-posh
 dnf install pavucontrol
 dnf install playerctl
+dnf install ripgrep
 dnf install rustup
 dnf install slurp
 dnf install steam
 dnf install swww
+dnf install tailscale
 dnf install telegram-desktop
 dnf install tmux
 dnf install unar
@@ -56,11 +61,10 @@ dnf install zen-browser
 
 rustup update
 
-cargo install nu
-cargo install tuicr
+cargo install hyprland-per-window-layout
+cargo install ttyper
 cargo install vivid
 cargo install zoxide
-cargo install hyprland-per-window-layout
 
 go install github.com/aandrew-me/tgpt/v2@latest
 go install github.com/asdf-vm/asdf/cmd/asdf@v0.20.0
@@ -72,5 +76,9 @@ curl -s -Lo ./INSTALL https://raw.githubusercontent.com/ivan-hc/AM/main/INSTALL
 chmod a+x ./INSTALL
 sudo ./INSTALL
 rm ./INSTALL
+
+am install foot
+am install heroic-games-launcher
+am install nvim-nightly
 
 bash <(curl -sSL https://raw.githubusercontent.com/SpotX-Official/SpotX-Bash/main/spotx.sh)

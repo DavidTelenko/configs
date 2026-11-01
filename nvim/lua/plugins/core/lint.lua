@@ -8,6 +8,7 @@ return {
     function setup()
       local js_ts_linters = h.first {
         h.require_config 'eslint_d',
+        h.require_config 'oxlint',
       }
 
       lint.linters_by_ft = {
@@ -20,6 +21,7 @@ return {
         typescript = js_ts_linters,
         typescriptreact = js_ts_linters,
         markdown = { 'cspell', 'markdownlint' },
+        sql = { 'sqruff' },
       }
     end
 

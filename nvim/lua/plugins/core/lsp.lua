@@ -27,7 +27,7 @@ local function get_servers(context)
       -- elixirls = {
       --   cmd = { 'elixir-ls' },
       -- },
-      clangd = {},
+      -- clangd = {},
       emmet_language_server = {},
       gopls = {},
       -- jdtls = {
@@ -63,7 +63,7 @@ local function get_servers(context)
       svelte = {},
       tailwindcss = {},
       biome = {},
-      oxlint = {},
+      -- oxlint = {},
       tsc = {},
       -- ts_ls = {},
       -- vtsls = {},
@@ -91,6 +91,7 @@ local function get_servers(context)
       },
       taplo = {},
       gh_actions_ls = {},
+      -- julials = {},
       -- harper_ls = {},
     },
     site = {
@@ -120,6 +121,7 @@ return {
         'oxfmt',
         'prettierd',
         'shfmt',
+        'sqruff',
         'stylua',
         'tree-sitter-cli',
       },

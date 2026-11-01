@@ -61,6 +61,7 @@ return {
           typescript = js_ts_formatters,
           typescriptreact = js_ts_formatters,
           yaml = ox_or_prettier,
+          sql = { 'sqruff' },
         },
       }
       require('conform').setup(opts)

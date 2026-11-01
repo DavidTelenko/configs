@@ -184,6 +184,10 @@ def ll [] {
   }
 }
 
+def ndict [query: string] {
+  dict $query | nvim -R
+}
+
 def "from gif"  [] { imgcat }
 def "from jpeg" [] { imgcat }
 def "from jpg"  [] { imgcat }

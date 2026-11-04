@@ -232,6 +232,7 @@ alias lg = lazygit
 alias vi = nvim
 alias dnf = sudo dnf
 alias apt = sudo apt
+alias `apt search` = ^apt search
 alias ':q' = exit
 
 alias "scoop search" = __scoop_search

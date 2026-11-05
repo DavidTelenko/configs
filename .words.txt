@@ -131,6 +131,7 @@ creds
 crfl
 crlfile
 croc
+cssls
 csvview
 ctermbg
 ctrlalt
@@ -171,6 +172,7 @@ devicons
 difftool
 diffview
 directsoundout
+direnv
 discharing
 distro
 dmenu
@@ -303,6 +305,7 @@ jnvim
 journalctl
 jsgf
 jsonls
+julials
 jumplist
 jumpstart
 jvgrootveld
@@ -511,6 +514,7 @@ ppid
 preedit
 preedited
 preproxy
+prettypst
 primeagen
 propo
 proxytunnel
@@ -641,6 +645,7 @@ tabnew
 taglib
 taha
 tanjim
+taplo
 taskbarx
 tealdeer
 telenko
@@ -656,6 +661,7 @@ tgpt
 thenbe
 thickess
 timeoutlen
+tinymist
 tipband
 titlebar
 tlsauthtype
@@ -675,6 +681,7 @@ trav
 trunc
 ttyper
 tuicr
+typst
 uall
 ulauncher
 unar

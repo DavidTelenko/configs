@@ -55,7 +55,7 @@ export def parse-env [path: string] {
 
 # Load local config .env file, git ignored, machine local
 export def user-env [root: string = $configDir] {
-  [$root '.env'] | path join | parse-env $in
+  [$root '.env'] | path join | parse-env $in | default {}
 }
 
 export def is-wezterm [] {

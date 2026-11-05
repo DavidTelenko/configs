@@ -112,9 +112,11 @@ $env.NU_PLUGIN_DIRS = [
   ($nu.default-config-dir | path join 'plugins') # add <nushell-config-dir>/plugins
 ]
 
-try {
-  user-env | load-env
-}
+user-env | load-env
+
+$env.config.hooks.env_change.PWD ++= [{||
+  user-env (pwd) | load-env
+}]
 
 if not (is-windows) {
   # Assume apple silicon
@@ -137,7 +139,7 @@ if not (is-windows) {
 
   # nvim linux integration
   $env.EDITOR = 'nvim'
-  $env.MANPAGER = 'nvim +Man!'
+  # $env.MANPAGER = 'nvim +Man!'
 
   # asdf setup
   $env.ASDF_NODEJS_LEGACY_FILE_DYNAMIC_STRATEGY = "latest_installed"
@@ -181,11 +183,6 @@ if (is-zellij) {
     | zellij action rename-tab $in
   }
 
-  $env.config.hooks.env_change.PWD = (
-    $env.config.hooks.env_change.PWD | append $action
-  )
-
-  $env.config.hooks.pre_execution = (
-    $env.config.hooks.pre_execution | append $action
-  )
+  $env.config.hooks.env_change.PWD ++= [ $action ]
+  $env.config.hooks.pre_execution ++= [ $action ]
 }

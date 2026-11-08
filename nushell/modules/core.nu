@@ -58,6 +58,8 @@ export def user-env [root: string = $configDir] {
   [$root '.env'] | path join | parse-env $in | default {}
 }
 
+export def local-env [] { user-env (pwd) }
+
 export def is-wezterm [] {
   $env.TERM_PROGRAM? == 'WezTerm'
 }

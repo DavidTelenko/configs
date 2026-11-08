@@ -115,7 +115,7 @@ $env.NU_PLUGIN_DIRS = [
 user-env | load-env
 
 $env.config.hooks.env_change.PWD ++= [{||
-  user-env (pwd) | load-env
+  local-env | load-env
 }]
 
 if not (is-windows) {

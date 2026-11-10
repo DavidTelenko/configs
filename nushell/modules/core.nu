@@ -45,7 +45,7 @@ export def parse-env [path: string] {
       | where not ($it | is-empty)
       | each {
         split row --number 2 '=' | {
-          $in.0: ($in.1 | str trim --char '"')
+          $in.0: ($in.1 | str trim | str replace --regex ' +#.*$' '' | str trim --char '"')
         }
       }
       | reduce { |it| merge $it }

@@ -184,6 +184,10 @@
       "Source": "main"
     },
     {
+      "Name": "nircmd",
+      "Source": "main"
+    },
+    {
       "Name": "oh-my-posh",
       "Source": "main"
     },

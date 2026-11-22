@@ -6,6 +6,7 @@ confirm-close-surface = false
 gtk-tabs-location = hidden
 auto-update = check
 command = nu
+adjust-cursor-thickness = 300%
 
 keybind = "shift+arrow_down=scroll_page_lines:3"
 keybind = "shift+arrow_up=scroll_page_lines:-3"

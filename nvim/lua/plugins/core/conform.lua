@@ -53,6 +53,7 @@ return {
           kotlin = { 'ktlint' },
           lua = { 'stylua' },
           markdown = ox_or_prettier, -- 'injected' },
+          typst = { 'prettypst' },
           mdx = ox_or_prettier, -- 'injected' },
           python = { 'black' },
           sh = { 'shfmt' },

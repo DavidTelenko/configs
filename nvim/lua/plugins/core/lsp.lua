@@ -65,6 +65,7 @@ local function get_servers(context)
       biome = {},
       -- oxlint = {},
       tsc = {},
+      tinymist = {},
       -- ts_ls = {},
       -- vtsls = {},
       -- kotlin_language_server = {},

@@ -109,6 +109,7 @@ return {
         'rust',
         'tsx',
         'typescript',
+        'typst',
         'vim',
         'vimdoc',
         'yaml',

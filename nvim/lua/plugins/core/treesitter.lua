@@ -107,6 +107,7 @@ return {
         'python',
         'regex',
         'rust',
+        'sql',
         'tsx',
         'typescript',
         'typst',

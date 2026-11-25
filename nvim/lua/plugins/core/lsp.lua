@@ -24,9 +24,7 @@ local function get_servers(context)
           'hbs',
         },
       },
-      -- elixirls = {
-      --   cmd = { 'elixir-ls' },
-      -- },
+      expert = {},
       -- clangd = {},
       emmet_language_server = {},
       gopls = {},

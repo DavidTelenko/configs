@@ -17,7 +17,12 @@ return {
       animate = { enabled = false },
     },
     input = { enabled = true },
-    image = { enabled = true },
+    image = {
+      enabled = true,
+      doc = {
+        enabled = false,
+      },
+    },
   },
   keys = {
     {

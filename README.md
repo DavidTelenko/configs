@@ -24,6 +24,11 @@ Here the general list of configured packages:
 - [Nushell](https://github.com/nushell/nushell)
 - [PowerShell](https://github.com/PowerShell/PowerShell)
 
+### Terminal multiplexers:
+
+- [Zellij](https://github.com/zellij-org/zellij)
+- [Tmux](https://github.com/tmux/tmux)
+
 ### Terminal emulators:
 
 - [Windows Terminal](https://github.com/microsoft/terminal)

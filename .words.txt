@@ -335,6 +335,7 @@ laggy
 lalt
 langmap
 langremap
+lastexitcode
 lavf
 layerrule
 lazydev
@@ -477,6 +478,7 @@ oxfmt
 oxlint
 packadd
 packpath
+pacman
 padnum
 pandoc
 panscan

@@ -1,31 +1,35 @@
 #!/usr/bin/env bash
 
-# Installs nushell with the native package manager, then hands over to
-# ../bootstrap.nu which installs everything from ../.manifest.yaml.
+# Installs git and nushell with the native package manager, clones the repo to
+# ~/.configs when run outside of it (e.g. straight from the web), then hands
+# over to ../bootstrap.nu which installs everything from ../.manifest.yaml.
 # All arguments are forwarded, see `./bootstrap.sh --help`.
 
 set -euo pipefail
 
-root="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+repo_url="https://github.com/davidtelenko/configs"
+repo_dir="$HOME/.configs"
 
-install_nushell() {
+install() {
   . /etc/os-release
   local ids=" ${ID:-} ${ID_LIKE:-} "
 
   case "$ids" in
   *" arch "*)
-    sudo pacman -Sy --needed --noconfirm nushell
+    sudo pacman -Sy --needed --noconfirm "$@"
     ;;
   *" fedora "*)
-    sudo dnf install -y nushell
+    sudo dnf install -y "$@"
     ;;
   *" ubuntu "* | *" debian "*)
     sudo apt-get update
-    sudo apt-get install -y curl gpg
-    curl -fsSL https://apt.fury.io/nushell/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/fury-nushell.gpg
-    echo "deb [signed-by=/usr/share/keyrings/fury-nushell.gpg] https://apt.fury.io/nushell/ /" | sudo tee /etc/apt/sources.list.d/fury-nushell.list
-    sudo apt-get update
-    sudo apt-get install -y nushell
+    if [[ " $* " == *" nushell "* ]]; then
+      sudo apt-get install -y curl gpg
+      curl -fsSL https://apt.fury.io/nushell/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/fury-nushell.gpg
+      echo "deb [signed-by=/usr/share/keyrings/fury-nushell.gpg] https://apt.fury.io/nushell/ /" | sudo tee /etc/apt/sources.list.d/fury-nushell.list
+      sudo apt-get update
+    fi
+    sudo apt-get install -y "$@"
     ;;
   *)
     echo "unsupported distro: ${ID:-unknown}" >&2
@@ -34,6 +38,15 @@ install_nushell() {
   esac
 }
 
-command -v nu >/dev/null 2>&1 || install_nushell
+missing=()
+command -v git >/dev/null 2>&1 || missing+=(git)
+command -v nu >/dev/null 2>&1 || missing+=(nushell)
+[ ${#missing[@]} -eq 0 ] || install "${missing[@]}"
 
-exec nu "$root/../bootstrap.nu" "$@"
+root="$(dirname "${BASH_SOURCE[0]:-}")/.."
+if [ ! -f "$root/bootstrap.nu" ]; then
+  [ -d "$repo_dir" ] || git clone "$repo_url" "$repo_dir"
+  root="$repo_dir/platform"
+fi
+
+exec nu "$root/bootstrap.nu" "$@"

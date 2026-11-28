@@ -68,8 +68,8 @@ if (!$SkipScoop)
 scoop install git
 git clone https://github.com/DavidTelenko/win-configs.git ~/.configs
 
-# installing all packages from scoopfile
-scoop import ~/.configs/scoop/scoopfile.json
+# installing all packages from the manifest
+& ~/.configs/platform/win32/bootstrap.ps1
 
 # installing configs respecting the users options
 & ~/.configs/init.ps1 `

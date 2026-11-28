@@ -1,18 +1,62 @@
 # yaml-language-server: $schema=./.manifest.schema.json
 # cspell:disable
-# Linux package manifest, consumed by `scripts/bootstrap.nu`.
+# Package manifest, consumed by `bootstrap.nu`.
 # Field documentation lives in `.manifest.schema.json`.
 
-distros:
+platforms:
+  linux:
+    shell: [sh, -c]
+    prepare: |
+      if [ "$(id -u)" -eq 0 ]; then
+        echo "run as a regular user, sudo is used where needed" >&2
+        exit 1
+      fi
+      sudo -v
+    path:
+      - ~/.local/bin
+      - ~/.cargo/bin
+      - ~/go/bin
+      - ~/.asdf/shims
+  windows:
+    shell: [powershell, -NoProfile, -Command]
+    path: [~/scoop/shims]
+  macos:
+    shell: [sh, -c]
+    prepare: |
+      if [ "$(id -u)" -eq 0 ]; then
+        echo "run as a regular user, homebrew refuses to run as root" >&2
+        exit 1
+      fi
+    path:
+      - /opt/homebrew/bin
+      - /usr/local/bin
+      # rustup is keg-only in homebrew
+      - /opt/homebrew/opt/rustup/bin
+      - /usr/local/opt/rustup/bin
+      - ~/.local/bin
+      - ~/.cargo/bin
+      - ~/go/bin
+      - ~/.asdf/shims
+
+systems:
   arch:
+    platform: linux
     match: [arch, endeavouros, manjaro, cachyos, garuda, artix]
     managers: [pacman, yay, am, cargo, go, asdf, script]
   fedora:
+    platform: linux
     match: [fedora, nobara, ultramarine]
     managers: [dnf, am, cargo, go, asdf, script]
   ubuntu:
+    platform: linux
     match: [ubuntu, pop, linuxmint, elementary, zorin, neon]
     managers: [apt, am, cargo, go, asdf, script]
+  windows:
+    platform: windows
+    managers: [scoop, winget, powershell]
+  macos:
+    platform: macos
+    managers: [brew, cask, cargo, go, asdf, script]
 
 managers:
   pacman:
@@ -118,34 +162,93 @@ managers:
   # entries are shell commands: `script: <command>` or `script: { run, check? }`
   script: {}
 
+  scoop:
+    check: if (-not (Get-Command scoop -ErrorAction SilentlyContinue)) { exit 1 }
+    setup: |
+      Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
+      Invoke-Expression "& { $(Invoke-RestMethod get.scoop.sh) } -RunAsAdmin"
+      scoop install git
+    install: scoop install {pkgs}; exit $LASTEXITCODE
+    repos:
+      extras:
+        check: if ((scoop bucket list).Name -notcontains 'extras') { exit 1 }
+        run: scoop bucket add extras
+      games:
+        check: if ((scoop bucket list).Name -notcontains 'games') { exit 1 }
+        run: scoop bucket add games
+      nerd-fonts:
+        check: if ((scoop bucket list).Name -notcontains 'nerd-fonts') { exit 1 }
+        run: scoop bucket add nerd-fonts
+      sysinternals:
+        check: if ((scoop bucket list).Name -notcontains 'sysinternals') { exit 1 }
+        run: scoop bucket add sysinternals
+      versions:
+        check: if ((scoop bucket list).Name -notcontains 'versions') { exit 1 }
+        run: scoop bucket add versions
+
+  winget:
+    check: if (-not (Get-Command winget -ErrorAction SilentlyContinue)) { exit 1 }
+    install: winget install --id {pkg} --exact --silent --accept-source-agreements --accept-package-agreements; exit $LASTEXITCODE
+
+  # entries are powershell commands: `powershell: <command>` or `powershell: { run, check? }`
+  powershell: {}
+
+  brew:
+    check: command -v brew
+    setup: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    install: brew install {pkgs}
+
+  cask:
+    check: command -v brew
+    install: brew install --cask {pkgs}
+
 packages:
   # base
 
+  7zip:
+    scoop: true
+    brew: sevenzip
   base-devel:
     pacman: true
     dnf: "@development-tools"
     apt: build-essential
+    brew: { check: xcode-select -p, run: xcode-select --install }
   binutils:
     pacman: true
     dnf: true
     apt: true
+  coreutils:
+    scoop: true
+    brew: true
   curl:
     pacman: true
     dnf: true
     apt: true
+    scoop: true
   git:
     pacman: true
     dnf: true
     apt: true
+    scoop: true
+    brew: true
   git-filter-repo:
     pacman: true
     dnf: true
     apt: true
+    brew: true
   gh:
     pacman: github-cli
     dnf: true
     apt: true
     am: true
+    scoop: true
+    brew: true
+  gow:
+    scoop: true
+  innounp:
+    scoop: true
+  openssh:
+    scoop: true
   perl:
     pacman: true
     dnf: true
@@ -154,6 +257,8 @@ packages:
     pacman: unarchiver
     dnf: true
     apt: true
+    scoop: true
+    brew: true
   unzip:
     pacman: true
     dnf: true
@@ -162,6 +267,7 @@ packages:
     pacman: true
     dnf: true
     apt: true
+    brew: true
   zip:
     pacman: true
     dnf: true
@@ -173,16 +279,29 @@ packages:
     pacman: true
     dnf: golang
     apt: golang-go
+    brew: true
+  mingw-winlibs:
+    scoop: { repo: versions }
+  ninja:
+    scoop: true
+    brew: true
   nodejs:
     pacman: true
     dnf: true
     apt: true
     asdf: true
+    brew: node
     prefer: asdf
+  nsis:
+    scoop: { repo: extras }
   rustup:
     pacman: true
     dnf: true
     apt: true
+    brew: true
+  uv:
+    scoop: true
+    brew: true
 
   # system
 
@@ -195,10 +314,20 @@ packages:
     dnf: { repo: copr-coolercontrol }
     apt: { repo: coolercontrol }
     am: true
+  dark:
+    scoop: true
+  dependencies:
+    scoop: { repo: extras }
+  eartrumpet:
+    scoop: { repo: extras }
   gamemode:
     pacman: true
     dnf: true
     apt: true
+  handle:
+    scoop: { repo: sysinternals }
+  karabiner-elements:
+    cask: true
   keyd:
     pacman: true
     dnf: { repo: copr-keyd }
@@ -211,6 +340,14 @@ packages:
     pacman: true
     dnf: true
     apt: true
+  modernflyouts:
+    scoop: { repo: extras }
+  nircmd:
+    scoop: true
+  nsudo:
+    scoop: { repo: extras }
+  ntop:
+    scoop: true
   pavucontrol:
     pacman: true
     dnf: true
@@ -219,10 +356,23 @@ packages:
     pacman: true
     dnf: true
     apt: true
+  powertoys:
+    scoop: { repo: extras }
+  privatezilla:
+    scoop: { repo: extras }
+  sophiapp:
+    scoop: { repo: extras }
+  sysinternals-suite:
+    scoop: { repo: sysinternals }
   tailscale:
     pacman: true
     dnf: true
     apt: { repo: tailscale }
+    cask: tailscale-app
+  taskbarx:
+    scoop: { repo: extras }
+  wiztree:
+    scoop: { repo: extras }
 
   # desktop
 
@@ -245,6 +395,7 @@ packages:
   hyprland-per-window-layout:
     # configs/hypr/startup.conf runs it from ~/.cargo/bin
     cargo: true
+    platforms: [linux]
   hyprlock:
     pacman: true
     dnf: { repo: copr-hyprland }
@@ -277,6 +428,12 @@ packages:
     dnf: true
     apt: true
 
+  # fonts
+
+  robotomono-nf:
+    scoop: { name: RobotoMono-NF, repo: nerd-fonts }
+    cask: font-roboto-mono-nerd-font
+
   # terminal
 
   alacritty:
@@ -284,6 +441,7 @@ packages:
     dnf: true
     apt: true
     am: true
+    # homebrew cask is disabled, it fails gatekeeper checks
   foot:
     pacman: true
     dnf: true
@@ -295,71 +453,143 @@ packages:
     dnf: { repo: copr-ghostty }
     apt: true
     am: true
+    cask: true
   kitty:
     pacman: true
     dnf: true
     apt: true
     am: true
+    cask: true
   wezterm:
     pacman: true
     apt: { repo: fury-wezterm }
     am: true
+    scoop: { name: wezterm-nightly, repo: versions }
+    cask: wezterm@nightly
+  windows-terminal-preview:
+    scoop: { repo: versions }
   nushell:
     pacman: true
     dnf: true
     apt: { repo: fury-nushell }
     am: nu
+    scoop: nu
+    brew: true
   oh-my-posh:
     yay: oh-my-posh-bin
     dnf: true
     script:
       check: command -v oh-my-posh
       run: curl -fsSL https://ohmyposh.dev/install.sh | bash -s -- -d "$HOME/.local/bin"
+    scoop: true
+    brew: true
   tmux:
     pacman: true
     dnf: true
     apt: true
+    brew: true
   zellij:
     pacman: true
     am: true
     cargo: true
+    brew: true
 
   # cli
 
+  age:
+    scoop: { repo: extras }
+    brew: true
   aria2:
     pacman: true
     dnf: true
     apt: true
+    scoop: true
+    brew: true
+  ast-grep:
+    scoop: true
+    brew: true
+  bat:
+    scoop: true
+    brew: true
+  bottom:
+    scoop: true
+    brew: true
+  brename:
+    scoop: true
+    brew: true
+  broot:
+    scoop: true
+    brew: true
+  croc:
+    scoop: true
+    brew: true
+  delta:
+    scoop: true
+    brew: git-delta
+  eza:
+    scoop: true
+    brew: true
   fd:
     pacman: true
     dnf: fd-find
     apt: fd-find
     am: true
+    scoop: true
+    brew: true
+  fzf:
+    scoop: true
+    brew: true
+  pueue:
+    scoop: true
+    brew: true
   ripgrep:
     pacman: true
     dnf: true
     apt: true
     am: true
+    scoop: true
+    brew: true
+  scoop-search:
+    scoop: true
+  sd:
+    scoop: true
+    brew: true
+  tealdeer:
+    scoop: true
+    brew: true
   tgpt:
     pacman: true
     am: true
     go: github.com/aandrew-me/tgpt/v2@latest
+    scoop: https://raw.githubusercontent.com/aandrew-me/tgpt/main/tgpt.json
+    brew: true
+  tokei:
+    scoop: true
+    brew: true
   ttyper:
     pacman: true
     am: true
     cargo: true
+    scoop: true
   tuicr:
     pacman: true
     cargo: true
+    brew: true
   vivid:
     pacman: true
     apt: true
     cargo: true
+    brew: true
+  yt-dlp:
+    scoop: true
+    brew: true
   zoxide:
     pacman: true
     dnf: true
     apt: true
     am: true
+    scoop: true
+    brew: true
 
   # editors
 
@@ -367,13 +597,33 @@ packages:
     pacman: true
     dnf: true
     am: true
+    brew: true
   neovim:
     pacman: true
     yay: neovim-nightly-bin
     dnf: { repo: copr-neovim-nightly }
     apt: { repo: ppa-neovim }
     am: nvim-nightly
+    scoop: true
+    brew: true
     prefer: { arch: yay, fedora: am, ubuntu: am }
+
+  # documents
+
+  mupdf:
+    scoop: { repo: extras }
+    brew: true
+  naps2:
+    scoop: { repo: extras }
+    cask: true
+  pandoc:
+    scoop: true
+    brew: true
+  pdftk:
+    scoop: true
+    brew: pdftk-java
+  pdftk-builder:
+    scoop: { repo: extras }
 
   # media
 
@@ -381,17 +631,33 @@ packages:
     pacman: true
     dnf: { repo: rpmfusion-free }
     apt: true
+    brew: true
+  ffmpeg:
+    scoop: true
+    brew: true
   mpv:
     pacman: true
     dnf: true
     apt: true
     am: true
+    scoop: { repo: extras }
+    brew: true
+  musikcube:
+    scoop: { repo: extras }
+    brew: true
+  sox:
+    scoop: true
+    brew: true
+  spicetify-cli:
+    scoop: true
+    brew: true
   spotify:
     yay: true
     am: true
+    cask: true
   spotx:
     script:
-      run: bash <(curl -sSL https://raw.githubusercontent.com/SpotX-Official/SpotX-Bash/main/spotx.sh)
+      run: bash -c "$(curl -sSL https://raw.githubusercontent.com/SpotX-Official/SpotX-Bash/main/spotx.sh)"
 
   # apps
 
@@ -399,26 +665,42 @@ packages:
     pacman: true
     dnf: { repo: rpmfusion-nonfree }
     am: true
+    cask: true
+  keepassxc:
+    scoop: { repo: extras }
+    cask: true
+  paint.net:
+    scoop: { repo: extras }
+  qbittorrent:
+    scoop: { repo: extras }
+    # homebrew cask is disabled, it fails gatekeeper checks
   telegram-desktop:
     pacman: true
     dnf: { repo: rpmfusion-free }
     am: telegram
+    scoop: { name: telegram, repo: extras }
+    cask: true
   zen-browser:
     yay: zen-browser-bin
     dnf: { repo: copr-zen-browser }
     am: true
+    cask: zen
 
   # games
 
   heroic-games-launcher:
     yay: heroic-games-launcher-bin
     am: true
+    scoop: { repo: games }
+    cask: heroic
     prefer: am
   steam:
     pacman: { repo: multilib }
     dnf: { repo: rpmfusion-nonfree }
     apt: steam-installer
     am: true
+    cask: true
   vcmi:
     apt: true
     am: true
+    cask: true

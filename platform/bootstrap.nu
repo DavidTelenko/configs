@@ -1,9 +1,9 @@
 #!/usr/bin/env nu
 
-# Installs packages described in `platform/linux/.manifest.yaml` with the
-# preferred package manager available on the current distro.
+# Installs packages described in `platform/.manifest.yaml` with the preferred
+# package manager available on the current system.
 
-const default_manifest = path self ../.manifest.yaml
+const default_manifest = path self .manifest.yaml
 
 const entry_fields = [name repo check run]
 
@@ -32,17 +32,20 @@ def index-of [value: any]: list -> int {
   $in | enumerate | where item == $value | get -o 0.index | default (-1)
 }
 
-# Runs a shell command with its output attached to the terminal.
-def run [command: string]: nothing -> bool {
-  try { ^bash -c $command; true } catch { false }
+# Runs a command in the platform shell with its output attached to the terminal.
+def run [shell: list<string>, command: string]: nothing -> bool {
+  try { ^($shell | first) ...($shell | skip 1) $command; true } catch { false }
 }
 
-# Runs a shell command silently, used for `check` commands.
-def succeeds [command: string]: nothing -> bool {
-  (^bash -c $command | complete).exit_code == 0
+# Runs a command in the platform shell silently, used for `check` commands.
+def succeeds [shell: list<string>, command: string]: nothing -> bool {
+  (^($shell | first) ...($shell | skip 1) $command | complete).exit_code == 0
 }
 
 def os-release []: nothing -> record {
+  if not ("/etc/os-release" | path exists) {
+    return {}
+  }
   open /etc/os-release
   | lines
   | where $it =~ '^[A-Z_]+='
@@ -50,24 +53,34 @@ def os-release []: nothing -> record {
   | reduce --fold {} {|it, acc| $acc | upsert $it.key ($it.value | str trim --char '"') }
 }
 
-def detect-distro [distros: record] {
+def detect-system [manifest: record] {
+  let platform = $nu.os-info.name
+  if $platform not-in ($manifest.platforms | columns) {
+    error make --unspanned { msg: $"unsupported platform `($platform)`, pass --system explicitly" }
+  }
+
+  let candidates = $manifest.systems | transpose name spec | where spec.platform == $platform
+  if ($candidates | length) == 1 and ($candidates.0.spec.match? | as-list | is-empty) {
+    return $candidates.0.name
+  }
+
   let os = os-release
   let ids = [($os.ID? | default "")] ++ ($os.ID_LIKE? | default "" | split row " ") | where $it != ""
-
   for id in $ids {
-    let found = $distros | transpose name spec | where {|d| $id in ($d.spec.match? | as-list) }
+    let found = $candidates | where {|system| $id in ($system.spec.match? | as-list) }
     if ($found | is-not-empty) {
       return $found.0.name
     }
   }
 
-  error make --unspanned { msg: $"unsupported distro \(ID: ($ids | str join ', ')\), pass --distro explicitly" }
+  error make --unspanned { msg: $"unsupported ($platform) system \(ID: ($ids | str join ', ')\), pass --system explicitly" }
 }
 
-def normalize-entry [package: string, manager: string, entry: any]: nothing -> record {
+# Managers without `install` only run commands, so a string entry is the command.
+def normalize-entry [package: string, entry: any, command_only: bool]: nothing -> record {
   let spec = match ($entry | describe) {
     "bool" => {}
-    "string" => (if $manager == "script" { {run: $entry} } else { {name: $entry} })
+    "string" => (if $command_only { {run: $entry} } else { {name: $entry} })
     _ => $entry
   }
 
@@ -87,19 +100,33 @@ def unknown-fields [path: string, value: any, allowed: list<string>]: nothing ->
 }
 
 def validate [manifest: record]: nothing -> list<string> {
+  let platforms = $manifest.platforms? | default {} | columns
   let managers = $manifest.managers? | default {} | columns
-  let distros = $manifest.distros? | default {} | columns
+  let systems = $manifest.systems? | default {} | columns
   let packages = $manifest.packages? | default {} | columns
-  mut errors = unknown-fields "manifest" $manifest [distros managers packages]
+  mut errors = unknown-fields "manifest" $manifest [platforms systems managers packages]
 
-  for distro in ($manifest.distros? | default {} | transpose name spec) {
-    $errors = $errors ++ (unknown-fields $"distros.($distro.name)" $distro.spec [match managers])
-    if ($distro.spec.match? | as-list | is-empty) {
-      $errors = $errors | append $"distros.($distro.name): `match` is empty"
+  for platform in ($manifest.platforms? | default {} | transpose name spec) {
+    $errors = $errors ++ (unknown-fields $"platforms.($platform.name)" $platform.spec [shell prepare path])
+    if ($platform.spec.shell? | as-list | is-empty) {
+      $errors = $errors | append $"platforms.($platform.name): `shell` is empty"
     }
-    for manager in ($distro.spec.managers? | as-list) {
+  }
+
+  for system in ($manifest.systems? | default {} | transpose name spec) {
+    let path = $"systems.($system.name)"
+    $errors = $errors ++ (unknown-fields $path $system.spec [platform match managers])
+    let platform = $system.spec.platform?
+    if $platform not-in $platforms {
+      $errors = $errors | append $"($path): unknown platform `($platform)`"
+    }
+    let siblings = $manifest.systems | values | where platform? == $platform | length
+    if $siblings > 1 and ($system.spec.match? | as-list | is-empty) {
+      $errors = $errors | append $"($path): `match` is required when several systems share platform `($platform)`"
+    }
+    for manager in ($system.spec.managers? | as-list) {
       if $manager not-in $managers {
-        $errors = $errors | append $"distros.($distro.name): unknown manager `($manager)`"
+        $errors = $errors | append $"($path): unknown manager `($manager)`"
       }
     }
   }
@@ -132,9 +159,9 @@ def validate [manifest: record]: nothing -> list<string> {
 
       if $key == "prefer" {
         let preferred = if ($value | is-record) {
-          for distro in ($value | columns) {
-            if $distro not-in $distros {
-              $errors = $errors | append $"($path).prefer: unknown distro `($distro)`"
+          for system in ($value | columns) {
+            if $system not-in $systems {
+              $errors = $errors | append $"($path).prefer: unknown system `($system)`"
             }
           }
           $value | values | each { as-list } | flatten
@@ -144,6 +171,15 @@ def validate [manifest: record]: nothing -> list<string> {
         for manager in $preferred {
           if $manager not-in $managers {
             $errors = $errors | append $"($path).prefer: unknown manager `($manager)`"
+          }
+        }
+        continue
+      }
+
+      if $key == "platforms" {
+        for platform in ($value | as-list) {
+          if $platform not-in $platforms {
+            $errors = $errors | append $"($path).platforms: unknown platform `($platform)`"
           }
         }
         continue
@@ -171,15 +207,16 @@ def validate [manifest: record]: nothing -> list<string> {
         }
       }
 
-      let entry = normalize-entry $package.name $key $value
-      let repos = $manifest.managers | get $key | get -o repos | default {} | columns
+      let manager = $manifest.managers | get $key
+      let entry = normalize-entry $package.name $value ($manager.install? == null)
+      let repos = $manager.repos? | default {} | columns
       for repo in $entry.repos {
         if $repo not-in $repos {
           $errors = $errors | append $"($path).($key): unknown repo `($repo)` for `($key)`"
         }
       }
-      if $key == "script" and $entry.run == null {
-        $errors = $errors | append $"($path).script: command is missing"
+      if $manager.install? == null and $entry.run == null {
+        $errors = $errors | append $"($path).($key): command is missing, `($key)` has no install command"
       }
     }
   }
@@ -191,8 +228,9 @@ def validate [manifest: record]: nothing -> list<string> {
 def validate-schema [manifest: record, schema: record]: nothing -> list<string> {
   [
     [kind key defined known];
+    [platform platformName ($manifest.platforms | columns) $schema.definitions.platformName.enum]
+    [system systemName ($manifest.systems | columns) $schema.definitions.systemName.enum]
     [manager managerName ($manifest.managers | columns) $schema.definitions.managerName.enum]
-    [distro distroName ($manifest.distros | columns) $schema.definitions.distroName.enum]
   ]
   | each {|names|
     let missing = $names.defined | where $it not-in $names.known | each {|name| $"($names.kind) `($name)` is missing from definitions.($names.key)" }
@@ -203,9 +241,9 @@ def validate-schema [manifest: record, schema: record]: nothing -> list<string> 
   | each {|error| $"schema is out of date: ($error)" }
 }
 
-def priority [distro: string, managers: list<string>, package: record, global: list<string>]: nothing -> list<string> {
+def priority [system: string, managers: list<string>, package: record, global: list<string>]: nothing -> list<string> {
   let prefer = $package.prefer?
-  let preferred = if ($prefer | is-record) { $prefer | get -o $distro | as-list } else { $prefer | as-list }
+  let preferred = if ($prefer | is-record) { $prefer | get -o $system | as-list } else { $prefer | as-list }
 
   $global ++ $preferred ++ $managers | uniq | where $it in $managers
 }
@@ -213,13 +251,17 @@ def priority [distro: string, managers: list<string>, package: record, global: l
 def resolve [ctx: record, package: string]: nothing -> record {
   let spec = $ctx.manifest.packages | get $package
   let available = $spec | columns
-  let manager = priority $ctx.distro $ctx.managers $spec $ctx.prefer | where $it in $available | get -o 0
+  let allowed = $spec.platforms? == null or $ctx.platform in ($spec.platforms | as-list)
+  let manager = if $allowed {
+    priority $ctx.system $ctx.managers $spec $ctx.prefer | where $it in $available | get -o 0
+  }
 
   if $manager == null {
     return {package: $package, manager: null, name: null, repos: [], check: null, run: null}
   }
 
-  {package: $package, manager: $manager} | merge (normalize-entry $package $manager ($spec | get $manager))
+  let command_only = ($ctx.manifest.managers | get $manager | get -o install) == null
+  {package: $package, manager: $manager} | merge (normalize-entry $package ($spec | get $manager) $command_only)
 }
 
 # Resolves requested packages together with packages required by their managers.
@@ -256,7 +298,7 @@ def check-plan [ctx: record, plan: list<record>]: nothing -> list<string> {
     for required in ($ctx.manifest.managers | get $manager | get -o requires | as-list) {
       let source = $plan | where package == $required | get -o 0.manager
       if $source == null {
-        $errors = $errors | append $"`($manager)` requires `($required)`, which has no source on ($ctx.distro)"
+        $errors = $errors | append $"`($manager)` requires `($required)`, which has no source on ($ctx.system)"
       } else if ($ctx.managers | index-of $source) >= $position {
         $errors = $errors | append $"`($manager)` requires `($required)`, which resolves to `($source)`; it must come from a manager listed before `($manager)`"
       }
@@ -268,6 +310,7 @@ def check-plan [ctx: record, plan: list<record>]: nothing -> list<string> {
 
 def install-with [ctx: record, manager: string, items: list<record>, done: list<record>]: nothing -> list<record> {
   let spec = $ctx.manifest.managers | get $manager
+  let shell = $ctx.shell
   let result = {|item, status| {package: $item.package, manager: $manager, name: $item.name, status: $status} }
 
   info $"($manager): ($items | get package | str join ' ')"
@@ -280,9 +323,14 @@ def install-with [ctx: record, manager: string, items: list<record>, done: list<
     return ($items | each {|item| do $result $item skipped })
   }
 
-  if $spec.setup? != null and ($spec.check? == null or not (succeeds $spec.check)) {
+  let needs_setup = if $spec.check? != null { not (succeeds $shell $spec.check) } else { $spec.setup? != null }
+  if $needs_setup {
+    if $spec.setup? == null {
+      warn $"($manager) is not available and has no setup command"
+      return ($items | each {|item| do $result $item failed })
+    }
     info $"setting up ($manager)"
-    if not (run $spec.setup) {
+    if not (run $shell $spec.setup) {
       warn $"failed to set up ($manager)"
       return ($items | each {|item| do $result $item failed })
     }
@@ -291,26 +339,26 @@ def install-with [ctx: record, manager: string, items: list<record>, done: list<
   mut refresh = false
   for repo in ($items | get repos | flatten | uniq) {
     let repo_spec = $spec.repos | get $repo
-    if $repo_spec.check? != null and (succeeds $repo_spec.check) {
+    if $repo_spec.check? != null and (succeeds $shell $repo_spec.check) {
       continue
     }
     info $"enabling ($manager) repo ($repo)"
-    if (run $repo_spec.run) {
+    if (run $shell $repo_spec.run) {
       $refresh = true
     } else {
       warn $"failed to enable repo ($repo)"
     }
   }
   if $refresh and $spec.refresh? != null {
-    run $spec.refresh | ignore
+    run $shell $spec.refresh | ignore
   }
 
-  let present = $items | where {|item| $item.check != null and (succeeds $item.check) }
+  let present = $items | where {|item| $item.check != null and (succeeds $shell $item.check) }
   let pending = $items | where package not-in ($present | get package)
   mut results = $present | each {|item| do $result $item present }
 
   for item in ($pending | where run != null) {
-    $results = $results | append (do $result $item (if (run $item.run) { "installed" } else { "failed" }))
+    $results = $results | append (do $result $item (if (run $shell $item.run) { "installed" } else { "failed" }))
   }
 
   let regular = $pending | where run == null
@@ -318,13 +366,8 @@ def install-with [ctx: record, manager: string, items: list<record>, done: list<
     return $results
   }
 
-  if $spec.install? == null {
-    warn $"($manager) has no install command"
-    return ($results ++ ($regular | each {|item| do $result $item failed }))
-  }
-
   let batch = $spec.install | str contains '{pkgs}'
-  let batch_ok = $batch and (run ($spec.install | str replace --all '{pkgs}' ($regular | get name | str join ' ')))
+  let batch_ok = $batch and (run $shell ($spec.install | str replace --all '{pkgs}' ($regular | get name | str join ' ')))
 
   if $batch_ok {
     return ($results ++ ($regular | each {|item| do $result $item installed }))
@@ -335,17 +378,17 @@ def install-with [ctx: record, manager: string, items: list<record>, done: list<
 
   for item in $regular {
     let command = $spec.install | str replace --all '{pkgs}' $item.name | str replace --all '{pkg}' $item.name
-    $results = $results | append (do $result $item (if (run $command) { "installed" } else { "failed" }))
+    $results = $results | append (do $result $item (if (run $shell $command) { "installed" } else { "failed" }))
   }
 
   $results
 }
 
-# Install packages from the Linux manifest using the best package manager per distro.
+# Install packages from the manifest using the best package manager per system.
 def main [
-  ...packages: string     # packages to install (all when omitted)
+  ...packages: string     # packages to install (all relevant to the system when omitted)
   --manifest (-m): path   # manifest to read
-  --distro (-d): string   # distro profile to use instead of detecting it
+  --system (-s): string   # system profile to use instead of detecting it
   --prefer (-p): string   # manager to try first for every package
   --dry-run (-n)          # print the install plan without installing anything
 ] {
@@ -362,19 +405,23 @@ def main [
     error make --unspanned { msg: "invalid manifest" }
   }
 
-  let distro = $distro | default (detect-distro $manifest.distros)
-  if $distro not-in ($manifest.distros | columns) {
-    error make --unspanned { msg: $"unknown distro `($distro)`, expected one of: ($manifest.distros | columns | str join ', ')" }
+  let system = $system | default (detect-system $manifest)
+  if $system not-in ($manifest.systems | columns) {
+    error make --unspanned { msg: $"unknown system `($system)`, expected one of: ($manifest.systems | columns | str join ', ')" }
   }
 
+  let system_spec = $manifest.systems | get $system
+  let platform = $manifest.platforms | get $system_spec.platform
   let ctx = {
     manifest: $manifest
-    distro: $distro
-    managers: ($manifest.distros | get $distro | get managers)
+    system: $system
+    platform: $system_spec.platform
+    shell: $platform.shell
+    managers: $system_spec.managers
     prefer: ($prefer | as-list)
   }
   if $prefer != null and $prefer not-in $ctx.managers {
-    warn $"`($prefer)` is not available on ($distro), ignoring --prefer"
+    warn $"`($prefer)` is not available on ($system), ignoring --prefer"
   }
 
   let unknown = $packages | where $it not-in ($manifest.packages | columns)
@@ -382,7 +429,13 @@ def main [
     error make --unspanned { msg: $"unknown packages: ($unknown | str join ', ')" }
   }
 
-  let requested = if ($packages | is-empty) { $manifest.packages | columns } else { $packages }
+  # Packages only installable on other platforms are skipped silently.
+  let platform_managers = $manifest.systems | values | where platform == $ctx.platform | get managers | flatten | uniq
+  let relevant = $manifest.packages | transpose name spec | where {|package|
+    ($package.spec.platforms? == null or $ctx.platform in ($package.spec.platforms | as-list)) and ($package.spec | columns | any {|key| $key in $platform_managers })
+  } | get name
+
+  let requested = if ($packages | is-empty) { $relevant } else { $packages }
   let plan = build-plan $ctx $requested
 
   let plan_errors = check-plan $ctx $plan
@@ -394,7 +447,7 @@ def main [
   let available = $plan | where manager != null
   let unavailable = $plan | where manager == null
 
-  info $"install plan for ($distro)"
+  info $"install plan for ($system)"
   print (
     $available
     | select package manager name repos
@@ -403,24 +456,22 @@ def main [
     | table --index false
   )
   for item in $unavailable {
-    warn $"($item.package) has no source on ($distro), skipping"
+    warn $"($item.package) has no source on ($system), skipping"
+  }
+  if ($packages | is-empty) {
+    let skipped = ($manifest.packages | columns | length) - ($relevant | length)
+    print $"($available | length) to install, ($unavailable | length) unavailable, ($skipped) for other platforms"
   }
 
   if $dry_run {
     return
   }
 
-  if (^id -u | into int) == 0 {
-    error make --unspanned { msg: "run as a regular user, sudo is used where needed" }
+  if $platform.prepare? != null and not (run $ctx.shell $platform.prepare) {
+    error make --unspanned { msg: "platform prepare command failed" }
   }
-  ^sudo -v
 
-  $env.PATH = $env.PATH | prepend [
-    ($env.HOME | path join .local bin)
-    ($env.HOME | path join .cargo bin)
-    ($env.HOME | path join go bin)
-    ($env.HOME | path join .asdf shims)
-  ] | uniq
+  $env.PATH = $env.PATH | prepend ($platform.path? | default [] | path expand) | uniq
 
   mut results = $unavailable | each {|item| {package: $item.package, manager: null, name: null, status: unavailable} }
   for manager in $ctx.managers {

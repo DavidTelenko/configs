@@ -1,0 +1,290 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/davidtelenko/configs/platform/.manifest.schema.json",
+  "title": "Package manifest",
+  "description": "Packages installed by `platform/bootstrap.nu`. Each package is installed with the first manager in priority order that has an entry for it.",
+  "type": "object",
+  "required": ["platforms", "systems", "managers", "packages"],
+  "additionalProperties": false,
+  "properties": {
+    "platforms": {
+      "description": "Settings shared by all systems of a platform. Names match `$nu.os-info.name`.",
+      "type": "object",
+      "propertyNames": { "$ref": "#/definitions/platformName" },
+      "additionalProperties": { "$ref": "#/definitions/platform" }
+    },
+    "systems": {
+      "description": "Supported systems. Linux systems are detected from `ID` / `ID_LIKE` in `/etc/os-release`.",
+      "type": "object",
+      "propertyNames": { "$ref": "#/definitions/systemName" },
+      "additionalProperties": { "$ref": "#/definitions/system" }
+    },
+    "managers": {
+      "description": "Package managers and how to drive them. Commands run in the shell of the platform they are used on.",
+      "type": "object",
+      "propertyNames": { "$ref": "#/definitions/managerName" },
+      "additionalProperties": { "$ref": "#/definitions/manager" }
+    },
+    "packages": {
+      "description": "Packages to install, keyed by a system independent name. Packages without entries for any manager of the current platform are skipped silently.",
+      "type": "object",
+      "additionalProperties": { "$ref": "#/definitions/package" }
+    }
+  },
+  "definitions": {
+    "platformName": {
+      "description": "Name of a platform defined under `platforms`. Keep in sync with the manifest, `bootstrap.nu` reports mismatches.",
+      "type": "string",
+      "enum": ["linux", "windows", "macos"]
+    },
+    "systemName": {
+      "description": "Name of a system defined under `systems`. Keep in sync with the manifest, `bootstrap.nu` reports mismatches.",
+      "type": "string",
+      "enum": ["arch", "fedora", "ubuntu", "windows", "macos"]
+    },
+    "managerName": {
+      "description": "Name of a manager defined under `managers`. Keep in sync with the manifest, `bootstrap.nu` reports mismatches.",
+      "type": "string",
+      "enum": [
+        "pacman",
+        "yay",
+        "dnf",
+        "apt",
+        "am",
+        "cargo",
+        "go",
+        "asdf",
+        "script",
+        "scoop",
+        "winget",
+        "powershell",
+        "brew",
+        "cask"
+      ]
+    },
+    "command": {
+      "description": "Command executed with the platform `shell`: POSIX `sh` on linux and macos, `powershell` on windows.",
+      "type": "string",
+      "minLength": 1
+    },
+    "stringOrList": {
+      "oneOf": [
+        { "type": "string", "minLength": 1 },
+        {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "minItems": 1
+        }
+      ]
+    },
+    "platform": {
+      "type": "object",
+      "required": ["shell"],
+      "additionalProperties": false,
+      "properties": {
+        "shell": {
+          "description": "Program and arguments every command is passed to as the last argument, e.g. `[sh, -c]`.",
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "minItems": 1
+        },
+        "prepare": {
+          "description": "Command run once before installing anything, the run aborts when it fails.",
+          "$ref": "#/definitions/command"
+        },
+        "path": {
+          "description": "Directories prepended to `PATH` so freshly installed tools are found, `~` is expanded.",
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        }
+      }
+    },
+    "system": {
+      "type": "object",
+      "required": ["platform", "managers"],
+      "additionalProperties": false,
+      "properties": {
+        "platform": {
+          "description": "Platform whose settings apply to this system.",
+          "$ref": "#/definitions/platformName"
+        },
+        "match": {
+          "description": "Values of `ID` / `ID_LIKE` from `/etc/os-release` that select this system. Required when several systems share a platform.",
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "managers": {
+          "description": "Managers available on this system in default priority order. Managers are processed in this order, so a manager may only require packages provided by managers listed before it.",
+          "type": "array",
+          "items": { "$ref": "#/definitions/managerName" },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "if": { "properties": { "platform": { "const": "linux" } } },
+      "then": { "required": ["match"] }
+    },
+    "manager": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "install": {
+          "description": "Install command. `{pkgs}` installs a batch of packages at once, `{pkg}` runs the command once per package. Managers without it only run the commands given by package entries.",
+          "$ref": "#/definitions/command"
+        },
+        "requires": {
+          "description": "Package keys that must be installed before this manager is used.",
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        },
+        "check": {
+          "description": "When this command succeeds `setup` is skipped. When it fails and there is no `setup`, the manager is unavailable.",
+          "$ref": "#/definitions/command"
+        },
+        "setup": {
+          "description": "Command run once before the first install with this manager.",
+          "$ref": "#/definitions/command"
+        },
+        "refresh": {
+          "description": "Command run after any of the manager's repos were enabled.",
+          "$ref": "#/definitions/command"
+        },
+        "repos": {
+          "description": "Named repositories, enabled only when a selected package references them.",
+          "type": "object",
+          "additionalProperties": { "$ref": "#/definitions/repo" }
+        }
+      }
+    },
+    "repo": {
+      "type": "object",
+      "required": ["run"],
+      "additionalProperties": false,
+      "properties": {
+        "run": {
+          "description": "Command that enables the repository.",
+          "$ref": "#/definitions/command"
+        },
+        "check": {
+          "description": "When this command succeeds the repository is considered enabled.",
+          "$ref": "#/definitions/command"
+        }
+      }
+    },
+    "entry": {
+      "description": "How the package is installed with this manager: `true` uses the package key as the name, a string is the package name, a mapping allows extra options.",
+      "oneOf": [
+        { "const": true },
+        { "type": "string", "minLength": 1 },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "name": {
+              "description": "Package name for this manager, defaults to the package key.",
+              "type": "string",
+              "minLength": 1
+            },
+            "repo": {
+              "description": "Repository (or list of repositories) from `managers.<manager>.repos` to enable first.",
+              "$ref": "#/definitions/stringOrList"
+            },
+            "check": {
+              "description": "When this command succeeds the package is considered installed.",
+              "$ref": "#/definitions/command"
+            },
+            "run": {
+              "description": "Command used instead of the manager's `install`.",
+              "$ref": "#/definitions/command"
+            }
+          }
+        }
+      ]
+    },
+    "commandEntry": {
+      "description": "Command that installs the package.",
+      "oneOf": [
+        { "$ref": "#/definitions/command" },
+        {
+          "type": "object",
+          "required": ["run"],
+          "additionalProperties": false,
+          "properties": {
+            "run": {
+              "description": "Command that installs the package.",
+              "$ref": "#/definitions/command"
+            },
+            "check": {
+              "description": "When this command succeeds the package is considered installed.",
+              "$ref": "#/definitions/command"
+            }
+          }
+        }
+      ]
+    },
+    "managerList": {
+      "oneOf": [
+        { "$ref": "#/definitions/managerName" },
+        {
+          "type": "array",
+          "items": { "$ref": "#/definitions/managerName" },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      ]
+    },
+    "prefer": {
+      "description": "Managers to try first, overriding the system order. A manager or list applies to every system, a mapping sets it per system.",
+      "oneOf": [
+        { "$ref": "#/definitions/managerList" },
+        {
+          "type": "object",
+          "minProperties": 1,
+          "propertyNames": { "$ref": "#/definitions/systemName" },
+          "additionalProperties": { "$ref": "#/definitions/managerList" }
+        }
+      ]
+    },
+    "package": {
+      "description": "Package sources per manager. Packages without a source on the current system are reported and skipped.",
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": {
+        "anyOf": [
+          { "$ref": "#/definitions/managerName" },
+          { "enum": ["prefer", "platforms"] }
+        ]
+      },
+      "properties": {
+        "script": { "$ref": "#/definitions/commandEntry" },
+        "powershell": { "$ref": "#/definitions/commandEntry" },
+        "prefer": { "$ref": "#/definitions/prefer" },
+        "platforms": {
+          "description": "Platforms the package is restricted to, e.g. a linux desktop tool installed with a cross-platform manager like `cargo`.",
+          "type": "array",
+          "items": { "$ref": "#/definitions/platformName" },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "additionalProperties": { "$ref": "#/definitions/entry" },
+      "defaultSnippets": [
+        {
+          "label": "package",
+          "body": {
+            "pacman": true,
+            "dnf": true,
+            "apt": true,
+            "am": true,
+            "scoop": true,
+            "brew": true
+          }
+        }
+      ]
+    }
+  }
+}

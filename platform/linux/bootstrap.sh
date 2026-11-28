@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Installs nushell with the native package manager, then hands over to
-# scripts/bootstrap.nu which installs everything from .manifest.yaml.
+# ../bootstrap.nu which installs everything from ../.manifest.yaml.
 # All arguments are forwarded, see `./bootstrap.sh --help`.
 
 set -euo pipefail
@@ -36,4 +36,4 @@ install_nushell() {
 
 command -v nu >/dev/null 2>&1 || install_nushell
 
-exec nu "$root/scripts/bootstrap.nu" "$@"
+exec nu "$root/../bootstrap.nu" "$@"

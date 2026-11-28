@@ -10,7 +10,7 @@ The future goal of this repo is to be reproducible on different operating system
 
 The main guts of this repo mostly contains configs for `nushell` and `neovim`. As of today windows does not support most of the frequently used shells and I am not really a huge fun of WSL so I decided to use `nushell`. The downside of this approach is that `nushell` does not come with fresh windows system (and we assume this repo is being installed on a fresh system in the first place) so writing a cross-platform `nu` bootstrap script is not an option. Thus this repo only contains the `ps1` bootstrap and init scripts which are simple initialization scripts for downloading and installing all the necessary packages as well as creating all the necessary symlinks to all folders in this directory.
 
-The list of packages to be installed can be found in a [scoopfile](scoop/scoopfile.json)
+The list of packages to be installed can be found in the [manifest](platform/.manifest.yaml)
 
 Here the general list of configured packages:
 
@@ -65,7 +65,7 @@ Here the general list of configured packages:
 
 > [!NOTE]
 > This is not a comprehensive list of all the packages in a
-> [scoopfile](scoop/scoopfile.json). It is being constantly updated, and
+> [manifest](platform/.manifest.yaml). It is being constantly updated, and
 > behaves similar to a living organism
 
 # Installation

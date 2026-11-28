@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source ./install.sh
+../bootstrap.sh
 source ./link.sh
 source ./effects.sh
 source ./font.sh

@@ -1,0 +1,424 @@
+# yaml-language-server: $schema=./.manifest.schema.json
+# cspell:disable
+# Linux package manifest, consumed by `scripts/bootstrap.nu`.
+# Field documentation lives in `.manifest.schema.json`.
+
+distros:
+  arch:
+    match: [arch, endeavouros, manjaro, cachyos, garuda, artix]
+    managers: [pacman, yay, am, cargo, go, asdf, script]
+  fedora:
+    match: [fedora, nobara, ultramarine]
+    managers: [dnf, am, cargo, go, asdf, script]
+  ubuntu:
+    match: [ubuntu, pop, linuxmint, elementary, zorin, neon]
+    managers: [apt, am, cargo, go, asdf, script]
+
+managers:
+  pacman:
+    setup: sudo pacman -Syu --noconfirm
+    refresh: sudo pacman -Sy
+    install: sudo pacman -S --needed --noconfirm {pkgs}
+    repos:
+      multilib:
+        check: grep -q '^\[multilib\]' /etc/pacman.conf
+        run: sudo sed -i '/^#\[multilib\]/,/^#Include/ s/^#//' /etc/pacman.conf
+
+  yay:
+    requires: [git, base-devel]
+    check: command -v yay
+    setup: |
+      tmp="$(mktemp -d)"
+      git clone --depth 1 https://aur.archlinux.org/yay-bin.git "$tmp"
+      (cd "$tmp" && makepkg -si --noconfirm)
+      rm -rf "$tmp"
+    install: yay -S --needed --noconfirm {pkgs}
+
+  dnf:
+    setup: sudo dnf install -y 'dnf-command(copr)'
+    install: sudo dnf install -y {pkgs}
+    repos:
+      rpmfusion-free:
+        check: rpm -q rpmfusion-free-release
+        run: sudo dnf install -y "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm"
+      rpmfusion-nonfree:
+        check: rpm -q rpmfusion-nonfree-release
+        run: sudo dnf install -y "https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm"
+      copr-coolercontrol:
+        run: sudo dnf copr enable -y codifryed/CoolerControl
+      copr-ghostty:
+        run: sudo dnf copr enable -y rivenirvana/ghostty
+      copr-hyprland:
+        run: sudo dnf copr enable -y solopasha/hyprland
+      copr-keyd:
+        run: sudo dnf copr enable -y alternateved/keyd
+      copr-neovim-nightly:
+        run: sudo dnf copr enable -y agriffis/neovim-nightly
+      copr-zen-browser:
+        run: sudo dnf copr enable -y sneexy/zen-browser
+
+  apt:
+    setup: sudo apt-get update && sudo apt-get install -y software-properties-common curl gpg
+    refresh: sudo apt-get update
+    install: sudo apt-get install -y {pkgs}
+    repos:
+      coolercontrol:
+        check: ls /etc/apt/sources.list.d/coolercontrol-coolercontrol.*
+        run: curl -1sLf https://dl.cloudsmith.io/public/coolercontrol/coolercontrol/setup.deb.sh | sudo -E bash
+      fury-nushell:
+        check: test -f /etc/apt/sources.list.d/fury-nushell.list
+        run: |
+          curl -fsSL https://apt.fury.io/nushell/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/fury-nushell.gpg
+          echo "deb [signed-by=/usr/share/keyrings/fury-nushell.gpg] https://apt.fury.io/nushell/ /" | sudo tee /etc/apt/sources.list.d/fury-nushell.list
+      fury-wezterm:
+        check: test -f /etc/apt/sources.list.d/wezterm.list
+        run: |
+          curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg
+          echo "deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *" | sudo tee /etc/apt/sources.list.d/wezterm.list
+      ppa-neovim:
+        run: sudo add-apt-repository -y -n ppa:neovim-ppa/unstable
+      tailscale:
+        check: test -f /etc/apt/sources.list.d/tailscale.list
+        run: |
+          . /etc/os-release
+          curl -fsSL "https://pkgs.tailscale.com/stable/$ID/$VERSION_CODENAME.noarmor.gpg" | sudo tee /usr/share/keyrings/tailscale-archive-keyring.gpg >/dev/null
+          curl -fsSL "https://pkgs.tailscale.com/stable/$ID/$VERSION_CODENAME.tailscale-keyring.list" | sudo tee /etc/apt/sources.list.d/tailscale.list
+
+  am:
+    requires: [curl, wget, unzip, binutils]
+    check: command -v am
+    setup: |
+      tmp="$(mktemp)"
+      curl -fsSL -o "$tmp" https://raw.githubusercontent.com/ivan-hc/AM/main/INSTALL
+      chmod a+x "$tmp"
+      sudo "$tmp"
+      rm -f "$tmp"
+    install: am -i {pkgs}
+
+  cargo:
+    requires: [rustup, base-devel]
+    setup: |
+      command -v rustup >/dev/null || rustup-init -y --no-modify-path
+      rustup default stable
+    install: cargo install --locked {pkg}
+
+  go:
+    requires: [go]
+    install: go install {pkg}
+
+  asdf:
+    requires: [go, git]
+    check: command -v asdf
+    setup: go install github.com/asdf-vm/asdf/cmd/asdf@v0.20.0
+    install: |
+      asdf plugin list | grep -qx '{pkg}' || asdf plugin add '{pkg}'
+      asdf install '{pkg}' latest
+      asdf set --home '{pkg}' "$(asdf latest '{pkg}')"
+
+  # entries are shell commands: `script: <command>` or `script: { run, check? }`
+  script: {}
+
+packages:
+  # base
+
+  base-devel:
+    pacman: true
+    dnf: "@development-tools"
+    apt: build-essential
+  binutils:
+    pacman: true
+    dnf: true
+    apt: true
+  curl:
+    pacman: true
+    dnf: true
+    apt: true
+  git:
+    pacman: true
+    dnf: true
+    apt: true
+  git-filter-repo:
+    pacman: true
+    dnf: true
+    apt: true
+  gh:
+    pacman: github-cli
+    dnf: true
+    apt: true
+    am: true
+  perl:
+    pacman: true
+    dnf: true
+    apt: true
+  unar:
+    pacman: unarchiver
+    dnf: true
+    apt: true
+  unzip:
+    pacman: true
+    dnf: true
+    apt: true
+  wget:
+    pacman: true
+    dnf: true
+    apt: true
+  zip:
+    pacman: true
+    dnf: true
+    apt: true
+
+  # languages
+
+  go:
+    pacman: true
+    dnf: golang
+    apt: golang-go
+  nodejs:
+    pacman: true
+    dnf: true
+    apt: true
+    asdf: true
+    prefer: asdf
+  rustup:
+    pacman: true
+    dnf: true
+    apt: true
+
+  # system
+
+  acpi:
+    pacman: true
+    dnf: true
+    apt: true
+  coolercontrol:
+    pacman: true
+    dnf: { repo: copr-coolercontrol }
+    apt: { repo: coolercontrol }
+    am: true
+  gamemode:
+    pacman: true
+    dnf: true
+    apt: true
+  keyd:
+    pacman: true
+    dnf: { repo: copr-keyd }
+    apt: true
+  lm-sensors:
+    pacman: lm_sensors
+    dnf: lm_sensors
+    apt: true
+  mangohud:
+    pacman: true
+    dnf: true
+    apt: true
+  pavucontrol:
+    pacman: true
+    dnf: true
+    apt: true
+  playerctl:
+    pacman: true
+    dnf: true
+    apt: true
+  tailscale:
+    pacman: true
+    dnf: true
+    apt: { repo: tailscale }
+
+  # desktop
+
+  dunst:
+    pacman: true
+    dnf: true
+    apt: true
+  grim:
+    pacman: true
+    dnf: true
+    apt: true
+  hypridle:
+    pacman: true
+    dnf: { repo: copr-hyprland }
+    apt: true
+  hyprland:
+    pacman: true
+    dnf: { repo: copr-hyprland }
+    apt: true
+  hyprland-per-window-layout:
+    # configs/hypr/startup.conf runs it from ~/.cargo/bin
+    cargo: true
+  hyprlock:
+    pacman: true
+    dnf: { repo: copr-hyprland }
+    apt: true
+  hyprsunset:
+    pacman: true
+    dnf: { repo: copr-hyprland }
+  rofi:
+    pacman: true
+    dnf: true
+    apt: true
+  slurp:
+    pacman: true
+    dnf: true
+    apt: true
+  swww:
+    # renamed to awww upstream, arch ships `awww` only (binary `awww-daemon`)
+    pacman: awww
+    dnf: { repo: copr-hyprland }
+  waybar:
+    pacman: true
+    dnf: true
+    apt: true
+  wf-recorder:
+    pacman: true
+    dnf: true
+    apt: true
+  wl-clipboard:
+    pacman: true
+    dnf: true
+    apt: true
+
+  # terminal
+
+  alacritty:
+    pacman: true
+    dnf: true
+    apt: true
+    am: true
+  foot:
+    pacman: true
+    dnf: true
+    apt: true
+    am: true
+    prefer: { fedora: am }
+  ghostty:
+    pacman: true
+    dnf: { repo: copr-ghostty }
+    apt: true
+    am: true
+  kitty:
+    pacman: true
+    dnf: true
+    apt: true
+    am: true
+  wezterm:
+    pacman: true
+    apt: { repo: fury-wezterm }
+    am: true
+  nushell:
+    pacman: true
+    dnf: true
+    apt: { repo: fury-nushell }
+    am: nu
+  oh-my-posh:
+    yay: oh-my-posh-bin
+    dnf: true
+    script:
+      check: command -v oh-my-posh
+      run: curl -fsSL https://ohmyposh.dev/install.sh | bash -s -- -d "$HOME/.local/bin"
+  tmux:
+    pacman: true
+    dnf: true
+    apt: true
+  zellij:
+    pacman: true
+    am: true
+    cargo: true
+
+  # cli
+
+  aria2:
+    pacman: true
+    dnf: true
+    apt: true
+  fd:
+    pacman: true
+    dnf: fd-find
+    apt: fd-find
+    am: true
+  ripgrep:
+    pacman: true
+    dnf: true
+    apt: true
+    am: true
+  tgpt:
+    pacman: true
+    am: true
+    go: github.com/aandrew-me/tgpt/v2@latest
+  ttyper:
+    pacman: true
+    am: true
+    cargo: true
+  tuicr:
+    pacman: true
+    cargo: true
+  vivid:
+    pacman: true
+    apt: true
+    cargo: true
+  zoxide:
+    pacman: true
+    dnf: true
+    apt: true
+    am: true
+
+  # editors
+
+  helix:
+    pacman: true
+    dnf: true
+    am: true
+  neovim:
+    pacman: true
+    yay: neovim-nightly-bin
+    dnf: { repo: copr-neovim-nightly }
+    apt: { repo: ppa-neovim }
+    am: nvim-nightly
+    prefer: { arch: yay, fedora: am, ubuntu: am }
+
+  # media
+
+  cmus:
+    pacman: true
+    dnf: { repo: rpmfusion-free }
+    apt: true
+  mpv:
+    pacman: true
+    dnf: true
+    apt: true
+    am: true
+  spotify:
+    yay: true
+    am: true
+  spotx:
+    script:
+      run: bash <(curl -sSL https://raw.githubusercontent.com/SpotX-Official/SpotX-Bash/main/spotx.sh)
+
+  # apps
+
+  discord:
+    pacman: true
+    dnf: { repo: rpmfusion-nonfree }
+    am: true
+  telegram-desktop:
+    pacman: true
+    dnf: { repo: rpmfusion-free }
+    am: telegram
+  zen-browser:
+    yay: zen-browser-bin
+    dnf: { repo: copr-zen-browser }
+    am: true
+
+  # games
+
+  heroic-games-launcher:
+    yay: heroic-games-launcher-bin
+    am: true
+    prefer: am
+  steam:
+    pacman: { repo: multilib }
+    dnf: { repo: rpmfusion-nonfree }
+    apt: steam-installer
+    am: true
+  vcmi:
+    apt: true
+    am: true

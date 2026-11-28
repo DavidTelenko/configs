@@ -70,7 +70,13 @@ Here the general list of configured packages:
 
 # Installation
 
-To bootstrap the system run the `bootstrap.ps1` script followed by `init.ps1` script with names of tools you wish to link.
+Every platform has a small entry script that installs nushell and hands over to [bootstrap.nu](platform/bootstrap.nu), which installs the packages and mounts (links) the configs described in the [manifest](platform/.manifest.yaml):
+
+- Linux: `platform/linux/bootstrap.sh`
+- macOS: `platform/darwin/bootstrap.sh`
+- Windows: `platform/win32/bootstrap.ps1`
+
+Without arguments it installs everything and mounts all configs of the platform. The steps can also be run separately, e.g. `bootstrap.sh install neovim`, `bootstrap.sh mount nvim nushell` or `bootstrap.sh unmount nvim`, add `-n` to see the plan without changing anything.
 
 It's apparent that's a "chicken and an egg" problem may occur in the case of fresh system because the scoop is not yet installed however we need git in order to clone repo and run the bootstrap script.
 
@@ -79,39 +85,16 @@ The simple solution is to first just download the script manually (or via web re
 This method can be run like this
 
 ```powershell
-iex "& { $(iwr -useb https://raw.githubusercontent.com/DavidTelenko/win-configs/main/.scripts/windows/bootstrap.ps1) } -All"
+iex "& { $(iwr -useb https://raw.githubusercontent.com/DavidTelenko/win-configs/main/platform/win32/scripts/bootstrap.ps1) }"
 ```
 
 > [!NOTE]
-> If you want to skip some packages you can combine `-All` option with the name of the package you want to skip installing configs for e.g `-Pwsh` skips the powershell config completely.
-
-> [!NOTE]
-> If you want to only install some packages configs remove `-All` option and invoke the script with only the names of the packages you want to configure e.g passing only `-Pwsh` will configure only the powershell config for you.
+> If you want to only mount some configs pass their names with `-Mount`, e.g `-Mount nvim, nushell`. The names are the keys of `mounts` in the [manifest](platform/.manifest.yaml).
 
 Another solution is to manually install scoop, clone repo and run bootstrap with
 a `-SkipScoop` parameter this will effectively do the same.
 
-The names of the parameters for the [bootstrap.ps1](bootstrap.ps1) is the following:
-
-- `-All`
-- `-Pwsh` or `-PowerShell`
-- `-Nvim` or `-Neovim`
-- `-Helix`
-- `-Lazygit`
-- `-Winterm` or `-WindowsTerminal`
-- `-Rio`
-- `-Wezterm`
-- `-Nushell`
-- `-Alacritty`
-- `-Broot`
-- `-Mpv`
-- `-Ttyper`
-- `-Vencord`
-- `-Musikcube`
-- `-Keymapper`
-- `-Kanata`
-
-If you left with some questions please take a look at a [bootstrap.ps1](bootstrap.ps1) documentation by invoking this command in powershell `help bootstrap.ps1` and `help bootstrap.ps1 -examples`
+If you left with some questions please take a look at a [bootstrap.ps1](platform/win32/scripts/bootstrap.ps1) documentation by invoking this command in powershell `help bootstrap.ps1` and `help bootstrap.ps1 -examples`
 
 # Notes
 

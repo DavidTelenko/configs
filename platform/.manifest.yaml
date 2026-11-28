@@ -17,9 +17,11 @@ platforms:
       - ~/.cargo/bin
       - ~/go/bin
       - ~/.asdf/shims
+    config: ~/.config
   windows:
     shell: [powershell, -NoProfile, -Command]
     path: [~/scoop/shims]
+    config: ~/AppData/Roaming
   macos:
     shell: [sh, -c]
     prepare: |
@@ -37,6 +39,7 @@ platforms:
       - ~/.cargo/bin
       - ~/go/bin
       - ~/.asdf/shims
+    config: ~/.config
 
 systems:
   arch:
@@ -243,6 +246,8 @@ packages:
     am: true
     scoop: true
     brew: true
+    hooks:
+      post: gh config set editor nvim
   gow:
     scoop: true
   innounp:
@@ -314,6 +319,8 @@ packages:
     dnf: { repo: copr-coolercontrol }
     apt: { repo: coolercontrol }
     am: true
+    hooks:
+      post: { linux: sudo systemctl enable --now coolercontrold }
   dark:
     scoop: true
   dependencies:
@@ -431,6 +438,17 @@ packages:
   # fonts
 
   robotomono-nf:
+    pacman: ttf-roboto-mono-nerd
+    script:
+      check: fc-list | grep -qi 'RobotoMono Nerd'
+      run: |
+        fonts="$HOME/.local/share/fonts"
+        tmp="$(mktemp -d)"
+        mkdir -p "$fonts"
+        curl -fsSL -o "$tmp/RobotoMono.zip" https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/RobotoMono.zip
+        unar -f -d -o "$fonts" "$tmp/RobotoMono.zip"
+        rm -rf "$tmp"
+        fc-cache -f "$fonts"
     scoop: { name: RobotoMono-NF, repo: nerd-fonts }
     cask: font-roboto-mono-nerd-font
 
@@ -658,6 +676,11 @@ packages:
   spotx:
     script:
       run: bash -c "$(curl -sSL https://raw.githubusercontent.com/SpotX-Official/SpotX-Bash/main/spotx.sh)"
+    powershell: |
+      Invoke-Expression "& { $(Invoke-WebRequest -UseBasicParsing 'https://raw.githubusercontent.com/SpotX-Official/spotx-official.github.io/main/run.ps1') } -confirm_uninstall_ms_spoti -confirm_spoti_recomended_over -podcasts_off -block_update_on -start_spoti -new_theme -adsections_off -lyrics_stat spotify"
+  # after spotx, which (re)installs the spotify client it patches
+  spicetify-marketplace:
+    powershell: Invoke-WebRequest -UseBasicParsing https://raw.githubusercontent.com/spicetify/spicetify-marketplace/main/resources/install.ps1 | Invoke-Expression
 
   # apps
 
@@ -704,3 +727,110 @@ packages:
     apt: true
     am: true
     cask: true
+
+mounts:
+  # `true` mounts configs/<name> to <platform config>/<name>, a string is the target path
+
+  alacritty:
+    linux: true
+    windows: true
+  asdf:
+    linux: &asdf { source: asdf/.asdfrc, target: ~/.asdfrc }
+    macos: *asdf
+  broot:
+    macos: { source: broot/config, target: ~/.config/broot }
+    windows: ~/AppData/Roaming/dystroy/broot
+  cmus:
+    linux: true
+    macos: true
+  dunst:
+    linux: true
+  foot:
+    linux: true
+  ghostty:
+    linux: true
+    macos: true
+  git:
+    linux: &git
+      check: git config --global --get-all include.path | grep -qxF "{source}/.gitconfig"
+      run: git config --global --add include.path "{source}/.gitconfig" && git -C "{repo}" config --local --replace-all include.path ../.gitconfig
+      undo: git config --global --fixed-value --unset-all include.path "{source}/.gitconfig"
+    macos: *git
+    windows:
+      check: if ((git config --global --get-all include.path) -notcontains '{source}/.gitconfig') { exit 1 }
+      run: git config --global --add include.path '{source}/.gitconfig'; git -C '{repo}' config --local --replace-all include.path ../.gitconfig; exit $LASTEXITCODE
+      undo: git config --global --fixed-value --unset-all include.path '{source}/.gitconfig'; exit $LASTEXITCODE
+  helix:
+    linux: true
+    macos: true
+    windows: true
+  hypr:
+    linux: true
+  kanata:
+    windows: true
+  karabiner:
+    macos: true
+  keyd:
+    linux:
+      check: cmp -s "{source}/default.conf" /etc/keyd/default.conf
+      run: sudo mkdir -p /etc/keyd && sudo cp "{source}/default.conf" /etc/keyd/default.conf && sudo systemctl enable keyd && sudo systemctl restart keyd
+      undo: sudo rm -f /etc/keyd/default.conf && sudo systemctl restart keyd
+  keymapper:
+    windows: true
+  kitty:
+    linux: true
+    macos: true
+  mpv:
+    linux: true
+    macos: true
+    windows: ~/scoop/persist/mpv/portable_config
+  musikcube:
+    macos: true
+    windows: true
+  nushell:
+    linux: true
+    macos: ~/Library/Application Support/nushell
+    windows: true
+  nvim:
+    linux: true
+    macos: true
+    windows: ~/AppData/Local/nvim
+  powershell:
+    windows:
+      check: if ((Get-Item $PROFILE -ErrorAction SilentlyContinue).Target -notcontains '{source}\profile.ps1') { exit 1 }
+      run: New-Item -ItemType Directory -Force (Split-Path $PROFILE) | Out-Null; New-Item -ItemType SymbolicLink -Force -Path $PROFILE -Target '{source}\profile.ps1' | Out-Null
+      undo: Remove-Item $PROFILE
+  powertoys:
+    windows:
+      source: powertoys/keyboard-manager.json
+      target: ~/AppData/Local/Microsoft/PowerToys/Keyboard Manager/default.json
+  rio:
+    windows: ~/AppData/Local/rio
+  rofi:
+    linux: true
+  tmux:
+    linux: true
+    macos: true
+  ttyper:
+    linux: true
+    macos: ~/Library/Application Support/ttyper
+    windows: true
+  tuicr:
+    linux: true
+    macos: true
+  vcmi:
+    linux: true
+  waybar:
+    linux: true
+  wezterm:
+    linux: true
+    macos: true
+    windows: ~/.config/wezterm
+  windows-terminal:
+    windows:
+      source: windows-terminal/winterm.json
+      target: ~/scoop/persist/windows-terminal-preview/settings/settings.json
+      mode: copy
+  zellij:
+    linux: true
+    macos: true

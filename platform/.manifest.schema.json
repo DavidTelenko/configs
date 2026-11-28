@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://github.com/davidtelenko/configs/platform/.manifest.schema.json",
   "title": "Package manifest",
-  "description": "Packages installed by `platform/bootstrap.nu`. Each package is installed with the first manager in priority order that has an entry for it.",
+  "description": "Packages installed and configs mounted by `platform/bootstrap.nu`. Each package is installed with the first manager in priority order that has an entry for it.",
   "type": "object",
   "required": ["platforms", "systems", "managers", "packages"],
   "additionalProperties": false,
@@ -29,6 +29,11 @@
       "description": "Packages to install, keyed by a system independent name. Packages without entries for any manager of the current platform are skipped silently.",
       "type": "object",
       "additionalProperties": { "$ref": "#/definitions/package" }
+    },
+    "mounts": {
+      "description": "Configs linked from `configs/` into the locations apps read them from, keyed by the directory name under `configs/`. Only platforms listed in a mount get it.",
+      "type": "object",
+      "additionalProperties": { "$ref": "#/definitions/mount" }
     }
   },
   "definitions": {
@@ -97,6 +102,11 @@
           "type": "array",
           "items": { "type": "string", "minLength": 1 },
           "uniqueItems": true
+        },
+        "config": {
+          "description": "Directory used as `<config>/<name>` for mounts with the default target, `~` is expanded.",
+          "type": "string",
+          "minLength": 1
         }
       }
     },
@@ -256,7 +266,7 @@
       "propertyNames": {
         "anyOf": [
           { "$ref": "#/definitions/managerName" },
-          { "enum": ["prefer", "platforms"] }
+          { "enum": ["prefer", "platforms", "hooks"] }
         ]
       },
       "properties": {
@@ -269,7 +279,8 @@
           "items": { "$ref": "#/definitions/platformName" },
           "minItems": 1,
           "uniqueItems": true
-        }
+        },
+        "hooks": { "$ref": "#/definitions/hooks" }
       },
       "additionalProperties": { "$ref": "#/definitions/entry" },
       "defaultSnippets": [
@@ -283,6 +294,102 @@
             "scoop": true,
             "brew": true
           }
+        }
+      ]
+    },
+    "platformCommand": {
+      "description": "Command for every platform, or a mapping of platform to command.",
+      "oneOf": [
+        { "$ref": "#/definitions/command" },
+        {
+          "type": "object",
+          "minProperties": 1,
+          "propertyNames": { "$ref": "#/definitions/platformName" },
+          "additionalProperties": { "$ref": "#/definitions/command" }
+        }
+      ]
+    },
+    "hooks": {
+      "description": "Commands run around the install of this package, they must be safe to run repeatedly.",
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": false,
+      "properties": {
+        "pre": {
+          "description": "Run before the package is installed, a failure skips the install.",
+          "$ref": "#/definitions/platformCommand"
+        },
+        "post": {
+          "description": "Run after the package is installed or found already present.",
+          "$ref": "#/definitions/platformCommand"
+        }
+      }
+    },
+    "mountEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "source": {
+          "description": "Path under `configs/`, defaults to the mount name.",
+          "type": "string",
+          "minLength": 1
+        },
+        "target": {
+          "description": "Where the source is mounted, defaults to `<platform config>/<mount name>`, `~` is expanded.",
+          "type": "string",
+          "minLength": 1
+        },
+        "mode": {
+          "description": "`link` symlinks (junctions for windows directories), `copy` copies a file.",
+          "enum": ["link", "copy"]
+        },
+        "check": {
+          "description": "With `run`: when this command succeeds the config is considered mounted. `{source}`, `{target}` and `{repo}` are replaced with absolute paths.",
+          "$ref": "#/definitions/command"
+        },
+        "run": {
+          "description": "Command used instead of linking or copying. `{source}`, `{target}` and `{repo}` are replaced with absolute paths.",
+          "$ref": "#/definitions/command"
+        },
+        "undo": {
+          "description": "With `run`: command used by `unmount`. `{source}`, `{target}` and `{repo}` are replaced with absolute paths.",
+          "$ref": "#/definitions/command"
+        }
+      },
+      "dependencies": { "check": ["run"], "undo": ["run"] }
+    },
+    "mountItem": {
+      "oneOf": [
+        {
+          "description": "Mount to `<platform config>/<mount name>`.",
+          "const": true
+        },
+        {
+          "description": "Target path, `~` is expanded.",
+          "type": "string",
+          "minLength": 1
+        },
+        { "$ref": "#/definitions/mountEntry" }
+      ]
+    },
+    "mount": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": { "$ref": "#/definitions/platformName" },
+      "additionalProperties": {
+        "oneOf": [
+          { "$ref": "#/definitions/mountItem" },
+          {
+            "type": "array",
+            "items": { "$ref": "#/definitions/mountItem" },
+            "minItems": 1
+          }
+        ]
+      },
+      "defaultSnippets": [
+        {
+          "label": "mount",
+          "body": { "linux": true, "macos": true, "windows": true }
         }
       ]
     }

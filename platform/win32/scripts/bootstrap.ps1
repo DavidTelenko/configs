@@ -5,54 +5,32 @@
 .DESCRIPTION
     This script is intended to be installed from this api request or manually
     and run as a starting point to clone the configs repository, install all
-    the packages, and symlink the configs to appropriate configuration
-    locations. There is a lot of other flags which all signify whether the
-    targeted package config should be installed, for example if passed the
-    -Nvim flag this script will install the config for neovim in dedicated
-    directory as a symlink, if you want to work the other way around, you can
-    pass the -All flag, and then pass any other flags to signify the need to
-    omit this package configs from installation.
+    the packages from the manifest, and mount the configs to appropriate
+    configuration locations. Pass -Mount with config names to mount only those
+    configs, all configs of the platform are mounted otherwise.
 
 .PARAMETER SkipScoop
     Specifies whether the script should skip installing scoop. If you've
     manually installed scoop package manager and cloned the configuration
-    repository, you can run this script with -NoScoop flag, which will skip
+    repository, you can run this script with -SkipScoop flag, which will skip
     several steps of the installation process and just proceed to package
     installation and configuration
 
-.EXAMPLE
-    iex "& { $(iwr -useb https://raw.githubusercontent.com/DavidTelenko/win-configs/master/bootstrap.ps1) } -All"
-    Request script from web, install packages and configure all available in configs
+.PARAMETER Mount
+    Names of the configs to mount, see `mounts` in platform/.manifest.yaml
 
 .EXAMPLE
-    bootstrap.ps1 -All -Keymapper
-    Run script from local environment, configure all packages except keymapper
+    iex "& { $(iwr -useb https://raw.githubusercontent.com/DavidTelenko/win-configs/master/bootstrap.ps1) }"
+    Request script from web, install packages and mount all configs
+
+.EXAMPLE
+    bootstrap.ps1 -SkipScoop -Mount nvim, nushell
+    Run script from local environment, install packages and mount only neovim and nushell configs
 #>
 
 param (
   [Switch] $SkipScoop = $false,
-  [Switch] $All = $false,
-
-  [Switch] $Alacritty = $false,
-  [Switch] $Broot = $false,
-  [Switch] $Git = $false,
-  [Switch] $Helix = $false,
-  [Switch] $Kanata = $false,
-  [Switch] $Keymapper = $false,
-  [Switch] $Mpv = $false,
-  [Switch] $Musikcube = $false,
-  [Switch] $Nushell = $false,
-  [Alias("Neovim")]
-  [Switch] $Nvim = $false,
-  [Switch] $Powertoys = $false,
-  [Alias("PowerShell")]
-  [Switch] $Pwsh = $false,
-  [Switch] $Rio = $false,
-  [Switch] $Spotify = $false,
-  [Switch] $Ttyper = $false,
-  [Switch] $Wezterm = $false,
-  [Alias("WindowsTerminal")]
-  [Switch] $Winterm = $false
+  [string[]] $Mount = @()
 )
 
 # If we start from scratch and got this script from web call we need to install
@@ -69,25 +47,7 @@ scoop install git
 git clone https://github.com/DavidTelenko/win-configs.git ~/.configs
 
 # installing all packages from the manifest
-& ~/.configs/platform/win32/bootstrap.ps1
+& ~/.configs/platform/win32/bootstrap.ps1 install
 
-# installing configs respecting the users options
-& ~/.configs/init.ps1 `
-  -All `
-  -Alacritty `
-  -Broot `
-  -Git `
-  -Helix `
-  -Kanata `
-  -Keymapper `
-  -Mpv `
-  -Musikcube `
-  -Nushell `
-  -Nvim `
-  -Powertoys `
-  -Pwsh `
-  -Rio `
-  -Spotify `
-  -Ttyper `
-  -Wezterm `
-  -Winterm
+# mounting configs respecting the users options
+& ~/.configs/platform/win32/bootstrap.ps1 mount @Mount

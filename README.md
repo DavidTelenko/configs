@@ -1,117 +1,199 @@
 # Configs
 
-This repo aims to create single simple source of all necessary system configuration file for all tools I need.
+A single source of all the configuration files for the tools I use, together with a bootstrap that installs the packages and links the configs into place on Linux, macOS and Windows.
 
 It is constantly updating and is not a place familiar with stability.
 
-The future goal of this repo is to be reproducible on different operating systems. However for now this is not finished nor tested which is why sadly it only supports MS Windows (hence the name).
+# Layout
 
-# What's inside
-
-The main guts of this repo mostly contains configs for `nushell` and `neovim`. As of today windows does not support most of the frequently used shells and I am not really a huge fun of WSL so I decided to use `nushell`. The downside of this approach is that `nushell` does not come with fresh windows system (and we assume this repo is being installed on a fresh system in the first place) so writing a cross-platform `nu` bootstrap script is not an option. Thus this repo only contains the `ps1` bootstrap and init scripts which are simple initialization scripts for downloading and installing all the necessary packages as well as creating all the necessary symlinks to all folders in this directory.
-
-The list of packages to be installed can be found in the [manifest](platform/.manifest.yaml)
-
-Here the general list of configured packages:
-
-### Editors:
-
-- [Neovim](https://github.com/neovim/neovim)
-- [Helix](https://github.com/helix-editor/helix) (a backup plan editor :D)
-
-### Shells:
-
-- [Nushell](https://github.com/nushell/nushell)
-- [PowerShell](https://github.com/PowerShell/PowerShell)
-
-### Terminal multiplexers:
-
-- [Zellij](https://github.com/zellij-org/zellij)
-- [Tmux](https://github.com/tmux/tmux)
-
-### Terminal emulators:
-
-- [Windows Terminal](https://github.com/microsoft/terminal)
-- [Alacritty](https://github.com/alacritty/alacritty)
-- [Kitty](https://sw.kovidgoyal.net/kitty/)
-- [Wezterm](https://wezfurlong.org/wezterm/index.html)
-- [Rio](https://github.com/raphamorim/rio)
-- [Ghostty](https://github.com/ghostty-org/ghostty)
-
-### Crucial for me Tools:
-
-- [Fzf](https://github.com/junegunn/fzf)
-- [Oh My Posh](https://github.com/jandedobbeleer/oh-my-posh)
-- [Power Toys](https://github.com/microsoft/PowerToys)
-- [Spicetify](https://github.com/spicetify) + [SpotX](https://github.com/SpotX-Official/SpotX)
-- [Ttyper](https://github.com/max-niederman/ttyper)
-- [Vimium](https://github.com/gdh1995/vimium-c) browser extension (that's just a simple little piece of backup)
-- [Zoxide](https://github.com/ajeetdsouza/zoxide)
-
-### Media:
-
-- [Cmus](https://github.com/cmus/cmus)
-- [Mpv](https://mpv.io/)
-- [Musikcube](https://github.com/clangen/musikcube)
-
-### Other tools:
-
-- [Broot](https://github.com/Canop/broot)
-- [Kanata](https://github.com/jtroo/kanata)
-- [Keymapper](https://github.com/houmain/keymapper)
-- [Lazygit](https://github.com/jesseduffield/lazygit)
-- [Roboto Mono NF Font](https://www.nerdfonts.com/)
-- [Vencord](https://vencord.dev/)
-
-> [!NOTE]
-> This is not a comprehensive list of all the packages in a
-> [manifest](platform/.manifest.yaml). It is being constantly updated, and
-> behaves similar to a living organism
+```
+configs/             config files, one directory per app
+platform/
+  .manifest.yaml     packages to install and configs to mount
+  .manifest.schema.json
+  bootstrap.nu       installs packages and mounts configs from the manifest
+  linux/             bootstrap.sh entry script + helper scripts
+  darwin/            bootstrap.sh entry script
+  win32/             bootstrap.ps1 entry script + helper scripts
+```
 
 # Installation
 
-Every platform has a small entry script that installs nushell and hands over to [bootstrap.nu](platform/bootstrap.nu), which installs the packages and mounts (links) the configs described in the [manifest](platform/.manifest.yaml):
+Every platform has a small entry script that does the same thing:
 
-- Linux: `platform/linux/bootstrap.sh`
-- macOS: `platform/darwin/bootstrap.sh`
-- Windows: `platform/win32/bootstrap.ps1`
+1. installs the package manager (Homebrew on macOS, scoop on Windows) if it is missing
+2. installs git and [nushell](https://github.com/nushell/nushell) if they are missing
+3. clones the repo to `~/.configs` when the script is run outside of it (e.g. straight from the web)
+4. hands over to [bootstrap.nu](platform/bootstrap.nu), forwarding all arguments
 
-Without arguments it installs everything and mounts all configs of the platform. The steps can also be run separately, e.g. `bootstrap.sh install neovim`, `bootstrap.sh mount nvim nushell` or `bootstrap.sh unmount nvim`, add `-n` to see the plan without changing anything.
+| Platform | Entry script                                                 | Package manager  |
+| -------- | ------------------------------------------------------------ | ---------------- |
+| Linux    | [platform/linux/bootstrap.sh](platform/linux/bootstrap.sh)   | pacman, dnf, apt |
+| macOS    | [platform/darwin/bootstrap.sh](platform/darwin/bootstrap.sh) | Homebrew         |
+| Windows  | [platform/win32/bootstrap.ps1](platform/win32/bootstrap.ps1) | scoop            |
 
-It's apparent that's a "chicken and an egg" problem may occur in the case of fresh system because the scoop is not yet installed however we need git in order to clone repo and run the bootstrap script.
+The repo is expected to live in `~/.configs`, some configs (PowerShell profile, kitty sessions) reference files there directly.
 
-The simple solution is to first just download the script manually (or via web request) then run it and it will do all dirty typing for us (_The Chicken method_).
+### From scratch
 
-This method can be run like this
+The entry scripts can be fetched and run directly, no git or clone needed:
 
-```powershell
-iex "& { $(iwr -useb https://raw.githubusercontent.com/DavidTelenko/win-configs/main/platform/win32/scripts/bootstrap.ps1) }"
+```sh
+# Linux
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/davidtelenko/configs/main/platform/linux/bootstrap.sh)"
+
+# macOS
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/davidtelenko/configs/main/platform/darwin/bootstrap.sh)"
 ```
 
+```powershell
+# Windows
+iex "& { $(iwr -useb https://raw.githubusercontent.com/davidtelenko/configs/main/platform/win32/bootstrap.ps1) }"
+```
+
+Arguments go after the script, e.g. `bash -c "$(curl ...)" bootstrap mount nvim` (the first word is the script name) or `iex "& { $(iwr ...) } mount nvim"`.
+
+### From the repo
+
+```sh
+git clone https://github.com/davidtelenko/configs ~/.configs
+~/.configs/platform/linux/bootstrap.sh
+```
+
+Without arguments it installs every package available on the system and mounts all configs of the platform. Every step can also be run on its own:
+
+```sh
+bootstrap.sh                      # install everything, then mount everything
+bootstrap.sh install              # install all packages
+bootstrap.sh install neovim tmux  # install only some packages
+bootstrap.sh mount                # link all configs
+bootstrap.sh mount nvim nushell   # link only some configs
+bootstrap.sh unmount nvim         # remove links created by mount
+bootstrap.sh --help               # full usage
+```
+
+Common flags:
+
+- `-n, --dry-run` - print the plan without changing anything
+- `-s, --system <name>` - use a system profile instead of detecting it (`arch`, `fedora`, `ubuntu`, `macos`, `windows`)
+- `-p, --prefer <manager>` - try this package manager first for every package
+- `-m, --manifest <path>` - read another manifest
+
+Both `install` and `mount` are idempotent: already installed packages and already mounted configs are skipped. `mount` replaces whatever is at the target location, `unmount` only removes links it owns.
+
 > [!NOTE]
-> If you want to only mount some configs pass their names with `-Mount`, e.g `-Mount nvim, nushell`. The names are the keys of `mounts` in the [manifest](platform/.manifest.yaml).
+> Run the bootstrap as a regular user, `sudo` is used where needed. On Windows file symlinks need Developer Mode or an elevated shell, directories are linked with junctions.
 
-Another solution is to manually install scoop, clone repo and run bootstrap with
-a `-SkipScoop` parameter this will effectively do the same.
+# Manifest
 
-If you left with some questions please take a look at a [bootstrap.ps1](platform/win32/scripts/bootstrap.ps1) documentation by invoking this command in powershell `help bootstrap.ps1` and `help bootstrap.ps1 -examples`
+Everything the bootstrap does is described in [platform/.manifest.yaml](platform/.manifest.yaml), its fields are documented in [platform/.manifest.schema.json](platform/.manifest.schema.json):
+
+- `platforms` - per OS shell, `PATH` additions, a `prepare` step and the default config directory
+- `systems` - distro detection (`/etc/os-release`) and the ordered list of package managers to use
+- `managers` - how to set up a manager, install packages with it and enable extra repos (copr, ppa, scoop buckets, ...)
+- `packages` - which manager provides each package and under which name, with optional `prefer` and post-install `hooks`
+- `mounts` - where each `configs/<name>` goes per platform: `true` for `<config dir>/<name>`, a path, a `{ source, target, mode }` mapping (`link` or `copy`), or custom `check` / `run` / `undo` commands
+
+Supported systems:
+
+- **Arch** (and Endeavour, Manjaro, CachyOS, Garuda, Artix) - pacman, yay, am, cargo, go, asdf
+- **Fedora** (and Nobara, Ultramarine) - dnf, am, cargo, go, asdf
+- **Ubuntu** (and Pop!\_OS, Mint, elementary, Zorin, Neon) - apt, am, cargo, go, asdf
+- **macOS** - brew, cask, cargo, go, asdf
+- **Windows** - scoop, winget
+
+# What's inside
+
+Configs mounted by the bootstrap (L - Linux, M - macOS, W - Windows):
+
+### Editors
+
+| Config                                         | L   | M   | W   |
+| ---------------------------------------------- | --- | --- | --- |
+| [Neovim](https://github.com/neovim/neovim)     | ✓   | ✓   | ✓   |
+| [Helix](https://github.com/helix-editor/helix) | ✓   | ✓   | ✓   |
+
+### Shells and multiplexers
+
+| Config                                                 | L   | M   | W   |
+| ------------------------------------------------------ | --- | --- | --- |
+| [Nushell](https://github.com/nushell/nushell)          | ✓   | ✓   | ✓   |
+| [PowerShell](https://github.com/PowerShell/PowerShell) |     |     | ✓   |
+| [Tmux](https://github.com/tmux/tmux)                   | ✓   | ✓   |     |
+| [Zellij](https://github.com/zellij-org/zellij)         | ✓   | ✓   |     |
+
+### Terminal emulators
+
+| Config                                                    | L   | M   | W   |
+| --------------------------------------------------------- | --- | --- | --- |
+| [Ghostty](https://github.com/ghostty-org/ghostty)         | ✓   | ✓   |     |
+| [Kitty](https://sw.kovidgoyal.net/kitty/)                 | ✓   | ✓   |     |
+| [Wezterm](https://wezfurlong.org/wezterm/index.html)      | ✓   | ✓   | ✓   |
+| [Alacritty](https://github.com/alacritty/alacritty)       | ✓   |     | ✓   |
+| [Foot](https://codeberg.org/dnkl/foot)                    | ✓   |     |     |
+| [Rio](https://github.com/raphamorim/rio)                  |     |     | ✓   |
+| [Windows Terminal](https://github.com/microsoft/terminal) |     |     | ✓   |
+
+### Desktop (Wayland)
+
+| Config                                          | L   | M   | W   |
+| ----------------------------------------------- | --- | --- | --- |
+| [Hyprland](https://hyprland.org/)               | ✓   |     |     |
+| [Waybar](https://github.com/Alexays/Waybar)     | ✓   |     |     |
+| [Rofi](https://github.com/davatorium/rofi)      | ✓   |     |     |
+| [Dunst](https://github.com/dunst-project/dunst) | ✓   |     |     |
+
+The Hyprland config also covers hypridle, hyprlock, hyprsunset and a few helper scripts (screenshots, media player, battery, cheatsheet).
+
+### Keyboard
+
+| Config                                                                 | L   | M   | W   |
+| ---------------------------------------------------------------------- | --- | --- | --- |
+| [Keyd](https://github.com/rvaiya/keyd)                                 | ✓   |     |     |
+| [Karabiner-Elements](https://karabiner-elements.pqrs.org/)             |     | ✓   |     |
+| [Kanata](https://github.com/jtroo/kanata)                              |     |     | ✓   |
+| [Keymapper](https://github.com/houmain/keymapper)                      |     |     | ✓   |
+| [PowerToys](https://github.com/microsoft/PowerToys) (keyboard manager) |     |     | ✓   |
+
+### Media
+
+| Config                                            | L   | M   | W   |
+| ------------------------------------------------- | --- | --- | --- |
+| [Mpv](https://mpv.io/)                            | ✓   | ✓   | ✓   |
+| [Cmus](https://github.com/cmus/cmus)              | ✓   | ✓   |     |
+| [Musikcube](https://github.com/clangen/musikcube) |     | ✓   | ✓   |
+
+### Tools
+
+| Config                                            | L   | M   | W   |
+| ------------------------------------------------- | --- | --- | --- |
+| [Git](https://git-scm.com/)                       | ✓   | ✓   | ✓   |
+| [Ttyper](https://github.com/max-niederman/ttyper) | ✓   | ✓   | ✓   |
+| [Tuicr](https://github.com/agavra/tuicr)          | ✓   | ✓   |     |
+| [Broot](https://github.com/Canop/broot)           |     | ✓   | ✓   |
+| [Asdf](https://github.com/asdf-vm/asdf)           | ✓   | ✓   |     |
+| [VCMI](https://vcmi.eu/)                          | ✓   |     |     |
+
+Configs kept in the repo but not mounted:
+
+- [Oh My Posh](https://github.com/jandedobbeleer/oh-my-posh) theme, loaded from `~/.configs` by the PowerShell profile
+- [Vimium C](https://github.com/gdh1995/vimium-c) settings
+- [Telegram](https://desktop.telegram.org/) gruvbox theme
+- GitHub user style
+- KeePassXC database
+
+Besides the configs the manifest installs a bunch of cli tools (fzf, zoxide, ripgrep, fd, bat, eza, delta, ...), languages, fonts (Roboto Mono Nerd Font), apps and games. See the `packages` section of the [manifest](platform/.manifest.yaml) for the full list.
 
 # Notes
 
-- **Power Toys** - cannot be adequately configured using symlinks to its config files so we just use their own manual system of backing up stuff
+- **Git** - the config is not linked, `mount` adds `configs/git/.gitconfig` to `include.path` of the global git config, so machine specific settings stay out of the repo.
 
-- **Windows Terminal** - its better not to sym or hard link config file to the file in the config directory, after all its the terminal emulator and some stuff tends to diverge in different computers, so this repo only contains most general settings of my liking
+- **Keyd** - keyd reads its config from `/etc/keyd`, so the config is copied there with `sudo` and the service is restarted instead of linking.
 
-- **Vimium** - it does not support any type of automated backup mechanic (as far as I know) so it's the same as with powertoys - manual import.
+- **Windows Terminal** - the settings are copied rather than linked, the terminal rewrites its config and some stuff tends to diverge between computers, so the repo only keeps the most general settings.
 
-# Linux related configs
+- **PowerToys** - only the keyboard manager mappings are mounted, everything else goes through its own backup system.
 
-Still under construction, I have a [todo](https://github.com/DavidTelenko/markdowned/blob/main/todo/linux.md) which I just follow manually. At some point, I'll spend a day or two cooking up a single `init.sh` working for both arch and fedora based distros and OS windows.
+- **Vimium** - it does not support any automated backup mechanic, so the settings have to be imported manually.
 
-- [Dunst](https://github.com/dunst-project/dunst)
-- [Rofi](https://github.com/davatorium/rofi)
-- [Waybar](https://github.com/Alexays/Waybar)
-- [Hyprland](https://hyprland.org/)
-- [Keyd](https://github.com/rvaiya/keyd)
-- [Ghostty](https://github.com/mitchellh/ghostty)
-- [Swww](https://github.com/LGFae/swww)
+- **Ghostty** - see [configs/ghostty/README.md](configs/ghostty/README.md) for disabling the GTK input method keybindings on Linux.

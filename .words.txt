@@ -594,6 +594,7 @@ setl
 setproctitle
 setqflist
 setreg
+setw
 shakya
 shellslash
 shfmt
